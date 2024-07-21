@@ -6,8 +6,16 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
-  plugins: ['prettier', '@typescript-eslint', 'unused-imports', 'simple-import-sort'],
+  plugins: [
+    'prettier',
+    '@typescript-eslint',
+    'unused-imports',
+    'simple-import-sort',
+    '@tanstack/query',
+  ],
   rules: {
     '@typescript-eslint/consistent-type-imports': 'error',
     'prettier/prettier': 'error',
