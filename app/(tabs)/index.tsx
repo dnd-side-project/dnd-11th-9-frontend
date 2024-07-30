@@ -1,11 +1,11 @@
 import styled from '@emotion/native';
 
-import { CustomText } from '@/src/components/common/Text/CustomText';
+import { Typography } from '@/components/common/Typography';
 
 export default function HomeScreen() {
   return (
     <S.Container>
-      <CustomText type='title'>Welcome to Expo</CustomText>
+      <Typography>Welcome to Expo</Typography>
     </S.Container>
   );
 }

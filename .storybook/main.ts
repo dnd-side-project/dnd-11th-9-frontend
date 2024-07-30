@@ -1,3 +1,5 @@
+import path from 'path';
+
 /** @type{import("@storybook/react-webpack5").StorybookConfig} */
 module.exports = {
   stories: [
@@ -11,6 +13,16 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-react-native-web',
   ],
+  webpackFinal: async (config: any) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': path.resolve(__dirname, '../src/'),
+      };
+    }
+
+    return config;
+  },
   framework: {
     name: '@storybook/react-webpack5',
     options: {},

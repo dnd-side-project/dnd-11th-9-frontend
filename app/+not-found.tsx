@@ -1,16 +1,16 @@
 import styled from '@emotion/native';
 import { Link, Stack } from 'expo-router';
 
-import { CustomText } from '@/src/components/common';
+import { Typography } from '@/components/common/Typography';
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
       <E.Container>
-        <CustomText type='title'>This is NotFound Screen</CustomText>
+        <Typography>This is NotFound Screen</Typography>
         <E.Link href='/'>
-          <CustomText type='link'>Go to home screen!</CustomText>
+          <Typography>Go to home screen!</Typography>
         </E.Link>
       </E.Container>
     </>
