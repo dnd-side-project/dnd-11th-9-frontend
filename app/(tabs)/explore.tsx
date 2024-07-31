@@ -1,5 +1,5 @@
-import { CustomText } from '@/src/components/common/Text/CustomText';
+import { Typography } from '@/components/common/Typography';
 
 export default function TabTwoScreen() {
-  return <CustomText type='link'>Welcome to Expo</CustomText>;
+  return <Typography>Welcome to Expo</Typography>;
 }
