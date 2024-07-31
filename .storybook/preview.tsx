@@ -11,7 +11,6 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    layout: 'centered',
   },
   decorators: [
     (Story) => (

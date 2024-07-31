@@ -1,8 +1,9 @@
 import 'react-native-reanimated';
 
 import { ScrollViewStyleReset } from 'expo-router/html';
+import type { PropsWithChildren } from 'react';
 
-export default function Root({ children }: PropsNeedChildren) {
+export default function Root({ children }: PropsWithChildren) {
   return (
     <html lang='en'>
       <head>

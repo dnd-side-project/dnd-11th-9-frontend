@@ -5,7 +5,7 @@ import { Typography } from '@/components/common/Typography';
 export default function HomeScreen() {
   return (
     <S.Container>
-      <Typography>Welcome to Expo</Typography>
+      <Typography>:)</Typography>
     </S.Container>
   );
 }
