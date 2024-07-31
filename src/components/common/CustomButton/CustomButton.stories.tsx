@@ -27,7 +27,7 @@ const CustomButtonMeta: Meta<typeof CustomButton> = {
     children: { control: 'text' },
   },
   args: {
-    children: 'Button Text',
+    children: 'CustomButton Text',
     variant: 'primary',
     size: 'medium',
     typoVariant: 'Body1',
