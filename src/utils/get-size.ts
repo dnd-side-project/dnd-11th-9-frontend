@@ -1,10 +1,10 @@
 import { Dimensions } from 'react-native';
 
 const getSize = {
-  deviceHeight: Dimensions.get('screen').height,
   deviceWidth: Dimensions.get('screen').width,
-  screenWidth: Dimensions.get('screen').width,
-  screenHeight: Dimensions.get('screen').height,
+  deviceHeight: Dimensions.get('screen').height,
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height,
 };
 
 export { getSize };
