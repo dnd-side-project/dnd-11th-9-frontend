@@ -22,7 +22,6 @@ const CustomTextMeta: Meta<typeof Typography> = {
         ],
       },
     },
-    color: { control: 'color' },
     children: { control: 'text' },
   },
   args: {
