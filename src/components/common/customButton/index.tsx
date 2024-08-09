@@ -3,9 +3,10 @@ import type { Theme } from '@emotion/react';
 import type { PropsWithChildren } from 'react';
 import type { PressableProps } from 'react-native';
 
-import { Typography } from '@/components/common/Typography';
 import type { theme } from '@/styles/theme';
 import { getSize } from '@/utils/get-size';
+
+import { Typography } from '../typography';
 
 type Props = {
   variant?: 'primary' | 'secondary';

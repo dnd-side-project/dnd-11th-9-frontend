@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Typography } from './index';
 
 const CustomTextMeta: Meta<typeof Typography> = {
-  title: 'common/Typography',
+  title: 'common/typography',
   component: Typography,
   argTypes: {
     variant: {

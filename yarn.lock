@@ -8981,6 +8981,7 @@ __metadata:
     expo-font: "npm:~12.0.9"
     expo-linking: "npm:~6.3.1"
     expo-router: "npm:~3.5.18"
+    expo-secure-store: "npm:~13.0.2"
     expo-splash-screen: "npm:~0.27.5"
     expo-status-bar: "npm:~1.12.1"
     expo-system-ui: "npm:~3.0.7"
@@ -10182,6 +10183,15 @@ __metadata:
     react-native-reanimated:
       optional: true
   checksum: 10c0/c9ac20972eb1572a458e124f9c9798f2e438a29a76019ace517acb1139d6dda393987e6509e293673fee46cff032138046991f9935ebbdcf15379f9707cb7375
+  languageName: node
+  linkType: hard
+
+"expo-secure-store@npm:~13.0.2":
+  version: 13.0.2
+  resolution: "expo-secure-store@npm:13.0.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/75d7f447fdfe4a67a09629532e790831c05a9a27671fa8b4ce2e56ddc2828fdc1f84e713ffa3d8a9645a3c080a9c08c0e5571f67bae30a72926ac20e82637c1c
   languageName: node
   linkType: hard
 

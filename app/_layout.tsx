@@ -1,16 +1,14 @@
-import 'react-native-reanimated';
-
+import styled from '@emotion/native';
 import { ThemeProvider } from '@emotion/react';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 
+import { SessionProvider } from '@/store';
 import { theme } from '@/styles/theme';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
+export default function Root() {
   const [loaded] = useFonts({
     Pretendard: require('../assets/fonts/Pretendard-Regular.otf'),
     'Pretendard-Black': require('../assets/fonts/Pretendard-Black.otf'),
@@ -33,15 +31,40 @@ export default function RootLayout() {
     return null;
   }
 
+  if (Platform.OS === 'web') {
+    return (
+      <S.Container>
+        <S.Layout>
+          <SessionProvider>
+            <ThemeProvider theme={theme}>
+              <Slot />
+            </ThemeProvider>
+          </SessionProvider>
+        </S.Layout>
+      </S.Container>
+    );
+  }
+
   return (
-    <ThemeProvider theme={theme}>
-      <Stack>
-        <Stack.Screen
-          name='(tabs)'
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name='+not-found' />
-      </Stack>
-    </ThemeProvider>
+    <SessionProvider>
+      <ThemeProvider theme={theme}>
+        <Slot />
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
+
+const S = {
+  Container: styled.View`
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  Layout: styled.View`
+    width: 375px;
+    height: 100dvh;
+    border: 1px solid black;
+  `,
+};
