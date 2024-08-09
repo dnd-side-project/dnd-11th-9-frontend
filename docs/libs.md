@@ -1,3 +1,7 @@
+# libs
+
+> 라이브러리들의 사용의도를 정의합니다.
+
 ## [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)
 
 Expo SecureStore 라이브러리는 로컬 장치에 데이터를 키-값 쌍으로 안전하게 저장하는 방법을 제공합니다. 각 Expo 프로젝트에는 별도의 스토리지 시스템이 있습니다.

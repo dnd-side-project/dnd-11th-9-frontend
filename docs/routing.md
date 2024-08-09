@@ -1,4 +1,6 @@
-## Folder Routing
+# Folder Routing
+
+> 폴더 구조를 정의합니다.
 
 폴더 구조는 다음과 같은 구조를 가집니다.
 
