@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CustomButton } from './index';
 
 const CustomButtonMeta: Meta<typeof CustomButton> = {
-  title: 'common/CustomButton',
+  title: 'common/customButton',
   component: CustomButton,
   argTypes: {
     variant: {
@@ -27,7 +27,7 @@ const CustomButtonMeta: Meta<typeof CustomButton> = {
     children: { control: 'text' },
   },
   args: {
-    children: 'CustomButton Text',
+    children: 'customButton Text',
     variant: 'primary',
     size: 'medium',
     typoVariant: 'Body1',
