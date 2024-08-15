@@ -139,14 +139,14 @@ const S = {
     position: absolute;
     bottom: 0;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background-color: white;
+    justify-content: space-between;
     padding: 12px 0 24px;
+    background-color: white;
   `,
   TabBarItem: styled.TouchableOpacity`
-    justify-content: center;
-    align-items: center;
     gap: 4px;
+    align-items: center;
+    justify-content: center;
   `,
 };
