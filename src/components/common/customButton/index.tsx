@@ -42,11 +42,11 @@ const getButtonStyles = (
   };
 
   return css`
-    padding: 10px;
-    border-radius: 5px;
-    border-width: 1px;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
     ${variantStyles[variant]}
     ${sizeStyles[size]}
   `;

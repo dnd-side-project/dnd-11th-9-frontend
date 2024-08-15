@@ -56,11 +56,11 @@ export default function Root() {
 
 const S = {
   Container: styled.View`
-    height: 100dvh;
-    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100dvh;
   `,
   Layout: styled.View`
     width: 375px;
