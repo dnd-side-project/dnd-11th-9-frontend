@@ -30,3 +30,6 @@ expo-env.d.ts
 
 #idea
 .idea
+
+#env
+.env
