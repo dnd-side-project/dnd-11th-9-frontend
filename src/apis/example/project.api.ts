@@ -6,7 +6,7 @@ interface ProjectInfo extends ProjectDto {
   hasReview: boolean;
 }
 
-interface ProjectResponse {
+export interface ProjectResponse {
   projects: ProjectInfo[];
 }
 

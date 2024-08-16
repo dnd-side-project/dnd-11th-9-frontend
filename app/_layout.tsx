@@ -1,12 +1,10 @@
 import styled from '@emotion/native';
-import { ThemeProvider } from '@emotion/react';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
-import { SessionProvider } from '@/store';
-import { theme } from '@/styles/theme';
+import { Provider } from '@/components/common/provider';
 
 export default function Root() {
   const [loaded] = useFonts({
@@ -33,24 +31,20 @@ export default function Root() {
 
   if (Platform.OS === 'web') {
     return (
-      <S.Container>
-        <S.Layout>
-          <SessionProvider>
-            <ThemeProvider theme={theme}>
-              <Slot />
-            </ThemeProvider>
-          </SessionProvider>
-        </S.Layout>
-      </S.Container>
+      <Provider>
+        <S.Container>
+          <S.Layout>
+            <Slot />
+          </S.Layout>
+        </S.Container>
+      </Provider>
     );
   }
 
   return (
-    <SessionProvider>
-      <ThemeProvider theme={theme}>
-        <Slot />
-      </ThemeProvider>
-    </SessionProvider>
+    <Provider>
+      <Slot />
+    </Provider>
   );
 }
 
