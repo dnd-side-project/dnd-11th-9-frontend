@@ -30,3 +30,6 @@ expo-env.d.ts
 
 #idea
 .idea
+
+# 테스트 커버리지 결과 디렉터리
+coverage/

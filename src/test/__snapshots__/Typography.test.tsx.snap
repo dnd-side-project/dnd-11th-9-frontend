@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Typography /> 스냅샷 테스트 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "Pretendard",
+        "fontSize": 24,
+        "fontWeight": "bold",
+      },
+      {},
+    ]
+  }
+  variant="H2"
+>
+  Typography
+</Text>
+`;
