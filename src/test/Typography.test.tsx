@@ -10,7 +10,7 @@ describe('<Typography />', () => {
   test('타이포그래피가 똑바로 렌더링 되는지 확인한다.', () => {
     const { getByText } = render(<Typography>Test</Typography>);
 
-    const TextLabel = getByText('Test');
+    const TextLabel = getByText('Test1');
     expect(TextLabel).toBeTruthy();
   });
 });
