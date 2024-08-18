@@ -68,6 +68,7 @@
     "@storybook/react-native": "^7.6.18",
     "@storybook/react-webpack5": "^7.6.18",
     "@tanstack/eslint-plugin-query": "^5.51.12",
+    "@testing-library/react-native": "^12.6.0",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",
     "@types/react-test-renderer": "^18.0.7",
