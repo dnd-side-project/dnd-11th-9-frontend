@@ -1,2 +1,2 @@
-export * from './get-size';
+export * from './getSize';
 export * from './render';

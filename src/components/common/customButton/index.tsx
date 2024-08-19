@@ -4,7 +4,7 @@ import type { PropsWithChildren } from 'react';
 import type { PressableProps } from 'react-native';
 
 import type { theme } from '@/styles/theme';
-import { getSize } from '@/utils/get-size';
+import { getSize } from '@/utils/getSize';
 
 import { Typography } from '../typography';
 
