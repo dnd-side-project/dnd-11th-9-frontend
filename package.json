@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint": "expo lint",
     "lint:css": "stylelint --ignore-path .gitignore '**/*.(ts|tsx)'",
     "lint:css:fix": "stylelint --ignore-path .gitignore '**/*.(ts|tsx)' --fix",
@@ -18,7 +19,16 @@
     "build-storybook": "storybook build"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx,js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/expo-env.d.ts",
+      "!**/.expo/**"
+    ]
   },
   "dependencies": {
     "@emotion/native": "^11.11.0",
@@ -68,9 +78,9 @@
     "@storybook/react-native": "^7.6.18",
     "@storybook/react-webpack5": "^7.6.18",
     "@tanstack/eslint-plugin-query": "^5.51.12",
+    "@testing-library/react-native": "^12.6.0",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",
-    "@types/react-test-renderer": "^18.0.7",
     "babel-loader": "8.3.0",
     "eslint": "^8.57.0",
     "eslint-config-expo": "^7.0.0",
@@ -85,7 +95,6 @@
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
-    "react-test-renderer": "18.2.0",
     "storybook": "^7.6.18",
     "stylelint": "^16.8.1",
     "stylelint-config-recess-order": "^5.0.1",
