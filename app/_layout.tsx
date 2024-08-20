@@ -1,31 +1,13 @@
 import styled from '@emotion/native';
-import { ThemeProvider } from '@emotion/react';
-import { useFonts } from 'expo-font';
-import { Slot, SplashScreen } from 'expo-router';
-import { useEffect } from 'react';
+import { Slot } from 'expo-router';
 import { Platform } from 'react-native';
 
+import Provider from '@/components/common/provider';
+import { useAppOpen } from '@/hooks';
 import { SessionProvider } from '@/store';
-import { theme } from '@/styles/theme';
 
 export default function Root() {
-  const [loaded] = useFonts({
-    Pretendard: require('../assets/fonts/Pretendard-Regular.otf'),
-    'Pretendard-Black': require('../assets/fonts/Pretendard-Black.otf'),
-    'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.otf'),
-    'Pretendard-ExtraBold': require('../assets/fonts/Pretendard-ExtraBold.otf'),
-    'Pretendard-ExtraLight': require('../assets/fonts/Pretendard-ExtraLight.otf'),
-    'Pretendard-Light': require('../assets/fonts/Pretendard-Light.otf'),
-    'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),
-    'Pretendard-SemiBold': require('../assets/fonts/Pretendard-SemiBold.otf'),
-    'Pretendard-Thin': require('../assets/fonts/Pretendard-Thin.otf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  const loaded = useAppOpen();
 
   if (!loaded) {
     return null;
@@ -33,24 +15,24 @@ export default function Root() {
 
   if (Platform.OS === 'web') {
     return (
-      <S.Container>
-        <S.Layout>
-          <SessionProvider>
-            <ThemeProvider theme={theme}>
+      <Provider>
+        <SessionProvider>
+          <S.Container>
+            <S.Layout>
               <Slot />
-            </ThemeProvider>
-          </SessionProvider>
-        </S.Layout>
-      </S.Container>
+            </S.Layout>
+          </S.Container>
+        </SessionProvider>
+      </Provider>
     );
   }
 
   return (
-    <SessionProvider>
-      <ThemeProvider theme={theme}>
+    <Provider>
+      <SessionProvider>
         <Slot />
-      </ThemeProvider>
-    </SessionProvider>
+      </SessionProvider>
+    </Provider>
   );
 }
 
