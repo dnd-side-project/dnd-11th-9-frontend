@@ -136,6 +136,7 @@ export default function Layout() {
 
 const S = {
   TabBar: styled.View`
+    width: 100%;
     position: absolute;
     bottom: 0;
     flex-direction: row;
