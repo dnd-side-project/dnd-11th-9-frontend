@@ -3,4 +3,4 @@
 
 yarn test
 
-npx expo export -p web
+yarn web:build
