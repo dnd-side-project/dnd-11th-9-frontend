@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-import { Typography } from '@/components/common/typography';
+import Typography from '@/components/common/typography';
 
 function Review() {
   return (

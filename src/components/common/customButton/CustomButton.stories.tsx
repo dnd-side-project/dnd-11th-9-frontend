@@ -30,7 +30,6 @@ const CustomButtonMeta: Meta<typeof CustomButton> = {
     children: 'customButton Text',
     variant: 'primary',
     size: 'medium',
-    typoVariant: 'Body1',
   },
 };
 
@@ -41,7 +40,6 @@ export const PrimaryMedium: StoryObj<typeof CustomButton> = {
   args: {
     variant: 'primary',
     size: 'medium',
-    typoVariant: 'Body1',
   },
 };
 
@@ -50,7 +48,6 @@ export const SecondaryLarge: StoryObj<typeof CustomButton> = {
   args: {
     variant: 'secondary',
     size: 'large',
-    typoVariant: 'Body2',
   },
 };
 
@@ -59,7 +56,6 @@ export const CustomBackground: StoryObj<typeof CustomButton> = {
   args: {
     variant: 'primary',
     size: 'medium',
-    typoVariant: 'Body3',
   },
 };
 
@@ -68,6 +64,5 @@ export const LargeWithBody1: StoryObj<typeof CustomButton> = {
   args: {
     variant: 'secondary',
     size: 'large',
-    typoVariant: 'Body1',
   },
 };
