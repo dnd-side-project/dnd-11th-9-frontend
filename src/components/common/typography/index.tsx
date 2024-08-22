@@ -129,6 +129,15 @@ const CustomText = styled.Text<Props>`
   ${({ style }) => style}
 `;
 
+/**
+ * Typography 컴포넌트
+ * @param children 표시할 글씨를 입력합니다.
+ * @param variant  텍스트의 크기, 자간, 줄간 등의 스타일을 지정합니다.
+ * @param fontWeight 글씨 굵기 속성을 지정합니다.
+ * @param color 글씨의 색깔을 선택합니다.
+ * @param rest  나머지 추가 속성들을 받아옵니다.
+ * @constructor
+ */
 function Typography({
   children,
   variant = 'Label1/Normal',
