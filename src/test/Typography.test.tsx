@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react-native';
 
-import { Typography } from '@/components/common/typography';
+import Typography from '@/components/common/typography';
 import { render } from '@/utils';
 
 describe('<Typography />', () => {
   test('스냅샷 테스트', () => {
-    const tree = render(<Typography variant='H2'>Typography</Typography>).toJSON();
+    const tree = render(<Typography variant='Display2'>Typography</Typography>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 

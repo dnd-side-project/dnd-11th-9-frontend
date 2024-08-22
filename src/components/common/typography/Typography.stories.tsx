@@ -1,32 +1,49 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Typography } from './index';
+import Typography from './index';
 
 const CustomTextMeta: Meta<typeof Typography> = {
-  title: 'common/typography',
+  title: 'common/Typography',
   component: Typography,
   argTypes: {
+    fontWeight: {
+      control: {
+        type: 'select',
+        options: ['normal', 'bold', 'semiBold', 'medium'],
+      },
+      description: '글씨의 굵기를 지정합니다. default 값은 normal 입니다.',
+    },
     variant: {
       control: {
         type: 'select',
         options: [
-          'H1',
-          'H2',
-          'H3',
-          'Subtitle1',
-          'Subtitle2',
-          'Subtitle3',
-          'Body1',
-          'Body2',
-          'Body3',
+          'Display1',
+          'Display2',
+          'Title1',
+          'Title2',
+          'Title3',
+          'Heading1',
+          'Heading2',
+          'Headline1',
+          'Headline2',
+          'Body1/Normal',
+          'Body1/Reading',
+          'Body2/Normal',
+          'Body2/Reading',
+          'Label1/Normal',
+          'Label1/Reading',
+          'Label2',
+          'Caption1',
+          'Caption2',
         ],
       },
+      description: '텍스트의 크기, 자간, 줄간 등의 스타일을 지정합니다.',
     },
     children: { control: 'text' },
   },
   args: {
-    children: 'Hello world',
-    variant: 'Body1',
+    children: 'Wepro',
+    variant: 'Title1',
     color: 'black',
   },
 };
@@ -35,39 +52,8 @@ export default CustomTextMeta;
 
 export const Basic: StoryObj<typeof Typography> = {
   args: {
-    variant: 'Body1',
+    variant: 'Title1',
     color: 'black',
-  },
-};
-
-export const H1Example: StoryObj<typeof Typography> = {
-  args: {
-    children: 'Heading 1',
-    variant: 'H1',
-    color: 'black',
-  },
-};
-
-export const Subtitle1Example: StoryObj<typeof Typography> = {
-  args: {
-    children: 'Subtitle 1',
-    variant: 'Subtitle1',
-    color: 'black',
-  },
-};
-
-export const CustomColorExample: StoryObj<typeof Typography> = {
-  args: {
-    children: 'Custom Color',
-    variant: 'Body1',
-    color: 'blue',
-  },
-};
-
-export const AnotherExample: StoryObj<typeof Typography> = {
-  args: {
-    children: 'Another example',
-    variant: 'Body1',
-    color: 'black',
+    fontWeight: 'normal',
   },
 };

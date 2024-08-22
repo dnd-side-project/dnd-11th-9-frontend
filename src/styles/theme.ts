@@ -15,33 +15,5 @@ const color = {
   TRANSPARENT: 'transparent',
 } as const;
 
-const spacing = {
-  XS: 4,
-  S: 8,
-  M: 16,
-  L: 24,
-  XL: 32,
-  XXL: 40,
-} as const;
-
-const typography = {
-  FONT_SIZE: {
-    H1: 26,
-    H2: 24,
-    H3: 20,
-    Subtitle1: 18,
-    Subtitle2: 16,
-    Subtitle3: 14,
-    Body1: 20,
-    Body2: 18,
-    Body3: 18,
-  },
-  FONT_WEIGHT: {
-    Bold: 'bold',
-    Regular: 'normal',
-    Medium: '500',
-  },
-} as const;
-
-export const theme = { color, spacing, typography };
+export const theme = { color };
 export type CustomTheme = typeof theme;
