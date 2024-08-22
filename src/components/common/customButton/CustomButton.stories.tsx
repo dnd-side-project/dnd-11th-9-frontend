@@ -18,12 +18,6 @@ const CustomButtonMeta: Meta<typeof CustomButton> = {
         options: ['medium', 'large'],
       },
     },
-    typoVariant: {
-      control: {
-        type: 'select',
-        options: ['Body1', 'Body2', 'Body3'],
-      },
-    },
     children: { control: 'text' },
   },
   args: {

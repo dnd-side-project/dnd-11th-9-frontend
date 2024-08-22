@@ -3,16 +3,13 @@ import type { Theme } from '@emotion/react';
 import type { PropsWithChildren } from 'react';
 import type { PressableProps } from 'react-native';
 
-import type { theme } from '@/styles/theme';
 import { getSize } from '@/utils/getSize';
 
-import { Typography } from '../typography';
-
-type Props = {
-  variant?: 'primary' | 'secondary';
-  size?: 'medium' | 'large';
-  typoVariant?: Extract<keyof typeof theme.typography.FONT_SIZE, 'Body1' | 'Body2' | 'Body3'>;
-} & PressableProps;
+type Props = Partial<{
+  variant: 'primary' | 'secondary';
+  size: 'medium' | 'large';
+}> &
+  PressableProps;
 
 const getButtonStyles = (
   theme: Theme,
@@ -52,14 +49,13 @@ const getButtonStyles = (
   `;
 };
 
-const StyledButton = styled.Pressable<Omit<Props, 'typoVariant'>>`
+const StyledButton = styled.Pressable<Props>`
   ${({ theme, variant, size }) => getButtonStyles(theme, variant, size)}
 `;
 
 export function CustomButton({
   variant = 'primary',
   size = 'medium',
-  typoVariant = 'Body1',
   children,
   ...rest
 }: PropsWithChildren<Props>) {
@@ -68,7 +64,7 @@ export function CustomButton({
       variant={variant}
       size={size}
       {...rest}>
-      <Typography variant={typoVariant}>{children}</Typography>
+      {children}
     </StyledButton>
   );
 }
