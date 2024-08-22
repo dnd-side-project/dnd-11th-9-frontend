@@ -60,20 +60,10 @@ const TypographyStyle = {
     line-height: 30px;
     letter-spacing: -0.0194em;
   `,
-  Heading2: css`
-    font-size: 20px;
-    line-height: 28px;
-    letter-spacing: -0.12em;
-  `,
   Headline1: css`
     font-size: 18px;
     line-height: 26px;
     letter-spacing: -0.002em;
-  `,
-  Headline2: css`
-    font-size: 17px;
-    line-height: 24px;
-    letter-spacing: 0;
   `,
   'Body1/Normal': css`
     font-size: 16px;
@@ -105,11 +95,6 @@ const TypographyStyle = {
     line-height: 22px;
     letter-spacing: 0.0145em;
   `,
-  Label2: css`
-    font-size: 13px;
-    line-height: 18px;
-    letter-spacing: 0.0194em;
-  `,
   Caption1: css`
     font-size: 12px;
     line-height: 16px;
@@ -117,7 +102,7 @@ const TypographyStyle = {
   `,
   Caption2: css`
     font-size: 11px;
-    line-height: 16px;
+    line-height: 14px;
     letter-spacing: 0.0311em;
   `,
 };

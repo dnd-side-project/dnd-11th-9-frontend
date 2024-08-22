@@ -18,11 +18,11 @@ const getButtonStyles = (
 ) => {
   const variantStyles = {
     primary: css({
-      backgroundColor: theme.color.WHITE,
-      borderColor: theme.color.BLACK,
+      backgroundColor: theme.color.Primary.Sub,
+      borderColor: theme.color.Primary.Normal,
     }),
     secondary: css({
-      backgroundColor: theme.color.WHITE,
+      backgroundColor: theme.color.Primary.Sub,
       borderColor: 'transparent',
     }),
   };
