@@ -1,47 +1,51 @@
 const color = {
-  RED: '#FF0000',
-  BLUE: '#0000FF',
-  GREEN: '#00FF00',
-  BLACK: '#000000',
-  WHITE: '#FFFFFF',
-  GRAY: '#808080',
-  LIGHT_GRAY: '#D3D3D3',
-  DARK_GRAY: '#A9A9A9',
-  YELLOW: '#FFFF00',
-  ORANGE: '#FFA500',
-  PURPLE: '#800080',
-  PINK: '#FFC0CB',
-  BROWN: '#A52A2A',
-  TRANSPARENT: 'transparent',
-} as const;
-
-const spacing = {
-  XS: 4,
-  S: 8,
-  M: 16,
-  L: 24,
-  XL: 32,
-  XXL: 40,
-} as const;
-
-const typography = {
-  FONT_SIZE: {
-    H1: 26,
-    H2: 24,
-    H3: 20,
-    Subtitle1: 18,
-    Subtitle2: 16,
-    Subtitle3: 14,
-    Body1: 20,
-    Body2: 18,
-    Body3: 18,
+  Primary: {
+    Normal: '#1A75FF',
+    Sub: '#7D5EF7',
   },
-  FONT_WEIGHT: {
-    Bold: 'bold',
-    Regular: 'normal',
-    Medium: '500',
+  Label: {
+    Normal: '#171719',
+    Strong: '#000000',
+    Neutral: '#46474C',
+    Alternative: '#878A93',
+    Assistive: '#C2C4C8',
+    Disable: '#DBDCDF',
+  },
+  Background: {
+    Normal: '#FFFFFF',
+    Alternative: '#F7F7F8',
+  },
+  Interaction: {
+    Inactive: '#989BA2',
+    Disable: '#F7F7F8',
+  },
+  Line: {
+    Normal: 'rgba(112, 115, 124, 0.22)',
+    Neutral: 'rgba(112, 115, 124, 0.16)',
+    Alternative: 'rgba(112, 115, 124, 0.08)',
+  },
+  Status: {
+    Success: '#00BF40',
+    Warning: '#FF4242',
+    Error: '#00AEFF',
+  },
+  Accent: {
+    RedOrange: '#FF5E00',
+    Cyan: '#00BDDE',
+    LightBlue: '#00AEFF',
+    Violet: '#4F29E5',
+    Purple: '#CB59FF',
+    Pink: '#F553DA',
+  },
+  Component: {
+    Fill: 'rgba(112, 115, 124, 0.08)',
+    Strong: 'rgba(112, 115, 124, 0.16)',
+    Alternative: 'rgba(112, 115, 124, 0.05)',
+  },
+  Material: {
+    Dimmer: 'rgba(23, 23, 25, 0.52)',
   },
 } as const;
 
-export const theme = { color, spacing, typography };
+export const theme = { color };
 export type CustomTheme = typeof theme;

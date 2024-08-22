@@ -3,16 +3,9 @@ import { Slot } from 'expo-router';
 import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
-import { useAppOpen } from '@/hooks';
 import { SessionProvider } from '@/store';
 
 export default function Root() {
-  const loaded = useAppOpen();
-
-  if (!loaded) {
-    return null;
-  }
-
   if (Platform.OS === 'web') {
     return (
       <Provider>

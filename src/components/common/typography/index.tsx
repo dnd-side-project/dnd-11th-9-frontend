@@ -1,71 +1,144 @@
+import type { ReactNativeStyle } from '@emotion/native';
 import styled, { css } from '@emotion/native';
-import type { Theme } from '@emotion/react';
+import React from 'react';
 import { type TextProps } from 'react-native';
 
 export type Props = TextProps & {
-  variant?: keyof ReturnType<typeof TypographyStyle>;
-  color?: string;
+  variant: keyof typeof TypographyStyle;
+  fontWeight: keyof typeof FontWeightStyle;
+  color: string;
+  style?: ReactNativeStyle;
 };
 
-const TypographyStyle = (theme: Theme) => ({
-  H1: css({
+const FontWeightStyle = {
+  normal: css({
     fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.H1,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
+    fontWeight: 400,
   }),
-  H2: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.H2,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
+  bold: css({
+    fontFamily: 'Pretendard-Bold',
+    fontWeight: 700,
   }),
-  H3: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.H3,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
+  semiBold: css({
+    fontFamily: 'Pretendard-SemiBold',
+    fontWeight: 600,
   }),
-  Subtitle1: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Subtitle1,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
+  medium: css({
+    fontFamily: 'Pretendard-Medium',
+    fontWeight: 500,
   }),
-  Subtitle2: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Subtitle2,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
-  }),
-  Subtitle3: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Subtitle3,
-    fontWeight: theme.typography.FONT_WEIGHT.Bold,
-  }),
-  Body1: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Body1,
-    fontWeight: theme.typography.FONT_WEIGHT.Regular,
-  }),
-  Body2: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Body2,
-    fontWeight: theme.typography.FONT_WEIGHT.Regular,
-  }),
-  Body3: css({
-    fontFamily: 'Pretendard',
-    fontSize: theme.typography.FONT_SIZE.Body3,
-    fontWeight: theme.typography.FONT_WEIGHT.Regular,
-  }),
-});
+};
 
-const StyledText = styled.Text<Props>`
-  ${({ theme, variant = 'Body1' }) => TypographyStyle(theme)[variant]}
+const TypographyStyle = {
+  Display1: css`
+    font-size: 56px;
+    line-height: 72px;
+    letter-spacing: -0.0319em;
+  `,
+  Display2: css`
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: -0.0282em;
+  `,
+  Title1: css`
+    font-size: 36px;
+    line-height: 72px;
+    letter-spacing: -0.027em;
+  `,
+  Title2: css`
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: -0.0236em;
+  `,
+  Title3: css`
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.023em;
+  `,
+  Heading1: css`
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: -0.0194em;
+  `,
+  Headline1: css`
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.002em;
+  `,
+  'Body1/Normal': css`
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.0057em;
+  `,
+  'Body1/Reading': css`
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.0057em;
+  `,
+  'Body2/Normal': css`
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.0096em;
+  `,
+  'Body2/Reading': css`
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.0096em;
+  `,
+  'Label1/Normal': css`
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.0145em;
+  `,
+  'Label1/Reading': css`
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.0145em;
+  `,
+  Caption1: css`
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.0252em;
+  `,
+  Caption2: css`
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.0311em;
+  `,
+};
+
+const CustomText = styled.Text<Props>`
+  ${({ variant }) => TypographyStyle[variant]}
+  ${({ fontWeight }) => FontWeightStyle[fontWeight]}
+  ${({ color }) => (color ? `color: ${color};` : '')}
+  ${({ style }) => style}
 `;
 
-export function Typography({ children, variant, color, ...rest }: Props) {
+/**
+ * Typography 컴포넌트
+ * @param children 표시할 글씨를 입력합니다.
+ * @param variant  텍스트의 크기, 자간, 줄간 등의 스타일을 지정합니다.
+ * @param fontWeight 글씨 굵기 속성을 지정합니다.
+ * @param color 글씨의 색깔을 선택합니다.
+ * @param rest  나머지 추가 속성들을 받아옵니다.
+ * @constructor
+ */
+function Typography({
+  children,
+  variant = 'Label1/Normal',
+  fontWeight = 'normal',
+  color = 'black',
+  ...rest
+}: Partial<Props>) {
   return (
-    <StyledText
+    <CustomText
       variant={variant}
-      style={color ? { color } : {}}
+      fontWeight={fontWeight}
+      color={color}
       {...rest}>
       {children}
-    </StyledText>
+    </CustomText>
   );
 }
+
+export default React.memo(Typography);
