@@ -5,7 +5,7 @@ import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
-import { Typography } from '@/components/common/typography';
+import Typography from '@/components/common/typography';
 import type { MainNavigations } from '@/constants';
 import { MAIN_NAVIGATIONS } from '@/constants';
 import { SITE_URLS } from '@/constants';
@@ -98,7 +98,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
             style={{ flex: 1 }}>
             {tabBarOptions[label].icon(isFocused ? '#000000' : '#cccccc')}
             <Typography
-              variant='Subtitle3'
+              variant='Caption2'
               style={{ color: isFocused ? '#000000' : '#cccccc' }}>
               {tabBarOptions[label].label}
             </Typography>
@@ -136,12 +136,12 @@ export default function Layout() {
 
 const S = {
   TabBar: styled.View`
-    width: 100%;
     position: absolute;
     bottom: 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     padding: 12px 0 24px;
     background-color: white;
   `,

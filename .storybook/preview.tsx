@@ -1,6 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { ThemeProvider } from '@emotion/react';
-import { theme } from '../src/styles/theme';
+import Provider from '../src/components/common/provider';
 
 const preview: Preview = {
   parameters: {
@@ -13,11 +12,13 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <ThemeProvider theme={theme}>
-        <Story />
-      </ThemeProvider>
-    ),
+    (Story) => {
+      return (
+        <Provider>
+          <Story />
+        </Provider>
+      );
+    },
   ],
 };
 
