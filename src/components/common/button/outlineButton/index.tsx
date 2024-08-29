@@ -4,6 +4,7 @@ import styled from '@emotion/native';
 import { Platform, type PressableProps } from 'react-native';
 
 import Typography from '@/components/common/typography';
+import { flexItemCenter } from '@/styles/common';
 import type { PropsNeedChildren } from '@/types';
 
 type Props = {
@@ -64,9 +65,7 @@ const iosBottomShadow = css`
 
 const Container = styled.Pressable`
   position: relative;
-  display: inline-flex;
-  place-items: center center;
-  justify-content: center;
+  ${flexItemCenter};
   padding: 6px 32px;
   background: white;
   border-radius: 32px;
