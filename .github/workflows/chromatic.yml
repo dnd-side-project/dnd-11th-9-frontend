@@ -4,8 +4,6 @@ name: 'Chromatic Deployment'
 # Event for the workflow
 on:
   push:
-    tags:
-      - 'Storybook*'
 
 # List of jobs
 jobs:
