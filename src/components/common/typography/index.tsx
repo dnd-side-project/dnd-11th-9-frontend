@@ -1,4 +1,3 @@
-import type { ReactNativeStyle } from '@emotion/native';
 import styled, { css } from '@emotion/native';
 import React from 'react';
 import { type TextProps } from 'react-native';
@@ -7,7 +6,6 @@ export type Props = TextProps & {
   variant: keyof typeof TypographyStyle;
   fontWeight: keyof typeof FontWeightStyle;
   color: string;
-  style?: ReactNativeStyle;
 };
 
 const FontWeightStyle = {
@@ -111,7 +109,6 @@ const CustomText = styled.Text<Props>`
   ${({ variant }) => TypographyStyle[variant]}
   ${({ fontWeight }) => FontWeightStyle[fontWeight]}
   ${({ color }) => (color ? `color: ${color};` : '')}
-  ${({ style }) => style}
 `;
 
 /**
