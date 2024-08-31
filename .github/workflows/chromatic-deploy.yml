@@ -1,0 +1,25 @@
+name: 'Chromatic Deployment'
+
+on:
+  pull_request:
+    paths:
+      - 'src/**/.stories.tsx'
+    types: [opened, synchronize, reopened]
+    branches: ['main', 'dev']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn
+      - uses: chromaui/action@v1
+        id: chromatic-deploy
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: PR Auto Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: '추가된 Storybook 미리보기: ${{ steps.chromatic-deploy.outputs.storybookUrl }}'
