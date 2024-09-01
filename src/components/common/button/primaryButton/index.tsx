@@ -16,7 +16,7 @@ type Props = {
 
 const VariantStyle = {
   active: css({
-    padding: 10,
+    backgroundColor: 'transparent',
   }),
   disabled: css({
     backgroundColor: theme.color.Background.Alternative,
@@ -40,39 +40,46 @@ function PrimaryButton({
   ...rest
 }: PropsNeedChildren<Props>) {
   return (
-    <Container
-      disabled={status === 'disabled'}
-      style={{ width, height }}
-      status={status}
-      {...rest}>
-      {status === 'active' && (
-        <BackGround
-          colors={['#7C71F5', '#6E9DF5']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        />
-      )}
-      <Typography
-        variant='Body1/Normal'
-        fontWeight='semiBold'
-        color={status === 'active' ? 'white' : '#C2C4C8'}>
-        {children}
-      </Typography>
+    <Container style={{ width, height }}>
+      <Button
+        status={status}
+        disabled={status === 'disabled'}
+        {...rest}>
+        {status === 'active' && (
+          <BackGround
+            colors={['#7C71F5', '#6E9DF5']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+          />
+        )}
+        <Typography
+          variant='Body1/Normal'
+          fontWeight='semiBold'
+          color={status === 'active' ? theme.color.Background.Normal : theme.color.Label.Assistive}>
+          {children}
+        </Typography>
+      </Button>
     </Container>
   );
 }
 
-const Container = styled.Pressable<Required<Pick<Props, 'status'>>>`
-  ${({ status }) => VariantStyle[status]}
-  ${flexItemCenter};
+const Container = styled.View`
+  position: relative;
   overflow: hidden;
   border-radius: 100px;
+`;
+
+const Button = styled.Pressable<Pick<Props, 'status'>>`
+  ${flexItemCenter};
+  width: 100%;
+  height: 100%;
 `;
 
 const BackGround = styled(LinearGradient)`
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: 100px;
 `;
 
 export default PrimaryButton;
