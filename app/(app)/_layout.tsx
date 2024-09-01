@@ -5,11 +5,13 @@ import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
+import FireSvg from '@/components/common/icon/fire-svg';
 import Typography from '@/components/common/typography';
 import type { MainNavigations } from '@/constants';
 import { MAIN_NAVIGATIONS } from '@/constants';
 import { SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
+import { useOnboarding } from '@/store/useOnboarding';
 
 const tabBarOptions = {
   [MAIN_NAVIGATIONS.HOME]: {
@@ -35,9 +37,8 @@ const tabBarOptions = {
   [MAIN_NAVIGATIONS.REVIEW]: {
     label: '리뷰',
     icon: (color: string) => (
-      <SimpleLineIcons
+      <FireSvg
         size={28}
-        name='fire'
         color={color}
       />
     ),
@@ -110,13 +111,17 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 };
 
 export default function Layout() {
-  const { session, isLoading } = useSession();
+  const { session, isLoading: sessionLoading } = useSession();
+  const { showOnBoarding, isLoading: onboardingLoading } = useOnboarding();
 
-  if (isLoading) {
+  if (sessionLoading || onboardingLoading) {
     return <Text>Loading...</Text>;
   }
 
   if (!session) {
+    if (!showOnBoarding) {
+      return <Redirect href={SITE_URLS.ON_BOARDING} />;
+    }
     return <Redirect href={SITE_URLS.SIGN_IN} />;
   }
 
