@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 
-import Step1 from '@/funnels/on-boarding/step-1';
-import Step2 from '@/funnels/on-boarding/step-2';
-import Step3 from '@/funnels/on-boarding/step-3';
+import Step1 from '@/funnels/on-boarding/Step1';
+import Step2 from '@/funnels/on-boarding/Step2';
+import Step3 from '@/funnels/on-boarding/Step3';
 import { useOnboarding } from '@/store/useOnboarding';
 
 function OnBoarding() {
