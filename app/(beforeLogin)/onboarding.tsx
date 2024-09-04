@@ -3,13 +3,13 @@ import { useCallback, useState } from 'react';
 
 import PrimaryButton from '@/components/common/button/primaryButton';
 import Typography from '@/components/common/typography';
-import OnboardingItem from '@/components/on-boarding/OnboardingItem';
+import OnboardingItem from '@/components/onboarding/OnboardingItem';
 import { ON_BOARDING } from '@/constants';
 import { useOnboarding } from '@/store/useOnboarding';
 
-import * as S from './on-boarding.styles';
+import * as S from './onboarding.styles';
 
-function OnBoarding() {
+function Onboarding() {
   const { checkOnBoarding } = useOnboarding();
   const [step, setStep] = useState(0);
 
@@ -53,4 +53,4 @@ function OnBoarding() {
   );
 }
 
-export default OnBoarding;
+export default Onboarding;

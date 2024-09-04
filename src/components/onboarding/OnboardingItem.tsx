@@ -5,7 +5,7 @@ import Typography from '@/components/common/typography';
 import { useOnboarding } from '@/store/useOnboarding';
 import type { PropsNeedChildren } from '@/types';
 
-import * as S from '../../../app/(beforeLogin)/on-boarding.styles';
+import * as S from '../../../app/(beforeLogin)/onboarding.styles';
 
 type Props = {
   heading: string;
