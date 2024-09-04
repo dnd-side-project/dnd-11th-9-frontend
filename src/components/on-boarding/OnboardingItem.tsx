@@ -39,7 +39,11 @@ function OnboardingContent({ title, heading, stepLength, currentStep }: Props) {
         <Typography variant='Title3'>{heading}</Typography>
         <S.ProgressBar>
           {Array.from({ length: stepLength }, (_, index) => {
-            return index === currentStep ? <S.StepActive /> : <S.StepInactive />;
+            return index === currentStep ? (
+              <S.StepActive key={index} />
+            ) : (
+              <S.StepInactive key={index} />
+            );
           })}
         </S.ProgressBar>
       </S.TextWrapper>
