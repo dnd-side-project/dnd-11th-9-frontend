@@ -7,6 +7,9 @@ const statusBarHeight = Constants.statusBarHeight || 0;
 
 export const Container = styled.SafeAreaView`
   flex: 1;
+`;
+
+export const ContentBox = styled.View`
   ${flexItemCenter};
   flex-direction: column;
   justify-content: space-between;
@@ -14,27 +17,27 @@ export const Container = styled.SafeAreaView`
   ${`padding-top: ${statusBarHeight + 135}px`};
 `;
 
-export const TextBox = styled.View`
+export const TextWrapper = styled.View`
   gap: 12px;
   width: 100%;
   padding: 0 32px;
   ${flexDirectionColumn};
 `;
 
-export const StepBar = styled.View`
+export const ProgressBar = styled.View`
   display: flex;
   flex-direction: row;
   gap: 6px;
 `;
 
-export const ActiveStep = styled.View`
+export const StepActive = styled.View`
   width: 16px;
   height: 6px;
   background: #000;
   border-radius: 30px;
 `;
 
-export const InactiveStep = styled.View`
+export const StepInactive = styled.View`
   width: 6px;
   height: 6px;
   background-color: #00000026;
