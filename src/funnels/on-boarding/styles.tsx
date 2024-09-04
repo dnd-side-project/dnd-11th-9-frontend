@@ -37,7 +37,7 @@ export const ActiveStep = styled.View`
 export const InactiveStep = styled.View`
   width: 6px;
   height: 6px;
-  background-color: rgb(0 0 0 / 15%);
+  background-color: #00000026;
   border-radius: 30px;
 `;
 
