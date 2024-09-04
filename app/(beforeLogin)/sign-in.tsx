@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 
 import Typography from '@/components/common/typography';
 import LoginButton from '@/components/sign-in/LoginButton';
@@ -9,7 +9,13 @@ import { useSession } from '@/store';
 import * as S from './sign-in.styles';
 
 function SignIn() {
-  const { signIn } = useSession();
+  const { signIn, session } = useSession();
+
+  useLayoutEffect(() => {
+    if (session) {
+      router.replace('/');
+    }
+  }, [session]);
 
   const handleSignIn = useCallback(() => {
     signIn();
@@ -19,7 +25,7 @@ function SignIn() {
   // Todo kakao 로그인 처리 해야함
   const handleKakaoLogin = useCallback(() => {
     handleSignIn();
-  }, []);
+  }, [handleSignIn]);
 
   // Todo apple 로그인 처리 해야함
   const handleAppleLogin = useCallback(() => {
