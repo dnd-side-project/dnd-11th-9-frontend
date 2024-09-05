@@ -2,6 +2,7 @@ import type { ReactNativeStyle } from '@emotion/native';
 import styled, { css } from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { PressableProps } from 'react-native';
+import { Platform } from 'react-native';
 
 import Typography from '@/components/common/typography';
 import { flexItemCenter } from '@/styles/common';
@@ -22,6 +23,8 @@ const VariantStyle = {
     backgroundColor: theme.color.Background.Alternative,
   }),
 };
+
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
 
 /**
  * PrimaryButton
@@ -54,7 +57,7 @@ function PrimaryButton({
         )}
         <Typography
           variant='Body1/Normal'
-          fontWeight='semiBold'
+          fontWeight={isMobile ? 'semiBold' : 'normal'}
           color={status === 'active' ? theme.color.Background.Normal : theme.color.Label.Assistive}>
           {children}
         </Typography>
