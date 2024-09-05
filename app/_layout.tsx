@@ -4,17 +4,20 @@ import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
 import { SessionProvider } from '@/store';
+import { OnboardingProvider } from '@/store/useOnboarding';
 
 export default function Root() {
   if (Platform.OS === 'web') {
     return (
       <Provider>
         <SessionProvider>
-          <S.Container>
-            <S.Layout>
-              <Slot />
-            </S.Layout>
-          </S.Container>
+          <OnboardingProvider>
+            <S.Container>
+              <S.Layout>
+                <Slot />
+              </S.Layout>
+            </S.Container>
+          </OnboardingProvider>
         </SessionProvider>
       </Provider>
     );
@@ -23,7 +26,9 @@ export default function Root() {
   return (
     <Provider>
       <SessionProvider>
-        <Slot />
+        <OnboardingProvider>
+          <Slot />
+        </OnboardingProvider>
       </SessionProvider>
     </Provider>
   );
@@ -38,6 +43,7 @@ const S = {
     height: 100dvh;
   `,
   Layout: styled.View`
+    flex: 1;
     width: 375px;
     height: 100dvh;
     border: 1px solid black;

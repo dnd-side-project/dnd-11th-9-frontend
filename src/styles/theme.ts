@@ -1,4 +1,4 @@
-const color = {
+export const color = {
   Primary: {
     Normal: '#1A75FF',
     Sub: '#7D5EF7',
