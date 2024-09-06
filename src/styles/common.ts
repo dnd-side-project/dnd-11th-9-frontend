@@ -10,3 +10,14 @@ export const flexDirectionColumn = css`
   display: flex;
   flex-direction: column;
 `;
+
+export const flexDirectionRow = css`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const flexDirectionRowItemsCenter = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
