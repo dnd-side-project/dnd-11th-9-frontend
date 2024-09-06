@@ -11,14 +11,15 @@ export const Container = styled.View<{ $sizeStyle: ReactNativeStyle }>`
 
 export const Button = styled.Pressable<{
   disabled: boolean;
-  $typeStyle: ReactNativeStyle;
-  $disabledStyle: ReactNativeStyle;
+  $typeStyle?: ReactNativeStyle;
+  $disabledStyle?: ReactNativeStyle;
 }>`
   ${({ disabled, $typeStyle, $disabledStyle }) => (disabled ? $disabledStyle : $typeStyle)}
   ${flexItemCenter};
-  width: 100%;
-  height: 100%;
-  padding-horizontal: 16px;
+  width: ${({ $typeStyle }) => ($typeStyle ? '100%' : 'fit-content')};
+  height: ${({ $typeStyle }) => ($typeStyle ? '100%' : 'fit-content')};
+  padding-horizontal: ${({ $typeStyle }) => $typeStyle && '16px'};
+  border-radius: 30px;
 `;
 
 export const ButtonContent = styled.View`

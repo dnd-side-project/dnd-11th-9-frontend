@@ -1,3 +1,5 @@
+import { rgba } from 'polished';
+
 export const color = {
   Primary: {
     Normal: '#1A75FF',
@@ -18,6 +20,13 @@ export const color = {
   Interaction: {
     Inactive: '#989BA2',
     Disable: '#F7F7F8',
+  },
+  Text: {
+    /* Todo 속성 변경 */
+    OnViewDisabled: rgba(24, 26, 32, 0.15),
+  },
+  Border: {
+    OutLine: rgba(24, 26, 32, 0.15),
   },
   Line: {
     Normal: 'rgba(112, 115, 124, 0.22)',
