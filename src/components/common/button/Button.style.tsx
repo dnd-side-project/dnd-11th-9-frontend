@@ -18,7 +18,7 @@ export const Button = styled.Pressable<{
   ${flexItemCenter};
   width: ${({ $typeStyle }) => ($typeStyle ? '100%' : 'fit-content')};
   height: ${({ $typeStyle }) => ($typeStyle ? '100%' : 'fit-content')};
-  padding-horizontal: ${({ $typeStyle }) => $typeStyle && '16px'};
+  padding-horizontal: ${({ $typeStyle }) => $typeStyle && 16};
   border-radius: 30px;
 `;
 
