@@ -2,7 +2,7 @@ import styled, { css } from '@emotion/native';
 import React from 'react';
 import { type TextProps } from 'react-native';
 
-export type Props = TextProps & {
+type Props = TextProps & {
   variant: keyof typeof TypographyStyle;
   fontWeight: keyof typeof FontWeightStyle;
   color: string;
