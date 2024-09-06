@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Icon } from './index';
+import { IonicIcon } from '@/components/common/icon/IonicIcon';
 
-const IconMeta: Meta<typeof Icon> = {
-  title: 'common/icon',
-  component: Icon,
+const IonicIconMeta: Meta<typeof IonicIcon> = {
+  title: 'common/icon/IonicIcon',
+  component: IonicIcon,
   argTypes: {
     name: {
       control: {
@@ -22,29 +22,29 @@ const IconMeta: Meta<typeof Icon> = {
   },
 };
 
-export default IconMeta;
+export default IonicIconMeta;
 
-export const Basic: StoryObj<typeof Icon> = {
+export const Basic: StoryObj<typeof IonicIcon> = {
   args: {
     name: 'home',
   },
 };
 
-export const CustomColor: StoryObj<typeof Icon> = {
+export const CustomColor: StoryObj<typeof IonicIcon> = {
   args: {
     name: 'home',
     color: 'blue',
   },
 };
 
-export const CustomSize: StoryObj<typeof Icon> = {
+export const CustomSize: StoryObj<typeof IonicIcon> = {
   args: {
     name: 'home',
     size: 40,
   },
 };
 
-export const DifferentIcon: StoryObj<typeof Icon> = {
+export const DifferentIcon: StoryObj<typeof IonicIcon> = {
   args: {
     name: 'settings',
   },

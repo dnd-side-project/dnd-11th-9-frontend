@@ -8,11 +8,11 @@ type Props = {
   color: string;
 } & TextProps;
 
-export function Icon({ size = 28, color, style, ...rest }: Props) {
+export function IonicIcon({ size = 28, color, style, ...rest }: Props) {
   return (
     <Ionicons
       size={size}
-      style={[{ marginBottom: -3 }, { color }, style]}
+      style={[{ width: size, height: size, color }, style]}
       {...rest}
     />
   );
