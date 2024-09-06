@@ -2,8 +2,8 @@ import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 
 import PrimaryButton from '@/components/common/button/primaryButton';
+import ProgressBar from '@/components/common/progress-bar';
 import Typography from '@/components/common/typography';
-import OnboardingItem from '@/components/onboarding/OnboardingItem';
 import { ON_BOARDING } from '@/constants';
 import { useOnboarding } from '@/store/useOnboarding';
 
@@ -27,19 +27,27 @@ function Onboarding() {
 
   return (
     <S.Container>
-      {ON_BOARDING.map(({ heading, title }, index) => {
-        return step === index ? (
-          <OnboardingItem key={index}>
-            <OnboardingItem.Content
-              heading={heading}
-              title={title}
-              stepLength={ON_BOARDING.length}
-              currentStep={index}
-            />
-          </OnboardingItem>
-        ) : null;
-      })}
-      <S.StepBox>
+      <S.OnBoardingWrapper>
+        {ON_BOARDING.map(({ heading, title }, index) => {
+          return step === index ? (
+            <S.ContentBox key={index}>
+              <S.TextWrapper>
+                <Typography
+                  variant='Heading1'
+                  color='#878A93'>
+                  {title}
+                </Typography>
+                <Typography variant='Title3'>{heading}</Typography>
+              </S.TextWrapper>
+            </S.ContentBox>
+          ) : null;
+        })}
+        <ProgressBar
+          currentStep={step}
+          stepLength={ON_BOARDING.length}
+        />
+      </S.OnBoardingWrapper>
+      <S.ButtonBox>
         <PrimaryButton onPress={handleStep}>다음</PrimaryButton>
         <S.SkipButton onPress={handleLastStep}>
           <Typography
@@ -48,7 +56,7 @@ function Onboarding() {
             건너뛰기
           </Typography>
         </S.SkipButton>
-      </S.StepBox>
+      </S.ButtonBox>
     </S.Container>
   );
 }
