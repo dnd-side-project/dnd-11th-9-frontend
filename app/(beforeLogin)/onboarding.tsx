@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-import PrimaryButton from '@/components/common/button/primaryButton';
+import SolidButton from '@/components/common/button/SolidButton';
 import ProgressBar from '@/components/common/progress-bar';
 import Typography from '@/components/common/typography';
 import { ON_BOARDING } from '@/constants';
@@ -67,7 +67,7 @@ function Onboarding() {
         />
       </S.OnBoardingWrapper>
       <S.ButtonBox>
-        <PrimaryButton onPress={handleStep}>다음</PrimaryButton>
+        <SolidButton onPress={handleStep}>다음</SolidButton>
         <S.SkipButton onPress={handleLastStep}>
           <Typography
             variant='Body1/Normal'
