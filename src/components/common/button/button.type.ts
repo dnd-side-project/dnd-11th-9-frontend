@@ -11,5 +11,5 @@ export type CustomButtonProps = {
 export type ButtonProps = {
   rightIcon?: ComponentProps<typeof Ionicons>['name'];
   leftIcon?: ComponentProps<typeof Ionicons>['name'];
-} & CustomButtonProps &
+} & Partial<CustomButtonProps> &
   PressableProps;
