@@ -1,12 +1,11 @@
 import type { ReactNativeStyle } from '@emotion/native';
-import styled, { css } from '@emotion/native';
+import { css } from '@emotion/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
 
 import type { ButtonProps, CustomButtonProps } from '@/components/common/button/button.type';
 import Typography from '@/components/common/typography';
-import { useButtonStyle } from '@/hooks/useButtonStyle';
+import { useButtonStyle, useButtonTextColor } from '@/hooks/useButtonStyle';
 import { color } from '@/styles/theme';
 import type { PropsNeedChildren } from '@/types';
 import { isMobile } from '@/utils';
@@ -14,9 +13,15 @@ import { isMobile } from '@/utils';
 import * as S from './Button.style';
 
 const typeStyle: Record<CustomButtonProps['type'], ReactNativeStyle> = {
-  primary: css(),
+  primary: css`
+    background-color: ${color.Background.Normal};
+    border: 1px solid ${color.Primary.Normal};
+  `,
   secondary: css`
-    background-color: ${color.Primary.Normal};
+    background-color: ${color.Background.Normal};
+
+    /* Todo border 값 rgb 값으로 변경예정 */
+    border: 1px solid ${color.Primary.Sub};
   `,
 };
 
@@ -41,9 +46,9 @@ const sizeStyle: Record<CustomButtonProps['size'], ReactNativeStyle> = {
 
 const disabledStyle = {
   css: css`
-    background-color: #7f7f7f;
+    background-color: ${color.Text.OnViewDisabled};
   `,
-  color: '#000000',
+  color: color.Text.OnViewDisabled,
 };
 
 function SolidButton({
@@ -56,6 +61,7 @@ function SolidButton({
   ...rest
 }: PropsNeedChildren<ButtonProps>) {
   const { textSize, iconSize } = useButtonStyle(size);
+  const { color } = useButtonTextColor(type, disabled);
 
   return (
     <S.Container $sizeStyle={sizeStyle[size]}>
@@ -64,19 +70,12 @@ function SolidButton({
         $disabledStyle={disabledStyle.css}
         disabled={disabled}
         {...rest}>
-        {type === 'primary' && !disabled && (
-          <BackGround
-            colors={['#7C71F5', '#6E9DF5']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
-        )}
         <S.ButtonContent>
           {leftIcon ? (
             <Ionicons
               size={iconSize}
               name={leftIcon}
-              color={disabled ? disabledStyle.color : '#FFFFFF'}
+              color={color}
             />
           ) : (
             <View style={{ height: iconSize, width: iconSize }} />
@@ -84,14 +83,14 @@ function SolidButton({
           <Typography
             variant={textSize}
             fontWeight={isMobile ? 'semiBold' : 'normal'}
-            color={disabled ? disabledStyle.color : '#FFFFFF'}>
+            color={color}>
             {children}
           </Typography>
           {rightIcon ? (
             <Ionicons
               size={iconSize}
               name={rightIcon}
-              color={disabled ? disabledStyle.color : '#FFFFFF'}
+              color={color}
             />
           ) : (
             <View style={{ height: iconSize, width: iconSize }} />
@@ -101,11 +100,5 @@ function SolidButton({
     </S.Container>
   );
 }
-
-const BackGround = styled(LinearGradient)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-`;
 
 export default SolidButton;
