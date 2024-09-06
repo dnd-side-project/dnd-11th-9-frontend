@@ -6,7 +6,7 @@ import ProgressBar from '@/components/common/progress-bar';
 import Typography from '@/components/common/typography';
 
 const StepBarMeta: Meta<typeof ProgressBar> = {
-  title: 'common/StepBar',
+  title: 'common/ProgressBar',
   component: ProgressBar,
   argTypes: {
     currentStep: {
