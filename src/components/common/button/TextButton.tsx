@@ -9,7 +9,7 @@ import { isMobile } from '@/utils';
 
 import * as S from './Button.style';
 
-function SolidButton({
+function TextButton({
   size = 'full',
   type = 'primary',
   disabled = false,
@@ -55,4 +55,4 @@ function SolidButton({
   );
 }
 
-export default SolidButton;
+export default TextButton;

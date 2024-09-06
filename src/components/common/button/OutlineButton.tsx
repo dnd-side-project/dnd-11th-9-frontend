@@ -51,7 +51,7 @@ const disabledStyle = {
   color: color.Text.OnViewDisabled,
 };
 
-function SolidButton({
+function OutLineButton({
   size = 'full',
   type = 'primary',
   disabled = false,
@@ -101,4 +101,4 @@ function SolidButton({
   );
 }
 
-export default SolidButton;
+export default OutLineButton;
