@@ -13,7 +13,7 @@ function StepBar({ isActive }: StepBarProps) {
       marginVertical: 'auto',
       marginHorizontal: 0,
       width: 6,
-      height: withTiming(isActive ? 16 : 6, { duration: 500 }),
+      height: withTiming(isActive ? 16 : 6),
       backgroundColor: withTiming(isActive ? '#000' : '#00000026', { duration: 500 }),
       borderRadius: 30,
       alignSelf: 'flex-start',
@@ -22,7 +22,7 @@ function StepBar({ isActive }: StepBarProps) {
 
   return (
     <Animated.View
-      layout={LinearTransition.duration(300)}
+      layout={LinearTransition}
       style={animatedStyle}
     />
   );

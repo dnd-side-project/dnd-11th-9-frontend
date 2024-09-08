@@ -3,6 +3,7 @@ import { Slot } from 'expo-router';
 import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
+import { SCREEN_SIZE } from '@/constants';
 import { SessionProvider } from '@/store';
 import { OnboardingProvider } from '@/store/useOnboarding';
 
@@ -44,8 +45,7 @@ const S = {
   `,
   Layout: styled.View`
     flex: 1;
-    width: 375px;
+    width: ${SCREEN_SIZE.Web + 'px'};
     height: 100dvh;
-    border: 1px solid black;
   `,
 };
