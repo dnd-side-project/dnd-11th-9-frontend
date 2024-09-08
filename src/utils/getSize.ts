@@ -1,8 +1,8 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 export const getSize = {
-  deviceWidth: Dimensions.get('screen').width,
+  deviceWidth: Platform.OS === 'web' ? 375 : Dimensions.get('screen').width,
   deviceHeight: Dimensions.get('screen').height,
-  screenWidth: Dimensions.get('window').width,
+  screenWidth: Platform.OS === 'web' ? 375 : Dimensions.get('window').width,
   screenHeight: Dimensions.get('window').height,
 };
