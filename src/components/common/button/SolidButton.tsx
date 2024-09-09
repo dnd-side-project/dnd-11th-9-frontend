@@ -1,15 +1,13 @@
 import type { ReactNativeStyle } from '@emotion/native';
 import styled, { css } from '@emotion/native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View } from 'react-native';
+import { cloneElement } from 'react';
 
 import type { ButtonProps, CustomButtonProps } from '@/components/common/button/button.type';
 import Typography from '@/components/common/typography';
 import { useButtonStyle } from '@/hooks/useButtonStyle';
 import { color } from '@/styles/theme';
 import type { PropsNeedChildren } from '@/types';
-import { isMobile } from '@/utils';
 
 import * as S from './Button.style';
 
@@ -41,22 +39,22 @@ const sizeStyle: Record<CustomButtonProps['size'], ReactNativeStyle> = {
 
 const disabledStyle = {
   css: css`
-    background-color: #7f7f7f;
+    background-color: ${color.Label.Disable};
   `,
-  color: '#000000',
+  color: color.Label.Assistive,
 };
 
 function SolidButton({
   size = 'full',
   type = 'primary',
   disabled = false,
-  leftIcon,
-  rightIcon,
+  LeftIcon,
+  RightIcon,
   children,
   ...rest
 }: PropsNeedChildren<ButtonProps>) {
   const { textSize, iconSize } = useButtonStyle(size);
-
+  const color = disabled ? disabledStyle.color : '#FFFFFF';
   return (
     <S.Container $sizeStyle={sizeStyle[size]}>
       <S.Button
@@ -72,30 +70,24 @@ function SolidButton({
           />
         )}
         <S.ButtonContent>
-          {leftIcon ? (
-            <Ionicons
-              size={iconSize}
-              name={leftIcon}
-              color={disabled ? disabledStyle.color : '#FFFFFF'}
-            />
-          ) : (
-            <View style={{ height: iconSize, width: iconSize }} />
-          )}
+          {LeftIcon &&
+            cloneElement(LeftIcon, {
+              color,
+              size: iconSize,
+              style: { width: iconSize, height: iconSize },
+            })}
           <Typography
             variant={textSize}
-            fontWeight={isMobile ? 'semiBold' : 'normal'}
-            color={disabled ? disabledStyle.color : '#FFFFFF'}>
+            fontWeight='semiBold'
+            color={color}>
             {children}
           </Typography>
-          {rightIcon ? (
-            <Ionicons
-              size={iconSize}
-              name={rightIcon}
-              color={disabled ? disabledStyle.color : '#FFFFFF'}
-            />
-          ) : (
-            <View style={{ height: iconSize, width: iconSize }} />
-          )}
+          {RightIcon &&
+            cloneElement(RightIcon, {
+              color,
+              size: iconSize,
+              style: { width: iconSize, height: iconSize },
+            })}
         </S.ButtonContent>
       </S.Button>
     </S.Container>

@@ -1,11 +1,9 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { View } from 'react-native';
+import { cloneElement } from 'react';
 
 import type { ButtonProps } from '@/components/common/button/button.type';
 import Typography from '@/components/common/typography';
 import { useButtonStyle, useButtonTextColor } from '@/hooks/useButtonStyle';
 import type { PropsNeedChildren } from '@/types';
-import { isMobile } from '@/utils';
 
 import * as S from './Button.style';
 
@@ -13,8 +11,8 @@ function TextButton({
   size = 'full',
   type = 'primary',
   disabled = false,
-  leftIcon,
-  rightIcon,
+  LeftIcon,
+  RightIcon,
   children,
   ...rest
 }: PropsNeedChildren<ButtonProps>) {
@@ -26,30 +24,24 @@ function TextButton({
       disabled={disabled}
       {...rest}>
       <S.ButtonContent>
-        {leftIcon ? (
-          <Ionicons
-            size={iconSize}
-            name={leftIcon}
-            color={color}
-          />
-        ) : (
-          <View style={{ height: iconSize, width: iconSize }} />
-        )}
+        {LeftIcon &&
+          cloneElement(LeftIcon, {
+            color,
+            size: iconSize,
+            style: { width: iconSize, height: iconSize },
+          })}
         <Typography
           variant={textSize}
-          fontWeight={isMobile ? 'semiBold' : 'normal'}
+          fontWeight='semiBold'
           color={color}>
           {children}
         </Typography>
-        {rightIcon ? (
-          <Ionicons
-            size={iconSize}
-            name={rightIcon}
-            color={color}
-          />
-        ) : (
-          <View style={{ height: iconSize, width: iconSize }} />
-        )}
+        {RightIcon &&
+          cloneElement(RightIcon, {
+            color,
+            size: iconSize,
+            style: { width: iconSize, height: iconSize },
+          })}
       </S.ButtonContent>
     </S.Button>
   );

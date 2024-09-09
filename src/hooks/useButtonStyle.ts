@@ -17,6 +17,8 @@ export function useButtonStyle(size: ButtonProps['size']) {
         return { textSize: 'Body2/Normal', iconSize: 16 };
       case 'small':
         return { textSize: 'Caption1', iconSize: 12 };
+      default:
+        return { textSize: 'Body2/Normal', iconSize: 16 };
     }
   }, [size]);
 }
@@ -24,14 +26,15 @@ export function useButtonStyle(size: ButtonProps['size']) {
 export function useButtonTextColor(type: ButtonProps['type'], disabled: ButtonProps['disabled']) {
   return useMemo<{ color: string }>(() => {
     if (disabled) {
-      /* Todo disabled 색깔 수정 */
-      return { color: '#000000' };
+      return { color: color.Label.Disable };
     }
     switch (type) {
       case 'primary':
         return { color: color.Primary.Normal };
       case 'secondary':
-        return { color: color.Border.OutLine };
+        return { color: color.Label.Normal };
+      default:
+        return { color: '#000000' };
     }
   }, [type, disabled]);
 }

@@ -1,14 +1,12 @@
 import type { ReactNativeStyle } from '@emotion/native';
 import { css } from '@emotion/native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { View } from 'react-native';
+import { cloneElement } from 'react';
 
 import type { ButtonProps, CustomButtonProps } from '@/components/common/button/button.type';
 import Typography from '@/components/common/typography';
 import { useButtonStyle, useButtonTextColor } from '@/hooks/useButtonStyle';
 import { color } from '@/styles/theme';
 import type { PropsNeedChildren } from '@/types';
-import { isMobile } from '@/utils';
 
 import * as S from './Button.style';
 
@@ -19,9 +17,7 @@ const typeStyle: Record<CustomButtonProps['type'], ReactNativeStyle> = {
   `,
   secondary: css`
     background-color: ${color.Background.Normal};
-
-    /* Todo border 값 rgb 값으로 변경예정 */
-    border: 1px solid ${color.Primary.Sub};
+    border: 1px solid ${color.Line.Normal};
   `,
 };
 
@@ -46,17 +42,17 @@ const sizeStyle: Record<CustomButtonProps['size'], ReactNativeStyle> = {
 
 const disabledStyle = {
   css: css`
-    background-color: ${color.Text.OnViewDisabled};
+    border: 1px solid ${color.Label.Disable};
   `,
-  color: color.Text.OnViewDisabled,
+  color: color.Label.Disable,
 };
 
 function OutLineButton({
   size = 'full',
   type = 'primary',
   disabled = false,
-  leftIcon,
-  rightIcon,
+  LeftIcon,
+  RightIcon,
   children,
   ...rest
 }: PropsNeedChildren<ButtonProps>) {
@@ -71,30 +67,24 @@ function OutLineButton({
         disabled={disabled}
         {...rest}>
         <S.ButtonContent>
-          {leftIcon ? (
-            <Ionicons
-              size={iconSize}
-              name={leftIcon}
-              color={color}
-            />
-          ) : (
-            <View style={{ height: iconSize, width: iconSize }} />
-          )}
+          {LeftIcon &&
+            cloneElement(LeftIcon, {
+              color,
+              size: iconSize,
+              style: { width: iconSize, height: iconSize },
+            })}
           <Typography
             variant={textSize}
-            fontWeight={isMobile ? 'semiBold' : 'normal'}
+            fontWeight='semiBold'
             color={color}>
             {children}
           </Typography>
-          {rightIcon ? (
-            <Ionicons
-              size={iconSize}
-              name={rightIcon}
-              color={color}
-            />
-          ) : (
-            <View style={{ height: iconSize, width: iconSize }} />
-          )}
+          {RightIcon &&
+            cloneElement(RightIcon, {
+              color,
+              size: iconSize,
+              style: { width: iconSize, height: iconSize },
+            })}
         </S.ButtonContent>
       </S.Button>
     </S.Container>

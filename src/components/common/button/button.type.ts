@@ -1,6 +1,7 @@
-import type Ionicons from '@expo/vector-icons/Ionicons';
-import type { ComponentProps } from 'react';
+import type { ReactElement } from 'react';
 import type { PressableProps } from 'react-native';
+
+import type { IconProps } from '@/types';
 
 export type CustomButtonProps = {
   type: 'primary' | 'secondary';
@@ -9,7 +10,7 @@ export type CustomButtonProps = {
 };
 
 export type ButtonProps = {
-  rightIcon?: ComponentProps<typeof Ionicons>['name'];
-  leftIcon?: ComponentProps<typeof Ionicons>['name'];
+  RightIcon?: ReactElement<IconProps>;
+  LeftIcon?: ReactElement<IconProps>;
 } & Partial<CustomButtonProps> &
   PressableProps;

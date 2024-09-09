@@ -1,6 +1,8 @@
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import SolidButton from '@/components/common/button/SolidButton';
+import Storybook from '@/components/common/storybook';
 
 const PrimaryButtonMeta: Meta<typeof SolidButton> = {
   title: 'common/Button/SolidButton',
@@ -8,6 +10,10 @@ const PrimaryButtonMeta: Meta<typeof SolidButton> = {
   argTypes: {
     children: { controls: 'text', description: '버튼내 텍스트를 입력합니다.' },
     type: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary'],
+      },
       description: '버튼의 색깔을 결정짓는 타입을 결정합니다.',
     },
     size: {
@@ -23,12 +29,6 @@ const PrimaryButtonMeta: Meta<typeof SolidButton> = {
         type: 'boolean',
       },
     },
-    leftIcon: {
-      description: '왼쪽 아이콘을 설정합니다.',
-    },
-    rightIcon: {
-      description: '오른쪽 아이콘을 설정합니다.',
-    },
   },
   args: {
     children: '버튼',
@@ -41,3 +41,60 @@ const PrimaryButtonMeta: Meta<typeof SolidButton> = {
 export default PrimaryButtonMeta;
 
 export const Primary: StoryObj<typeof SolidButton> = {};
+
+export const Preview: StoryObj<typeof SolidButton> = {
+  render: () => {
+    return (
+      <Storybook>
+        <Storybook.Row>
+          <Storybook.Description
+            title='size'
+            variant={['large', 'medium', 'small']}
+          />
+          <Storybook.Item>
+            <SolidButton
+              size='large'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </SolidButton>
+            <SolidButton
+              size='medium'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </SolidButton>
+            <SolidButton
+              size='small'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </SolidButton>
+          </Storybook.Item>
+        </Storybook.Row>
+        <Storybook.Row>
+          <Storybook.Description
+            title='disable'
+            variant={['false', 'true']}
+          />
+          <Storybook.Item>
+            <SolidButton
+              size='large'
+              disabled
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </SolidButton>
+            <SolidButton
+              size='large'
+              disabled={false}
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </SolidButton>
+          </Storybook.Item>
+        </Storybook.Row>
+      </Storybook>
+    );
+  },
+};

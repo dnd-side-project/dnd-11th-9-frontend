@@ -1,13 +1,19 @@
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import OutlineButton from '@/components/common/button/OutlineButton';
+import OutLineButton from '@/components/common/button/OutlineButton';
+import Storybook from '@/components/common/storybook';
 
-const OutlineButtonMeta: Meta<typeof OutlineButton> = {
-  title: 'common/Button/OutlineButton',
-  component: OutlineButton,
+const OutLineButtonMeta: Meta<typeof OutLineButton> = {
+  title: 'common/Button/OutLineButton',
+  component: OutLineButton,
   argTypes: {
     children: { controls: 'text', description: '버튼내 텍스트를 입력합니다.' },
     type: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary'],
+      },
       description: '버튼의 색깔을 결정짓는 타입을 결정합니다.',
     },
     size: {
@@ -23,12 +29,6 @@ const OutlineButtonMeta: Meta<typeof OutlineButton> = {
         type: 'boolean',
       },
     },
-    leftIcon: {
-      description: '왼쪽 아이콘을 설정합니다.',
-    },
-    rightIcon: {
-      description: '오른쪽 아이콘을 설정합니다.',
-    },
   },
   args: {
     children: '버튼',
@@ -38,6 +38,63 @@ const OutlineButtonMeta: Meta<typeof OutlineButton> = {
   },
 };
 
-export default OutlineButtonMeta;
+export default OutLineButtonMeta;
 
-export const Primary: StoryObj<typeof OutlineButton> = {};
+export const Primary: StoryObj<typeof OutLineButton> = {};
+
+export const Preview: StoryObj<typeof OutLineButton> = {
+  render: () => {
+    return (
+      <Storybook>
+        <Storybook.Row>
+          <Storybook.Description
+            title='size'
+            variant={['large', 'medium', 'small']}
+          />
+          <Storybook.Item>
+            <OutLineButton
+              size='large'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </OutLineButton>
+            <OutLineButton
+              size='medium'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </OutLineButton>
+            <OutLineButton
+              size='small'
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </OutLineButton>
+          </Storybook.Item>
+        </Storybook.Row>
+        <Storybook.Row>
+          <Storybook.Description
+            title='disable'
+            variant={['false', 'true']}
+          />
+          <Storybook.Item>
+            <OutLineButton
+              size='large'
+              disabled
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </OutLineButton>
+            <OutLineButton
+              size='large'
+              disabled={false}
+              LeftIcon={<Ionicons name='bookmark' />}
+              RightIcon={<MaterialIcons name='arrow-forward-ios' />}>
+              Text
+            </OutLineButton>
+          </Storybook.Item>
+        </Storybook.Row>
+      </Storybook>
+    );
+  },
+};
