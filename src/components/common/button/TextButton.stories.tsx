@@ -75,7 +75,7 @@ export const Preview: StoryObj<typeof TextButton> = {
         <Storybook.Row>
           <Storybook.Description
             title='disable'
-            variant={['false', 'true']}
+            variant={['true', 'false']}
           />
           <Storybook.Item>
             <TextButton
