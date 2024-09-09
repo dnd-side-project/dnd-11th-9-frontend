@@ -57,18 +57,18 @@ function SolidButton({
   const color = disabled ? disabledStyle.color : '#FFFFFF';
   return (
     <S.Container $sizeStyle={sizeStyle[size]}>
+      {type === 'primary' && !disabled && (
+        <BackGround
+          colors={['#7C71F5', '#6E9DF5']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        />
+      )}
       <S.Button
         $typeStyle={typeStyle[type]}
         $disabledStyle={disabledStyle.css}
         disabled={disabled}
         {...rest}>
-        {type === 'primary' && !disabled && (
-          <BackGround
-            colors={['#7C71F5', '#6E9DF5']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
-        )}
         <S.ButtonContent>
           {LeftIcon &&
             cloneElement(LeftIcon, {

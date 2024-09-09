@@ -32,7 +32,7 @@ export const TextWrapper = styled.View`
 export const ButtonBox = styled.View`
   ${flexDirectionColumn};
   gap: 12px;
-  width: 100%;
+  justify-items: center;
   padding: 0 20px 28px;
 `;
 

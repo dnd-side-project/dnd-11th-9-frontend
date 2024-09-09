@@ -5,7 +5,7 @@ import type { IconProps } from '@/types';
 
 export type CustomButtonProps = {
   type: 'primary' | 'secondary';
-  size: 'full' | 'large' | 'medium' | 'small';
+  size: 'large' | 'medium' | 'small' | 'full';
   disabled: boolean;
 };
 
