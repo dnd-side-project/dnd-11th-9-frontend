@@ -1,11 +1,14 @@
 import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import PrimaryButton from '@/components/common/button/primaryButton';
 import ProgressBar from '@/components/common/progress-bar';
 import Typography from '@/components/common/typography';
 import { ON_BOARDING } from '@/constants';
 import { useOnboarding } from '@/store/useOnboarding';
+import { color } from '@/styles/theme';
+import { getSize } from '@/utils';
 
 import * as S from './onboarding.styles';
 
@@ -22,11 +25,23 @@ function Onboarding() {
 
   const handleLastStep = useCallback(() => {
     checkOnBoarding();
-    router.push('sign-in');
+    router.replace('sign-in');
   }, [checkOnBoarding]);
+
+  const backgroundStyle = useAnimatedStyle(() => ({
+    position: 'absolute',
+    flex: 1,
+    width: getSize.deviceWidth * ON_BOARDING.length,
+    height: '100%',
+    left: withTiming(step * -getSize.deviceWidth),
+  }));
 
   return (
     <S.Container>
+      <Animated.Image
+        source={require('../../assets/images/onboarding-bg.png')}
+        style={backgroundStyle}
+      />
       <S.OnBoardingWrapper>
         {ON_BOARDING.map(({ heading, title }, index) => {
           return step === index ? (
@@ -34,10 +49,14 @@ function Onboarding() {
               <S.TextWrapper>
                 <Typography
                   variant='Heading1'
-                  color='#878A93'>
+                  color={color.Label.Alternative}>
                   {title}
                 </Typography>
-                <Typography variant='Title3'>{heading}</Typography>
+                <Typography
+                  color={color.Label.Normal}
+                  variant='Title3'>
+                  {heading}
+                </Typography>
               </S.TextWrapper>
             </S.ContentBox>
           ) : null;

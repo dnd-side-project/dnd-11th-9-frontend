@@ -9,6 +9,7 @@ export const Container = styled.SafeAreaView`
   flex: 1;
   ${flexDirectionColumn};
   justify-content: space-between;
+  overflow: hidden;
 `;
 
 export const OnBoardingWrapper = styled.View`
