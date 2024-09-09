@@ -24,6 +24,7 @@ function Description({ title, variant }: Props) {
 const Storybook = Object.assign(S.Container, {
   Row: S.Row,
   Description,
+  Item: S.Item,
 });
 
 export default Storybook;

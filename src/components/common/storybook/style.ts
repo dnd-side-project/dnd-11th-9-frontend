@@ -5,10 +5,15 @@ import { color } from '@/styles/theme';
 
 export const Container = styled.View`
   ${flexDirectionColumn};
-  gap: 8px;
+  gap: 40px;
 `;
 
 export const Row = styled.View`
+  ${flexDirectionColumn};
+  gap: 16px;
+`;
+
+export const Item = styled.View`
   ${flexDirectionRowItemsCenter};
   gap: 16px;
 `;
