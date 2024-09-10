@@ -5,10 +5,10 @@ on:
     paths:
       - 'src/**/.stories.tsx'
     types: [opened, synchronize, reopened]
-    branches: ['main', 'dev']
+    branches: ['dev']
 
 jobs:
-  test:
+  chromatic-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -22,4 +22,11 @@ jobs:
       - name: PR Auto Comment
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: '추가된 Storybook 미리보기: ${{ steps.chromatic-deploy.outputs.storybookUrl }}'
+          message: '➡️ 추가된 Storybook 미리보기: ${{ steps.chromatic-deploy.outputs.storybookUrl }}'
+
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          embeds: '[{"title": "Storybook 변경 사항 발견 😃", "url": "${{ steps.chromatic-deploy.outputs.storybookUrl }}"}]'
+          content: '작업: ${{ github.event.pull_request.title }}에서 추가된 Storybook을 확인해주세요!'
