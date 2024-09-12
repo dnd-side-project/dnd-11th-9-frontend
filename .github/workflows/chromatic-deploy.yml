@@ -28,5 +28,6 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
-          embeds: '[{"title": "Storybook 변경 사항 발견 😃", "url": "${{ steps.chromatic-deploy.outputs.storybookUrl }}"}]'
-          content: '작업: ${{ github.event.pull_request.title }}에서 추가된 Storybook을 확인해주세요!'
+          embed-title: 'Storybook 변경 사항 발견 😃'
+          embed-description: '작업: "${{ github.event.pull_request.title }}" 에서 추가된 Storybook을 확인해주세요!'
+          embed-url: ${{ steps.chromatic-deploy.outputs.storybookUrl }}
