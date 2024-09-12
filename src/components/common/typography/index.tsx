@@ -1,8 +1,10 @@
 import styled, { css } from '@emotion/native';
-import React from 'react';
+import { memo } from 'react';
 import { type TextProps } from 'react-native';
 
-export type Props = TextProps & {
+import { isMobile } from '@/utils';
+
+type Props = TextProps & {
   variant: keyof typeof TypographyStyle;
   fontWeight: keyof typeof FontWeightStyle;
   color: string;
@@ -92,7 +94,10 @@ const TypographyStyle = {
 
 const CustomText = styled.Text<Props>`
   ${({ variant }) => TypographyStyle[variant]}
-  ${({ fontWeight }) => FontWeightStyle[fontWeight]}
+  ${({ fontWeight }) =>
+    fontWeight === 'semiBold' && !isMobile
+      ? FontWeightStyle['normal']
+      : FontWeightStyle[fontWeight]}
   ${({ color }) => (color ? `color: ${color};` : '')}
 `;
 
@@ -123,4 +128,4 @@ function Typography({
   );
 }
 
-export default React.memo(Typography);
+export default memo(Typography);
