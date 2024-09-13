@@ -8,14 +8,14 @@ import type { PropsNeedChildren } from '@/types';
 import * as S from './Button.style';
 
 function TextButton({
-  size = 'full',
+  size = 'large',
   type = 'primary',
   disabled = false,
   LeftIcon,
   RightIcon,
   children,
   ...rest
-}: PropsNeedChildren<ButtonProps>) {
+}: PropsNeedChildren<Omit<ButtonProps, 'full'>>) {
   const { textSize, iconSize } = useButtonStyle(size);
   const { color } = useButtonTextColor(type, disabled);
 
