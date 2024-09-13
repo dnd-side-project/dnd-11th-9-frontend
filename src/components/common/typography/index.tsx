@@ -8,6 +8,7 @@ type Props = TextProps & {
   variant: keyof typeof TypographyStyle;
   fontWeight: keyof typeof FontWeightStyle;
   color: string;
+  breakWord?: boolean;
 };
 
 const FontWeightStyle = {
@@ -92,13 +93,19 @@ const TypographyStyle = {
   `,
 };
 
+const breakWordText = css`
+  width: 100%;
+  word-wrap: break-word;
+`;
+
 const CustomText = styled.Text<Props>`
-  ${({ variant }) => TypographyStyle[variant]}
+  ${({ variant }) => TypographyStyle[variant]};
   ${({ fontWeight }) =>
     fontWeight === 'semiBold' && !isMobile
       ? FontWeightStyle['normal']
-      : FontWeightStyle[fontWeight]}
-  ${({ color }) => (color ? `color: ${color};` : '')}
+      : FontWeightStyle[fontWeight]};
+  ${({ color }) => (color ? `color: ${color};` : '')};
+  ${({ breakWord }) => breakWord && breakWordText}
 `;
 
 /**
@@ -107,6 +114,7 @@ const CustomText = styled.Text<Props>`
  * @param variant  텍스트의 크기, 자간, 줄간 등의 스타일을 지정합니다.
  * @param fontWeight 글씨 굵기 속성을 지정합니다.
  * @param color 글씨의 색깔을 선택합니다.
+ * @param breakWord 글씨의 줄바꿈을 제거합니다.
  * @param rest  나머지 추가 속성들을 받아옵니다.
  * @constructor
  */
@@ -115,6 +123,7 @@ function Typography({
   variant = 'Label1/Normal',
   fontWeight = 'normal',
   color = 'black',
+  breakWord = false,
   ...rest
 }: Partial<Props>) {
   return (
@@ -122,6 +131,7 @@ function Typography({
       variant={variant}
       fontWeight={fontWeight}
       color={color}
+      breakWord={breakWord}
       {...rest}>
       {children}
     </CustomText>
