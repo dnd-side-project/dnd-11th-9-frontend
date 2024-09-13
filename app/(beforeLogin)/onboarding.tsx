@@ -68,7 +68,8 @@ function Onboarding() {
       </S.OnBoardingWrapper>
       <S.ButtonBox>
         <SolidButton
-          size='full'
+          size='large'
+          full
           onPress={handleStep}>
           다음
         </SolidButton>

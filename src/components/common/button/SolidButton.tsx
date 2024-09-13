@@ -19,20 +19,13 @@ const typeStyle: Record<CustomButtonProps['type'], ReactNativeStyle> = {
 };
 
 const sizeStyle: Record<CustomButtonProps['size'], ReactNativeStyle> = {
-  full: css`
-    width: 100%;
-    height: 48px;
-  `,
   large: css`
-    width: fit-content;
     height: 48px;
   `,
   medium: css`
-    width: fit-content;
     height: 40px;
   `,
   small: css`
-    width: fit-content;
     height: 32px;
   `,
 };
@@ -45,9 +38,10 @@ const disabledStyle = {
 };
 
 function SolidButton({
-  size = 'full',
+  size = 'large',
   type = 'primary',
   disabled = false,
+  full = false,
   LeftIcon,
   RightIcon,
   children,
@@ -56,7 +50,9 @@ function SolidButton({
   const { textSize, iconSize } = useButtonStyle(size);
   const color = disabled ? disabledStyle.color : '#FFFFFF';
   return (
-    <S.Container $sizeStyle={sizeStyle[size]}>
+    <S.Container
+      $full={full}
+      $sizeStyle={sizeStyle[size]}>
       {type === 'primary' && !disabled && (
         <BackGround
           colors={['#7C71F5', '#6E9DF5']}
