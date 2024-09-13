@@ -20,11 +20,17 @@ const PrimaryButtonMeta: Meta<typeof SolidButton> = {
       description: '버튼의 사이즈를 결정합니다.',
       control: {
         type: 'select',
-        options: ['large', 'medium', 'small', 'full'],
+        options: ['large', 'medium', 'small'],
       },
     },
     disabled: {
       description: '버튼의 비활성화 여부를 결정합니다.',
+      control: {
+        type: 'boolean',
+      },
+    },
+    full: {
+      description: '버튼의 가로 길이 폭을 결정합니다.',
       control: {
         type: 'boolean',
       },

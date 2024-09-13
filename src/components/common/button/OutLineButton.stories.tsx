@@ -20,7 +20,7 @@ const OutLineButtonMeta: Meta<typeof OutLineButton> = {
       description: '버튼의 사이즈를 결정합니다.',
       control: {
         type: 'select',
-        options: ['full', 'large', 'medium', 'small'],
+        options: ['large', 'medium', 'small'],
       },
     },
     disabled: {
@@ -29,11 +29,17 @@ const OutLineButtonMeta: Meta<typeof OutLineButton> = {
         type: 'boolean',
       },
     },
+    full: {
+      description: '버튼의 가로 길이 폭을 결정합니다.',
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   args: {
     children: '버튼',
     type: 'primary',
-    size: 'full',
+    size: 'large',
     disabled: false,
   },
 };

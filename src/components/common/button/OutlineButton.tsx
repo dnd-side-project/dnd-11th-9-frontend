@@ -22,20 +22,13 @@ const typeStyle: Record<CustomButtonProps['type'], ReactNativeStyle> = {
 };
 
 const sizeStyle: Record<CustomButtonProps['size'], ReactNativeStyle> = {
-  full: css`
-    width: 100%;
-    height: 48px;
-  `,
   large: css`
-    width: fit-content;
     height: 48px;
   `,
   medium: css`
-    width: fit-content;
     height: 40px;
   `,
   small: css`
-    width: fit-content;
     height: 32px;
   `,
 };
@@ -48,19 +41,22 @@ const disabledStyle = {
 };
 
 function OutLineButton({
-  size = 'full',
+  size = 'large',
   type = 'primary',
   disabled = false,
   LeftIcon,
   RightIcon,
   children,
+  full = false,
   ...rest
 }: PropsNeedChildren<ButtonProps>) {
   const { textSize, iconSize } = useButtonStyle(size);
   const { color } = useButtonTextColor(type, disabled);
 
   return (
-    <S.Container $sizeStyle={sizeStyle[size]}>
+    <S.Container
+      $full={full}
+      $sizeStyle={sizeStyle[size]}>
       <S.Button
         $typeStyle={typeStyle[type]}
         $disabledStyle={disabledStyle.css}
