@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { View } from 'react-native';
 
 import SolidButton from '@/components/common/button/SolidButton';
-import ProjectInviteModal from '@/components/project/ProjectInviteModal';
+
+import ProjectInviteModal from './';
 
 const ProjectInviteModalMeta: Meta<typeof ProjectInviteModal> = {
   title: 'project/ProjectInviteModal',

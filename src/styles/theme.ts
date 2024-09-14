@@ -204,8 +204,8 @@ const semantic = {
   },
   Status: {
     Success: '#00BF40',
-    Warning: '#FF4242',
-    Error: '#00AEFF',
+    Error: '#FF4242',
+    Information: '#00AEFF',
   },
   Accent: {
     RedOrange: '#FF5E00',
