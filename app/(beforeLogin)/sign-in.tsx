@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useCallback, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Platform } from 'react-native';
 
 import Typography from '@/components/common/typography';
@@ -10,28 +10,13 @@ import { useSession } from '@/store';
 import * as S from './sign-in.styles';
 
 function SignIn() {
-  const { signIn, session } = useSession();
+  const { session } = useSession();
 
   useLayoutEffect(() => {
     if (session) {
       router.replace('/');
     }
   }, [session]);
-
-  const handleSignIn = useCallback(() => {
-    signIn();
-    router.replace('/');
-  }, [signIn]);
-
-  // Todo kakao 로그인 처리 해야함
-  const handleKakaoLogin = useCallback(() => {
-    handleSignIn();
-  }, [handleSignIn]);
-
-  // Todo apple 로그인 처리 해야함
-  const handleAppleLogin = useCallback(() => {
-    handleSignIn();
-  }, [handleSignIn]);
 
   return (
     <S.LoginWrapper>
@@ -50,12 +35,12 @@ function SignIn() {
             <S.LoginButtonBox>
               <LoginButton
                 provider='KAKAO'
-                onPress={handleKakaoLogin}
+                onPress={() => router.replace('/oauth2/authorization/kakao')}
               />
               {Platform.OS === 'ios' && (
                 <LoginButton
                   provider='APPLE'
-                  onPress={handleAppleLogin}
+                  onPress={() => router.replace('/oauth2/authorization/apple')}
                 />
               )}
             </S.LoginButtonBox>
