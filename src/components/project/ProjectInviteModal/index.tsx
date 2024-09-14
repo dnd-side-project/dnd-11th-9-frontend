@@ -2,6 +2,7 @@ import { Modal } from 'react-native';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import Typography from '@/components/common/typography';
+import ProjectImage from '@/components/project/ProjectImage';
 import { color } from '@/styles/theme';
 
 import * as S from './ProjectInviteModal.style';
@@ -34,10 +35,7 @@ function ProjectInviteModal({
         <S.Contents>
           <Typography>프로젝트에 초대되었어요!</Typography>
           <S.ProjectBox>
-            <S.ProjectImageBox>
-              <S.ProjectImage source={{ uri: project_profile }} />
-              <S.ProjectImageOutline>{null}</S.ProjectImageOutline>
-            </S.ProjectImageBox>
+            <ProjectImage uri={project_profile} />
             <S.TextBox>
               <Typography
                 variant='Title3'
@@ -53,7 +51,11 @@ function ProjectInviteModal({
             </S.TextBox>
           </S.ProjectBox>
           <S.ButtonBox>
-            <SolidButton size='medium'>수락하기</SolidButton>
+            <SolidButton
+              size='medium'
+              full>
+              수락하기
+            </SolidButton>
             <Typography
               style={{ textAlign: 'center' }}
               onPress={onRequestClose}
