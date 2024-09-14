@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import { AntDesign, Octicons, SimpleLineIcons } from '@expo/vector-icons';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Redirect, Tabs, usePathname } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
@@ -12,8 +12,7 @@ import { MAIN_NAVIGATIONS } from '@/constants';
 import { SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
 import { useOnboarding } from '@/store/useOnboarding';
-
-const TabBarWithOutPath = ['/project/create'];
+import useTabBar from '@/store/useTabBar';
 
 const tabBarOptions = {
   [MAIN_NAVIGATIONS.HOME]: {
@@ -58,9 +57,9 @@ const tabBarOptions = {
 };
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-  const pathName = usePathname();
+  const isVisible = useTabBar((state) => state.isVisible);
 
-  if (TabBarWithOutPath.includes(pathName)) {
+  if (!isVisible) {
     return null;
   }
 
