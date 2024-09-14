@@ -14,7 +14,11 @@
           "shadow-radius",
           "shadow-opacity",
           "shadow-blur",
-          "elevation"
+          "elevation",
+          "outline-color",
+          "outline-offset",
+          "outline-style",
+          "outline-width"
         ]
       }
     ]
