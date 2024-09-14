@@ -1,5 +1,4 @@
 import { Stack } from 'expo-router';
-import { fontFace } from 'polished';
 
 import { PROJECT_NAVIGATIONS } from '@/constants';
 
@@ -10,20 +9,20 @@ function Layout() {
         name={PROJECT_NAVIGATIONS.HOME}
         options={{
           title: '프로젝트',
-          headerTitleStyle: fontFace({
+          headerTitleStyle: {
             fontFamily: 'Pretendard',
             fontWeight: 'bold',
-          }),
+          },
         }}
       />
       <Stack.Screen
         name={PROJECT_NAVIGATIONS.CREATE}
         options={{
           title: '프로젝트 등록',
-          headerTitleStyle: fontFace({
+          headerTitleStyle: {
             fontFamily: 'Pretendard',
             fontWeight: 'bold',
-          }),
+          },
         }}
       />
     </Stack>
