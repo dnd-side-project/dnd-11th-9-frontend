@@ -40,52 +40,50 @@ function OneProject({
   }));
 
   return (
-    <>
-      <S.ProjectContainer>
-        <S.ProjectInActiveBox>
-          <S.ProjectInfoBox>
-            <ProjectImage uri={profile} />
-            <S.ProjectStatusBox>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='medium'
-                color={color.Label.Normal}>
-                {name}
-              </Typography>
-              <Typography
-                variant='Label1/Normal'
-                color={color.Label.Alternative}>
-                {member_num}명
-              </Typography>
-            </S.ProjectStatusBox>
-          </S.ProjectInfoBox>
-          <Pressable onPress={() => setActive((prev) => !prev)}>
-            {active ? (
-              <Ionicons
-                name='chevron-up'
-                color={color.Label.Neutral}
-                size={24}
-              />
-            ) : (
-              <Ionicons
-                name='chevron-down'
-                color={color.Label.Neutral}
-                size={24}
-              />
-            )}
-          </Pressable>
-        </S.ProjectInActiveBox>
-        {active ? <S.ProjectActiveDivider /> : null}
-        <S.ProjectActiveBox style={activeStyle}>
-          <Typography
-            variant='Body1/Normal'
-            fontWeight='medium'
-            style={{ textAlign: 'center' }}>
-            리뷰 만들기
-          </Typography>
-        </S.ProjectActiveBox>
-      </S.ProjectContainer>
-    </>
+    <S.ProjectContainer>
+      <S.ProjectInActiveBox>
+        <S.ProjectInfoBox>
+          <ProjectImage uri={profile} />
+          <S.ProjectStatusBox>
+            <Typography
+              variant='Body1/Normal'
+              fontWeight='medium'
+              color={color.Label.Normal}>
+              {name}
+            </Typography>
+            <Typography
+              variant='Label1/Normal'
+              color={color.Label.Alternative}>
+              {member_num}명
+            </Typography>
+          </S.ProjectStatusBox>
+        </S.ProjectInfoBox>
+        <Pressable onPress={() => setActive((prev) => !prev)}>
+          {active ? (
+            <Ionicons
+              name='chevron-up'
+              color={color.Label.Neutral}
+              size={24}
+            />
+          ) : (
+            <Ionicons
+              name='chevron-down'
+              color={color.Label.Neutral}
+              size={24}
+            />
+          )}
+        </Pressable>
+      </S.ProjectInActiveBox>
+      {active ? <S.ProjectActiveDivider /> : null}
+      <S.ProjectActiveBox style={activeStyle}>
+        <Typography
+          variant='Body1/Normal'
+          fontWeight='medium'
+          style={{ textAlign: 'center' }}>
+          리뷰 만들기
+        </Typography>
+      </S.ProjectActiveBox>
+    </S.ProjectContainer>
   );
 }
 
