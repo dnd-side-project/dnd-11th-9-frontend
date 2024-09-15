@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 import Typography from '@/components/common/typography';
@@ -10,13 +10,13 @@ import { useSession } from '@/store';
 import * as S from './sign-in.styles';
 
 function SignIn() {
-  const { session } = useSession();
+  const { signIn, refreshToken } = useSession();
 
-  useLayoutEffect(() => {
-    if (session) {
-      router.replace('/');
+  useEffect(() => {
+    if (refreshToken) {
+      signIn();
     }
-  }, [session]);
+  }, [refreshToken, signIn]);
 
   return (
     <S.LoginWrapper>

@@ -5,4 +5,12 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+axiosInstance.interceptors.request.use((config) => {
+  return config;
+});
+
+axiosInstance.interceptors.response.use((response) => {
+  return response;
+});
+
 export default axiosInstance;

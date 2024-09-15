@@ -1,17 +1,19 @@
+import { useRouter } from 'expo-router';
 import { createContext, type PropsWithChildren, useContext } from 'react';
 
 import { STORAGE_KEYS } from '@/constants';
 import { useStorageState } from '@/hooks/useStorageState';
+import { useOnboarding } from '@/store/useOnboarding';
 
 const AuthContext = createContext<{
-  signIn: () => void;
+  signIn: (refreshToken?: string | null) => void;
   signOut: () => void;
-  session?: string | null;
+  refreshToken?: string | null;
   isLoading: boolean;
 }>({
   signIn: () => null,
   signOut: () => null,
-  session: null,
+  refreshToken: null,
   isLoading: false,
 });
 
@@ -30,18 +32,25 @@ export function useSession() {
 }
 
 export function SessionProvider({ children }: PropsWithChildren) {
-  const [[isLoading, session], setSession] = useStorageState(STORAGE_KEYS.SESSION);
+  const [[isLoading, refreshToken], setSession] = useStorageState(STORAGE_KEYS.SESSION);
+  const router = useRouter();
+  const { resetOnBoarding } = useOnboarding();
 
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          setSession('xxx');
+        signIn: (refreshToken = null) => {
+          if (refreshToken !== null) {
+            router.push('/');
+          }
+          setSession(refreshToken);
+          router.push('/');
         },
         signOut: () => {
           setSession(null);
+          resetOnBoarding();
         },
-        session,
+        refreshToken,
         isLoading,
       }}>
       {children}

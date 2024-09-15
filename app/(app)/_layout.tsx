@@ -111,14 +111,14 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 };
 
 export default function Layout() {
-  const { session, isLoading: sessionLoading } = useSession();
+  const { refreshToken, isLoading: sessionLoading } = useSession();
   const { showOnBoarding, isLoading: onboardingLoading } = useOnboarding();
 
   if (sessionLoading || onboardingLoading) {
     return <Text>Loading...</Text>;
   }
 
-  if (!session) {
+  if (!refreshToken) {
     if (!showOnBoarding) {
       return <Redirect href={SITE_URLS.ON_BOARDING} />;
     }

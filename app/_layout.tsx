@@ -1,11 +1,13 @@
 import styled from '@emotion/native';
-import { Slot } from 'expo-router';
+import { Slot, SplashScreen } from 'expo-router';
 import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
 import { SCREEN_SIZE } from '@/constants';
 import { SessionProvider } from '@/store';
 import { OnboardingProvider } from '@/store/useOnboarding';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function Root() {
   if (Platform.OS === 'web') {
