@@ -48,7 +48,7 @@ const CustomTextMeta: Meta<typeof Typography> = {
     children: { control: 'text', description: '표시할 텍스트를 입력합니다.' },
   },
   args: {
-    children: 'Wepro',
+    children: 'Text',
     variant: 'Title1',
     color: 'black',
   },
