@@ -12,6 +12,7 @@ import { MAIN_NAVIGATIONS } from '@/constants';
 import { SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
 import { useOnboarding } from '@/store/useOnboarding';
+import useTabBar from '@/store/useTabBar';
 
 const tabBarOptions = {
   [MAIN_NAVIGATIONS.HOME]: {
@@ -56,6 +57,12 @@ const tabBarOptions = {
 };
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+  const isVisible = useTabBar((state) => state.isVisible);
+
+  if (!isVisible) {
+    return null;
+  }
+
   return (
     <S.TabBar>
       {state.routes.map((route, index) => {

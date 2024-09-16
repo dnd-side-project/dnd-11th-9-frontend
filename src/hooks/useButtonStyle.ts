@@ -10,7 +10,6 @@ export function useButtonStyle(size: ButtonProps['size']) {
     iconSize: number;
   }>(() => {
     switch (size) {
-      case 'full':
       case 'large':
         return { textSize: 'Body1/Normal', iconSize: 16 };
       case 'medium':
