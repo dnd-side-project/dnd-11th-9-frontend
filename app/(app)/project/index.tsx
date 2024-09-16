@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native';
 
 import ProjectInviteModal from '@/components/project/ProjectInviteModal';
 import ProjectList from '@/components/project/ProjectList';
+import { color } from '@/styles/theme';
 
 function Project() {
   const [visible, setVisible] = useState(false);
@@ -97,7 +98,7 @@ function Project() {
   ];
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: color.Background.Alternative }}>
       <ProjectInviteModal
         project_name={data.project_name}
         project_profile={data.project_profile}
