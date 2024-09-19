@@ -1,21 +1,22 @@
-import { SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native';
 
-import Typography from '@/components/common/typography';
+import ProjectRegisterForm from '@/components/project/ProjectRegisterForm';
 import { useTabBarEffect } from '@/hooks';
 import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 function Create() {
   useTabBarEffect();
+
   return (
-    <SafeAreaView
+    <ScrollView
       style={{
         flex: 1,
         backgroundColor: color.Background.Alternative,
         height: getSize.screenHeight,
       }}>
-      <Typography>프로젝트 생성</Typography>
-    </SafeAreaView>
+      <ProjectRegisterForm />
+    </ScrollView>
   );
 }
 
