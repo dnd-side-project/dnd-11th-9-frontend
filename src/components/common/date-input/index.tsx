@@ -2,6 +2,7 @@ import { AntDesign } from '@expo/vector-icons';
 import dayjs from 'dayjs';
 
 import Typography from '@/components/common/typography';
+import { shadow } from '@/styles/shadow';
 
 import * as S from './style';
 
@@ -12,7 +13,9 @@ type Props = {
 
 function DateInput({ onPress, date }: Props) {
   return (
-    <S.Container onPress={onPress}>
+    <S.Container
+      style={shadow[2]}
+      onPress={onPress}>
       <AntDesign
         name='calendar'
         size={24}
