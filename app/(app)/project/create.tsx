@@ -48,6 +48,8 @@ function Create() {
 
   const snapPoints = useMemo(() => [500], []);
 
+  const isBottomSheetOpen = dataSheetOpen;
+
   const deemStyle = useAnimatedStyle(() => ({
     width: '100%',
     height: '100%',
@@ -79,8 +81,6 @@ function Create() {
   useEffect(() => {
     return () => dataSheetClose();
   }, [dataSheetClose]);
-
-  const isBottomSheetOpen = dataSheetOpen;
 
   return (
     <GestureHandlerRootView>
