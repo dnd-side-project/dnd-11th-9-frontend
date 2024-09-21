@@ -60,13 +60,14 @@ function Create() {
     (_: DateTimePickerEvent, date = new Date()) => {
       dataSheetClose();
       if (selectDate === 'start') {
+        if (date > endDate) return Alert.alert('이전일보다 늦은 시작일은 선택할 수 없습니다.');
         setStartDate(date);
       } else {
-        if (startDate > date) return Alert.alert('시작일보다 이전일은 선택할 수 없습니다.');
+        if (startDate > date) return Alert.alert('시작일보다 빠른 이전일은 선택할 수 없습니다.');
         setEndDate(date);
       }
     },
-    [dataSheetClose, selectDate, startDate]
+    [dataSheetClose, endDate, selectDate, startDate]
   );
 
   const startDateOpen = useCallback((select: 'start' | 'end') => {
@@ -165,7 +166,7 @@ function Create() {
           style={deemStyle}
         />
       )}
-      {dataSheetOpen && Platform.OS === 'ios' && (
+      {Platform.OS === 'ios' && (
         <BottomSheet
           index={-1}
           snapPoints={snapPoints}
@@ -173,7 +174,7 @@ function Create() {
           enablePanDownToClose
           ref={dateSheetRef}>
           <BottomSheetView>
-            {dataSheetOpen && Platform.OS === 'ios' && (
+            {dataSheetOpen && (
               <RNDateTimePicker
                 mode='date'
                 display='spinner'
@@ -184,7 +185,7 @@ function Create() {
           </BottomSheetView>
         </BottomSheet>
       )}
-      {dataSheetOpen && Platform.OS === 'android' && (
+      {Platform.OS !== 'ios' && dataSheetOpen && (
         <RNDateTimePicker
           mode='date'
           display='default'
