@@ -1,11 +1,10 @@
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import type BottomSheet from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Platform, ScrollView } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Alert, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import DateInput from '@/components/common/date-input';
@@ -45,18 +44,6 @@ function Create() {
       setImage(result.assets[0].uri);
     }
   }, []);
-
-  const snapPoints = useMemo(() => [500], []);
-
-  const isBottomSheetOpen = dataSheetOpen;
-
-  const deemStyle = useAnimatedStyle(() => ({
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    backgroundColor: '#000',
-    opacity: withTiming(isBottomSheetOpen ? 0.3 : 0),
-  }));
 
   const selectDateHandler = useCallback(
     (_: DateTimePickerEvent, date = new Date()) => {
@@ -160,35 +147,14 @@ function Create() {
           </S.SubmitButtonBox>
         </S.Container>
       </ScrollView>
-      {isBottomSheetOpen && (
-        <Animated.View
-          onTouchEnd={dataSheetClose}
-          style={deemStyle}
-        />
-      )}
-      {Platform.OS === 'ios' && (
-        <BottomSheet
-          index={-1}
-          snapPoints={snapPoints}
-          onClose={dataSheetClose}
-          enablePanDownToClose
-          ref={dateSheetRef}>
-          <BottomSheetView>
-            {dataSheetOpen && (
-              <RNDateTimePicker
-                mode='date'
-                display='spinner'
-                value={selectDate === 'start' ? startDate : endDate}
-                onChange={selectDateHandler}
-              />
-            )}
-          </BottomSheetView>
-        </BottomSheet>
-      )}
-      {Platform.OS !== 'ios' && dataSheetOpen && (
-        <RNDateTimePicker
+      {dataSheetOpen && (
+        <DateTimePicker
           mode='date'
-          display='default'
+          locale='ko-KR'
+          timeZoneName='Asia/Seoul'
+          display='spinner'
+          minimumDate={new Date(2010, 0, 1)}
+          maximumDate={new Date(new Date().getFullYear() + 1, 11, 30)}
           value={selectDate === 'start' ? startDate : endDate}
           onChange={selectDateHandler}
         />
