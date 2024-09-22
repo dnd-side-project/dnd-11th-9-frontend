@@ -1,3 +1,5 @@
+import { shadow } from '@/styles/shadow';
+
 import * as S from './style';
 
 type Props = {
@@ -9,6 +11,7 @@ function PreviewImage({ images }: Props) {
     <S.Container>
       {images.map((image, index) => (
         <S.Image
+          style={shadow[2]}
           resizeMode='cover'
           key={index}
           source={{ uri: image }}

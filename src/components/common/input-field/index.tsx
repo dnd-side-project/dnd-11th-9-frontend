@@ -4,6 +4,7 @@ import type { TextInput } from 'react-native';
 import { type TextInputProps } from 'react-native';
 import { Pressable } from 'react-native';
 
+import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 import { mergeRefs } from '@/utils';
 
@@ -30,17 +31,7 @@ const InputField = forwardRef(
     return (
       <Pressable onPress={handlePressInput}>
         <S.Container
-          style={{
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 1,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 1.22,
-
-            elevation: 2,
-          }}
+          style={shadow[2]}
           $disabled={disabled}
           $isError={Boolean(touched) && Boolean(error)}>
           <S.InnerContainer $isIcon={!!icon}>

@@ -1,23 +1,27 @@
 import { AntDesign } from '@expo/vector-icons';
+import dayjs from 'dayjs';
 
 import Typography from '@/components/common/typography';
+import { shadow } from '@/styles/shadow';
 
 import * as S from './style';
 
 type Props = {
-  onChange?: () => void;
-  date?: string;
+  date: Date;
+  onPress: () => void;
 };
 
-function DateInput({ onChange, date }: Props) {
+function DateInput({ onPress, date }: Props) {
   return (
-    <S.Container onPress={onChange}>
+    <S.Container
+      style={shadow[2]}
+      onPress={onPress}>
       <AntDesign
         name='calendar'
         size={24}
         color='#979797'
       />
-      <Typography>{date}</Typography>
+      <Typography>{dayjs(date).format('YYYY-MM-DD')}</Typography>
     </S.Container>
   );
 }
