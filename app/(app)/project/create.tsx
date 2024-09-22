@@ -100,30 +100,54 @@ function Create() {
         <S.Container>
           <S.Form>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 이름
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 이름
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <InputField placeholder='프로젝트의 이름을 적어주세요' />
             </S.InputContainer>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 정보
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 정보
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <InputField placeholder='어떤 프로젝트인가요?' />
             </S.InputContainer>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 이미지
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 이미지
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <S.ImageBox>
                 <ImageInput onChange={pickImage} />
                 <PreviewImage images={image ? [image] : []} />

@@ -17,6 +17,11 @@ export const Form = styled.View`
   gap: 36px;
 `;
 
+export const RequiredTitleBox = styled.View`
+  ${flexDirectionRow};
+  gap: 2px;
+`;
+
 export const InputContainer = styled.View`
   ${flexDirectionColumn};
   gap: 8px;
