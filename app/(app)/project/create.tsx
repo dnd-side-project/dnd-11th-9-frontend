@@ -15,17 +15,21 @@ import InputField from '@/components/common/input-field';
 import PreviewImage from '@/components/common/preview-image';
 import Typography from '@/components/common/typography';
 import * as S from '@/components/project/ProjectRegisterForm/style';
+import type { User } from '@/components/project/SearchUserList';
 import SearchUserList from '@/components/project/SearchUserList';
 import { useTabBarEffect } from '@/hooks';
+import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 function Create() {
   useTabBarEffect();
   const [image, setImage] = useState<string | null>(null);
-  const [selectDate, setSelectDate] = useState<'start' | 'end'>('start');
   const [startDate, setStartDate] = useState<Date>(() => new Date());
   const [endDate, setEndDate] = useState<Date>(() => new Date());
+  const [selectUserList, setSelectUserList] = useState<User[]>([]);
+
+  const [selectDate, setSelectDate] = useState<'start' | 'end'>('start');
 
   const userListBottomSheetRef = useRef<BottomSheetModal>(null);
   const [dataSheetOpen, setDataSheetOpen] = useState(false);
@@ -165,6 +169,19 @@ function Create() {
                 />
                 <S.UserListSheetOpenButton onPress={openUserListSheet} />
               </S.UserListSheetOpenButtonContainer>
+              <S.SelectUserList>
+                {selectUserList.map((user) => (
+                  <S.SelectUserItem
+                    style={shadow[1]}
+                    key={user.userId}>
+                    <Typography
+                      variant='Body1/Reading'
+                      fontWeight='medium'>
+                      {user.name}
+                    </Typography>
+                  </S.SelectUserItem>
+                ))}
+              </S.SelectUserList>
             </S.InputContainer>
             <S.InputContainer>
               <Typography
@@ -180,7 +197,7 @@ function Create() {
             <SolidButton
               full
               size='large'>
-              다음
+              등록하기
             </SolidButton>
           </S.SubmitButtonBox>
         </S.Container>
@@ -210,7 +227,13 @@ function Create() {
         enablePanDownToClose
         snapPoints={snapPoints}>
         <BottomSheetView style={{ flex: 1 }}>
-          <SearchUserList />
+          {userListSheetOpen && (
+            <SearchUserList
+              selectUserList={selectUserList}
+              setSelectUserList={setSelectUserList}
+              closeBottomSheet={closeUserListSheet}
+            />
+          )}
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>

@@ -15,6 +15,8 @@ export const ActionBox = styled.View`
 `;
 
 export const Inner = styled.View`
+  ${flexDirectionColumn};
+  gap: 24px;
   padding: 20px;
 `;
 

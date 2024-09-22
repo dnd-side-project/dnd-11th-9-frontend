@@ -50,8 +50,6 @@ export const SubmitButtonBox = styled.View`
 
 export const UserListSheetOpenButtonContainer = styled.View`
   position: relative;
-  width: 100%;
-  height: 100%;
 `;
 
 export const UserListSheetOpenButton = styled.Pressable`
@@ -67,4 +65,15 @@ export const BottomSheetBackground = styled.SafeAreaView`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.color.Material.Dimmer};
+`;
+
+export const SelectUserList = styled.View`
+  ${flexDirectionColumn};
+  gap: 8px;
+`;
+
+export const SelectUserItem = styled.View`
+  padding: 18px 16px;
+  background: ${({ theme }) => theme.color.Background.Normal};
+  border-radius: 8px;
 `;

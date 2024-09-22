@@ -1,6 +1,9 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Checkbox } from 'expo-checkbox';
+import type { Dispatch, SetStateAction } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useState } from 'react';
+import { Pressable } from 'react-native';
 
 import InputField from '@/components/common/input-field';
 import Typography from '@/components/common/typography';
@@ -8,30 +11,41 @@ import { color } from '@/styles/theme';
 
 import * as S from './stlye';
 
-type User = {
+export type User = {
   id: number;
   name: string;
   userId: string;
   profileImage: string;
 };
 
-function SearchUserList() {
-  const [userList, setUserList] = useState<User[]>([
-    {
-      id: 1,
-      name: '양의진',
-      userId: 'dml1335',
-      profileImage: 'https://avatars.githubusercontent.com/u/77464040?v=4',
-    },
-  ]);
+type Props = {
+  selectUserList: User[];
+  setSelectUserList: Dispatch<SetStateAction<User[]>>;
+  closeBottomSheet: () => void;
+};
 
-  const addUser = (user: User) => {
+function SearchUserList({ selectUserList, setSelectUserList, closeBottomSheet }: Props) {
+  const [userList, setUserList] = useState<User[]>(() => selectUserList);
+
+  const previousUserList = useMemo(() => selectUserList, [selectUserList]);
+
+  const addUser = useCallback((user: User) => {
     setUserList((prev) => [...prev, user]);
-  };
+  }, []);
 
-  const deleteUser = (id: number) => {
+  const deleteUser = useCallback((id: number) => {
     setUserList((prev) => prev.filter((user) => user.id !== id));
-  };
+  }, []);
+
+  const addClick = useCallback(() => {
+    setSelectUserList(userList);
+    closeBottomSheet();
+  }, [closeBottomSheet, setSelectUserList, userList]);
+
+  const cancelClick = useCallback(() => {
+    setSelectUserList(previousUserList);
+    closeBottomSheet();
+  }, [closeBottomSheet, previousUserList, setSelectUserList]);
 
   const data = [
     {
@@ -57,18 +71,22 @@ function SearchUserList() {
   return (
     <S.Container>
       <S.ActionBox>
-        <Typography
-          variant='Body1/Normal'
-          fontWeight='medium'
-          color={color.Label.Alternative}>
-          취소
-        </Typography>
-        <Typography
-          variant='Body1/Normal'
-          fontWeight='medium'
-          color={color.Label.Normal}>
-          추가
-        </Typography>
+        <Pressable onPress={cancelClick}>
+          <Typography
+            variant='Body1/Normal'
+            fontWeight='medium'
+            color={color.Label.Alternative}>
+            취소
+          </Typography>
+        </Pressable>
+        <Pressable onPress={addClick}>
+          <Typography
+            variant='Body1/Normal'
+            fontWeight='medium'
+            color={color.Label.Normal}>
+            추가
+          </Typography>
+        </Pressable>
       </S.ActionBox>
       <S.Inner>
         <InputField
