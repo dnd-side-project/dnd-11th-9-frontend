@@ -1,6 +1,10 @@
-import styled from '@emotion/native';
+import styled, { css } from '@emotion/native';
 
-import { flexDirectionColumn, flexDirectionRow } from '@/styles/common';
+import {
+  flexDirectionColumn,
+  flexDirectionRow,
+  flexDirectionRowItemsCenter,
+} from '@/styles/common';
 
 export const Container = styled.View`
   ${flexDirectionColumn};
@@ -24,12 +28,17 @@ export const ImageBox = styled.View`
 `;
 
 export const DatePickerBox = styled.View`
-  ${flexDirectionRow};
+  ${flexDirectionRowItemsCenter};
   gap: 8px;
 `;
 
+const fontFamlily = css({
+  fontFamily: 'Pretendard',
+  fontWeight: 400,
+});
+
 export const DateSplitText = styled.Text`
-  font-family: Pretendard, serif;
+  ${fontFamlily};
   font-size: 24px;
   line-height: 29px;
   color: ${({ theme }) => theme.color.Label.Normal};

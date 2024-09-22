@@ -1,5 +1,6 @@
 import { AntDesign } from '@expo/vector-icons';
 
+import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 
 import * as S from './style';
@@ -10,7 +11,9 @@ type Props = {
 
 function ImageInput({ onChange }: Props) {
   return (
-    <S.Container onPress={onChange}>
+    <S.Container
+      style={shadow[2]}
+      onPress={onChange}>
       <AntDesign
         style={{ textAlign: 'center', lineHeight: 24 }}
         name='plus'
