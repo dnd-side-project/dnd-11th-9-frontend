@@ -47,3 +47,24 @@ export const DateSplitText = styled.Text`
 export const SubmitButtonBox = styled.View`
   padding: 12px 0 52px;
 `;
+
+export const UserListSheetOpenButtonContainer = styled.View`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const UserListSheetOpenButton = styled.Pressable`
+  position: absolute;
+  width: 100%;
+  height: 55px;
+`;
+
+export const BottomSheetBackground = styled.SafeAreaView`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.color.Material.Dimmer};
+`;

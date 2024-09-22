@@ -11,15 +11,26 @@ import { mergeRefs } from '@/utils';
 import * as S from './style';
 
 interface InputFieldProps extends TextInputProps {
+  isShadow?: boolean;
   touched?: boolean;
   disabled?: boolean;
+  backgroundColor?: string;
   error?: string;
   icon?: ReactNode;
 }
 
 const InputField = forwardRef(
   (
-    { touched, disabled = false, error, icon = null, multiline, ...props }: InputFieldProps,
+    {
+      backgroundColor = 'transparent',
+      touched,
+      isShadow = true,
+      disabled = false,
+      error,
+      icon = null,
+      multiline,
+      ...props
+    }: InputFieldProps,
     ref?: ForwardedRef<TextInput>
   ) => {
     const innerRef = useRef<TextInput>(null);
@@ -31,25 +42,24 @@ const InputField = forwardRef(
     return (
       <Pressable onPress={handlePressInput}>
         <S.Container
-          style={shadow[2]}
+          style={isShadow ? shadow[2] : { backgroundColor }}
           $disabled={disabled}
           $isError={Boolean(touched) && Boolean(error)}>
-          <S.InnerContainer $isIcon={!!icon}>
-            {icon}
-            <S.TextInput
-              // @ts-expect-error: outline is not a valid style property
-              style={{ outline: 'none' }}
-              ref={ref ? mergeRefs(innerRef, ref) : innerRef}
-              multiline={Boolean(multiline)}
-              numberOfLines={multiline ? 4 : 1}
-              editable={!disabled}
-              autoCapitalize='none'
-              spellCheck={false}
-              autoCorrect={false}
-              placeholderTextColor={color.Label.Alternative}
-              {...props}
-            />
-          </S.InnerContainer>
+          {icon}
+          <S.TextInput
+            $isIcon={!!icon}
+            // @ts-expect-error: outline is not a valid style property
+            style={{ outline: 'none', backgroundColor }}
+            ref={ref ? mergeRefs(innerRef, ref) : innerRef}
+            multiline={Boolean(multiline)}
+            numberOfLines={multiline ? 4 : 1}
+            editable={!disabled}
+            autoCapitalize='none'
+            spellCheck={false}
+            autoCorrect={false}
+            placeholderTextColor={color.Label.Alternative}
+            {...props}
+          />
           {touched && !!error && <S.ErrorText>{error}</S.ErrorText>}
         </S.Container>
       </Pressable>
