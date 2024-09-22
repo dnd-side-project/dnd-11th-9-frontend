@@ -1,8 +1,7 @@
-import type BottomSheet from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -26,10 +25,8 @@ function Create() {
 
   const [dataSheetOpen, setDataSheetOpen] = useState(false);
 
-  const dateSheetRef = useRef<BottomSheet>(null);
   const dataSheetClose = useCallback(() => {
     setDataSheetOpen(false);
-    dateSheetRef.current?.close();
   }, []);
 
   const pickImage = useCallback(async () => {
@@ -60,7 +57,6 @@ function Create() {
   );
 
   const startDateOpen = useCallback((select: 'start' | 'end') => {
-    dateSheetRef.current?.snapToIndex(0);
     setDataSheetOpen(true);
     setSelectDate(select);
   }, []);
