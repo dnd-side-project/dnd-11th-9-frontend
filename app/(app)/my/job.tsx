@@ -2,12 +2,12 @@ import { View } from 'react-native';
 
 import Typography from '@/components/common/typography';
 
-function Profile() {
+function JOB() {
   return (
     <View>
-      <Typography>Profile</Typography>
+      <Typography>직군</Typography>
     </View>
   );
 }
 
-export default Profile;
+export default JOB;

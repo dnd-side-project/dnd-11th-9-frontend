@@ -8,9 +8,10 @@ export const MAIN_NAVIGATIONS = {
 export type MainNavigations = (typeof MAIN_NAVIGATIONS)[keyof typeof MAIN_NAVIGATIONS];
 
 export const MY_NAVIGATIONS = {
-  HOME: 'index',
-  CREATE: 'create',
-  DELETE: 'delete',
+  HOME: 'my',
+  JOB: 'job',
+  POLICY: 'policy',
+  CANCEL_ACCOUNT: 'cancel-account',
 };
 
 export const PROJECT_NAVIGATIONS = {
