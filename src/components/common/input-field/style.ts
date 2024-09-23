@@ -24,18 +24,17 @@ export const Container = styled.View<{
 }>`
   ${({ $isError, theme }) => $isError && errorStyle(theme)};
   ${({ $disabled, theme }) => $disabled && disabledStyle(theme)};
+  ${flexDirectionRow};
+  gap: 8px;
   padding: 18px 16px;
   background-color: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 8px;
 `;
 
-export const InnerContainer = styled.View<{ $isIcon: boolean }>`
-  ${({ $isIcon }) => $isIcon && hasIconStyle}
-`;
-
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<{ $isIcon: boolean }>`
   flex-grow: 1;
   padding: 0;
+  ${({ $isIcon }) => $isIcon && hasIconStyle}
   font-family: Pretendard, serif;
   font-size: 15px;
   color: ${(props) => props.theme.color.Label.Normal};
