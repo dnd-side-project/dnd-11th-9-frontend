@@ -1,8 +1,10 @@
-import type BottomSheet from '@gorhom/bottom-sheet';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import type { BottomSheetModal } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -13,23 +15,42 @@ import InputField from '@/components/common/input-field';
 import PreviewImage from '@/components/common/preview-image';
 import Typography from '@/components/common/typography';
 import * as S from '@/components/project/ProjectRegisterForm/style';
+import type { User } from '@/components/project/SearchUserList';
+import SearchUserList from '@/components/project/SearchUserList';
 import { useTabBarEffect } from '@/hooks';
+import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 function Create() {
   useTabBarEffect();
   const [image, setImage] = useState<string | null>(null);
-  const [selectDate, setSelectDate] = useState<'start' | 'end'>('start');
   const [startDate, setStartDate] = useState<Date>(() => new Date());
   const [endDate, setEndDate] = useState<Date>(() => new Date());
+  const [selectUserList, setSelectUserList] = useState<User[]>([]);
 
+  const [selectDate, setSelectDate] = useState<'start' | 'end'>('start');
+
+  const userListBottomSheetRef = useRef<BottomSheetModal>(null);
   const [dataSheetOpen, setDataSheetOpen] = useState(false);
+  const [userListSheetOpen, setUserListSheetOpen] = useState(false);
 
-  const dateSheetRef = useRef<BottomSheet>(null);
   const dataSheetClose = useCallback(() => {
     setDataSheetOpen(false);
-    dateSheetRef.current?.close();
+  }, []);
+
+  const sheetHeight = useMemo(() => getSize.screenHeight * 0.75, []);
+
+  const snapPoints = useMemo(() => [sheetHeight], []);
+
+  const openUserListSheet = useCallback(() => {
+    setUserListSheetOpen(true);
+    userListBottomSheetRef.current?.snapToIndex(0);
+  }, []);
+
+  const closeUserListSheet = useCallback(() => {
+    setUserListSheetOpen(false);
+    userListBottomSheetRef.current?.close();
   }, []);
 
   const pickImage = useCallback(async () => {
@@ -60,7 +81,6 @@ function Create() {
   );
 
   const startDateOpen = useCallback((select: 'start' | 'end') => {
-    dateSheetRef.current?.snapToIndex(0);
     setDataSheetOpen(true);
     setSelectDate(select);
   }, []);
@@ -80,30 +100,54 @@ function Create() {
         <S.Container>
           <S.Form>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 이름
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 이름
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <InputField placeholder='프로젝트의 이름을 적어주세요' />
             </S.InputContainer>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 정보
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 정보
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <InputField placeholder='어떤 프로젝트인가요?' />
             </S.InputContainer>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                프로젝트 이미지
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  프로젝트 이미지
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <S.ImageBox>
                 <ImageInput onChange={pickImage} />
                 <PreviewImage images={image ? [image] : []} />
@@ -133,6 +177,41 @@ function Create() {
                 variant='Body1/Normal'
                 fontWeight='semiBold'
                 color={color.Label.Normal}>
+                팀원
+              </Typography>
+              <S.UserListSheetOpenButtonContainer>
+                <InputField
+                  icon={
+                    <SimpleLineIcons
+                      name='magnifier'
+                      style={{ flexShrink: 1, width: 20, height: 20 }}
+                      size={20}
+                    />
+                  }
+                  disabled
+                  placeholder='팀원의 이름을 검색해주세요.'
+                />
+                <S.UserListSheetOpenButton onPress={openUserListSheet} />
+              </S.UserListSheetOpenButtonContainer>
+              <S.SelectUserList>
+                {selectUserList.map((user) => (
+                  <S.SelectUserItem
+                    style={shadow[1]}
+                    key={user.userId}>
+                    <Typography
+                      variant='Body1/Reading'
+                      fontWeight='medium'>
+                      {user.name}
+                    </Typography>
+                  </S.SelectUserItem>
+                ))}
+              </S.SelectUserList>
+            </S.InputContainer>
+            <S.InputContainer>
+              <Typography
+                variant='Body1/Normal'
+                fontWeight='semiBold'
+                color={color.Label.Normal}>
                 프로젝트 링크
               </Typography>
               <InputField placeholder='링크를 입력해주세요' />
@@ -142,7 +221,7 @@ function Create() {
             <SolidButton
               full
               size='large'>
-              다음
+              등록하기
             </SolidButton>
           </S.SubmitButtonBox>
         </S.Container>
@@ -159,6 +238,28 @@ function Create() {
           onChange={selectDateHandler}
         />
       )}
+      {userListSheetOpen && (
+        <S.BottomSheetBackground
+          onTouchEnd={closeUserListSheet}
+          style={{ opacity: 0.52 }}
+        />
+      )}
+      <BottomSheet
+        onClose={closeUserListSheet}
+        ref={userListBottomSheetRef}
+        index={-1}
+        enablePanDownToClose
+        snapPoints={snapPoints}>
+        <BottomSheetView style={{ flex: 1 }}>
+          {userListSheetOpen && (
+            <SearchUserList
+              selectUserList={selectUserList}
+              setSelectUserList={setSelectUserList}
+              closeBottomSheet={closeUserListSheet}
+            />
+          )}
+        </BottomSheetView>
+      </BottomSheet>
     </GestureHandlerRootView>
   );
 }
