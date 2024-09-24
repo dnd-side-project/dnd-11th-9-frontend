@@ -4,7 +4,7 @@ import CategoryChip from '@/components/common/category-chip/index';
 import Storybook from '@/components/common/storybook';
 
 const CategoryChipMeta: Meta<typeof CategoryChip> = {
-  title: 'common/CategoryChip',
+  title: 'category/CategoryChip',
   component: CategoryChip,
   argTypes: {
     category: {

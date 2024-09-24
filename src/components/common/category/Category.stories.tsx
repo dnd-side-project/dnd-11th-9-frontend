@@ -4,7 +4,7 @@ import Category from '@/components/common/category/index';
 import Storybook from '@/components/common/storybook';
 
 const CategoryMeta: Meta<typeof Category> = {
-  title: 'common/Category',
+  title: 'category/Category',
   component: Category,
   argTypes: {
     category: {
