@@ -14,6 +14,24 @@ const CategoryChipMeta: Meta<typeof CategoryChip> = {
       },
       description: '카테고리명을 입력합니다.',
     },
+    hasIcon: {
+      control: {
+        type: 'boolean',
+      },
+      description: '아이콘을 표시할지 결정합니다.',
+    },
+    isActive: {
+      control: {
+        type: 'boolean',
+      },
+      description: '칩의 활성화 여부를 결정합니다.',
+    },
+    onboarding: {
+      control: {
+        type: 'boolean',
+      },
+      description: '온보딩 칩인지 결정합니다.',
+    },
   },
 };
 
@@ -21,7 +39,10 @@ export default CategoryChipMeta;
 
 export const Primary: StoryObj<typeof CategoryChip> = {
   args: {
+    hasIcon: false,
+    isActive: false,
     category: '기술',
+    onboarding: false,
   },
 };
 
@@ -31,17 +52,174 @@ export const Preview: StoryObj<typeof CategoryChip> = {
       <Storybook>
         <Storybook.Row>
           <Storybook.Description
-            title='category'
+            title='icon'
             variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
           />
           <Storybook.Item>
-            <CategoryChip category='기술' />
-            <CategoryChip category='커뮤니케이션' />
-            <CategoryChip category='성실성' />
-            <CategoryChip category='협업' />
-            <CategoryChip category='문서화' />
-            <CategoryChip category='시간관리' />
-            <CategoryChip category='리더십' />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='기술'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='커뮤니케이션'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='성실성'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='협업'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='문서화'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='시간관리'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive={false}
+              category='리더십'
+            />
+          </Storybook.Item>
+        </Storybook.Row>
+        <Storybook.Row>
+          <Storybook.Description
+            title='icon'
+            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+          />
+          <Storybook.Item>
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='기술'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='커뮤니케이션'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='성실성'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='협업'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='문서화'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='시간관리'
+            />
+            <CategoryChip
+              hasIcon={false}
+              isActive
+              category='리더십'
+            />
+          </Storybook.Item>
+        </Storybook.Row>
+        <Storybook.Row>
+          <Storybook.Description
+            title='icon'
+            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+          />
+          <Storybook.Item>
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='기술'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='커뮤니케이션'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='성실성'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='협업'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='문서화'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='시간관리'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive={false}
+              category='리더십'
+            />
+          </Storybook.Item>
+        </Storybook.Row>
+        <Storybook.Row>
+          <Storybook.Description
+            title='icon'
+            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+          />
+          <Storybook.Item>
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='기술'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='커뮤니케이션'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='성실성'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='협업'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='문서화'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='시간관리'
+            />
+            <CategoryChip
+              hasIcon={true}
+              isActive
+              category='리더십'
+            />
           </Storybook.Item>
         </Storybook.Row>
       </Storybook>
