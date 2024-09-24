@@ -28,7 +28,7 @@ const variantStyle: Record<VariantType, ReactNativeStyle> = {
   `,
 };
 
-function Skeleton({ width = '100%', height = '10%', variant = 'text' }: Partial<Props>) {
+function Skeleton({ width = '100%', height = 16, variant = 'text' }: Partial<Props>) {
   const opacity = useSharedValue(1);
 
   opacity.value = withRepeat(
