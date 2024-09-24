@@ -12,6 +12,7 @@ export const Container = styled.View<{
   ${flexDirectionRowItemsCenter};
   gap: 6px;
   width: fit-content;
+  height: 48px;
   padding: 12px 16px;
   background: ${({ theme, $isActive, $onboarding }) =>
     $onboarding ? theme.color.Background.Normal : !$isActive && theme.color.Background.Alternative};
