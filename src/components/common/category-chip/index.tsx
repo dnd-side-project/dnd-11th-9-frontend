@@ -15,7 +15,7 @@ function CategoryChip({ category }: Props) {
     <S.Container $categoryStyle={CategoryStyle[category]}>
       <Typography
         color='#1D212C'
-        variant='Caption1'>
+        variant='Label1/Reading'>
         {category}
       </Typography>
     </S.Container>
