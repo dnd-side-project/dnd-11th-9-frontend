@@ -7,7 +7,27 @@ import Skeleton from './';
 const SkeletonMeta: Meta<typeof Skeleton> = {
   title: 'common/Skeleton',
   component: Skeleton,
-  argTypes: {},
+  argTypes: {
+    width: {
+      control: {
+        type: 'number',
+      },
+      description: '스켈레톤의 너비를 지정합니다.',
+    },
+    height: {
+      control: {
+        type: 'number',
+      },
+      description: '스켈레톤의 높이를 지정합니다.',
+    },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['text', 'rounded', 'circular'],
+      },
+      description: '스켈레톤의 모양을 지정합니다.',
+    },
+  },
   parameters: {
     layout: 'centered',
   },
@@ -15,9 +35,15 @@ const SkeletonMeta: Meta<typeof Skeleton> = {
 
 export default SkeletonMeta;
 
+export const Primary: StoryObj<typeof Skeleton> = {
+  args: {
+    width: 200,
+    height: 40,
+    variant: 'text',
+  },
+};
+
 export const Basic: StoryObj<typeof Skeleton> = {
-  args: {},
-  decorators: [],
   render: () => {
     return (
       <Storybook>
