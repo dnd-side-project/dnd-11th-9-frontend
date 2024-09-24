@@ -12,6 +12,7 @@ import * as S from './style';
 type Category = '기술' | '커뮤니케이션' | '성실성' | '협업' | '문서화' | '시간관리' | '리더십';
 
 type Props = {
+  onboarding?: boolean;
   isActive?: boolean;
   hasIcon?: boolean;
   category: Category;
@@ -48,7 +49,7 @@ const ActiveStyle: Record<Category, ReactNativeStyle> = {
   `,
 };
 
-function CategoryChip({ category, hasIcon = true, isActive = false }: Props) {
+function CategoryChip({ category, onboarding = false, hasIcon = true, isActive = false }: Props) {
   const Icon = useMemo(() => {
     switch (category) {
       case '기술':
@@ -151,6 +152,7 @@ function CategoryChip({ category, hasIcon = true, isActive = false }: Props) {
 
   return (
     <S.Container
+      $onboarding={onboarding}
       $isActive={isActive && ActiveStyle[category]}
       style={shadow[2]}>
       {hasIcon && <S.IconWrapper>{Icon}</S.IconWrapper>}

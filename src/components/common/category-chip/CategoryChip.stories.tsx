@@ -7,6 +7,13 @@ const CategoryChipMeta: Meta<typeof CategoryChip> = {
   title: 'common/CategoryChip',
   component: CategoryChip,
   argTypes: {
+    category: {
+      control: {
+        type: 'select',
+        options: ['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십'],
+      },
+      description: '카테고리명을 입력합니다.',
+    },
     hasIcon: {
       control: {
         type: 'boolean',
@@ -19,12 +26,11 @@ const CategoryChipMeta: Meta<typeof CategoryChip> = {
       },
       description: '칩의 활성화 여부를 결정합니다.',
     },
-    category: {
+    onboarding: {
       control: {
-        type: 'select',
-        options: ['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십'],
+        type: 'boolean',
       },
-      description: '카테고리명을 입력합니다.',
+      description: '온보딩 칩인지 결정합니다.',
     },
   },
 };
@@ -36,6 +42,7 @@ export const Primary: StoryObj<typeof CategoryChip> = {
     hasIcon: false,
     isActive: false,
     category: '기술',
+    onboarding: false,
   },
 };
 
