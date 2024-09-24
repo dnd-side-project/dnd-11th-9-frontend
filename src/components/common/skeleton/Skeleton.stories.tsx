@@ -43,7 +43,7 @@ export const Primary: StoryObj<typeof Skeleton> = {
   },
 };
 
-export const Basic: StoryObj<typeof Skeleton> = {
+export const Preview: StoryObj<typeof Skeleton> = {
   render: () => {
     return (
       <Storybook>
