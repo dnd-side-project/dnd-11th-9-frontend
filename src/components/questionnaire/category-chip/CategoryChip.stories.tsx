@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CategoryChip from '@/components/common/category-chip/index';
 import Storybook from '@/components/common/storybook';
+import CategoryChip from '@/components/questionnaire/category-chip/index';
 
 const CategoryChipMeta: Meta<typeof CategoryChip> = {
-  title: 'category/CategoryChip',
+  title: 'questionnaire/CategoryChip',
   component: CategoryChip,
   argTypes: {
     category: {
