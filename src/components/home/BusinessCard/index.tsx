@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Image } from 'react-native';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import Typography from '@/components/common/typography';
 import { shadow } from '@/styles/shadow';
@@ -11,9 +12,27 @@ type Props = {
   name: string;
   projectName: string;
   review: string;
+  isActive?: boolean;
 };
 
-function BusinessCard({ name, review, projectName }: Props) {
+function BusinessCard({ name, review, projectName, isActive = false }: Props) {
+  const animationStyle = useAnimatedStyle(() => {
+    return {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'absolute',
+      bottom: -36,
+      left: -16,
+      gap: 6,
+      width: 210,
+      paddingHorizontal: 24,
+      paddingVertical: 16,
+      borderRadius: 16,
+      backgroundColor: color.Label.Strong,
+      opacity: withTiming(isActive ? 1 : 0),
+    };
+  });
+
   return (
     <S.Container style={shadow[2]}>
       <S.NameBox>
@@ -35,7 +54,7 @@ function BusinessCard({ name, review, projectName }: Props) {
         width={300}
         height={300}
       />
-      <S.ReviewBox>
+      <Animated.View style={[animationStyle]}>
         <Typography
           variant='Body1/Normal'
           fontWeight='semiBold'
@@ -47,7 +66,7 @@ function BusinessCard({ name, review, projectName }: Props) {
           color={color.Label.Assistive}>
           #{projectName}
         </Typography>
-      </S.ReviewBox>
+      </Animated.View>
     </S.Container>
   );
 }
