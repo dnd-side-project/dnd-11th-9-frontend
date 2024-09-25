@@ -12,10 +12,11 @@ type Props = {
   name: string;
   projectName: string;
   review: string;
+  onboarding?: boolean;
   isActive?: boolean;
 };
 
-function BusinessCard({ name, review, projectName, isActive = false }: Props) {
+function BusinessCard({ name, review, projectName, onboarding = false, isActive = false }: Props) {
   const animationStyle = useAnimatedStyle(() => {
     return {
       display: 'flex',
@@ -34,10 +35,12 @@ function BusinessCard({ name, review, projectName, isActive = false }: Props) {
   });
 
   return (
-    <S.Container style={shadow[2]}>
+    <S.Container
+      $isOnboarding={onboarding}
+      style={shadow[2]}>
       <S.NameBox>
         <Typography
-          variant='Heading1'
+          variant={onboarding ? 'Headline1' : 'Heading1'}
           color={color.Common['0']}
           fontWeight='semiBold'>
           {name}
@@ -49,20 +52,20 @@ function BusinessCard({ name, review, projectName, isActive = false }: Props) {
           aspectRatio: 1,
           borderWidth: 0,
         }}
-        source={{ uri: require('/assets/images/main-mock.png') }}
+        source={require('../../../../assets/images/main-mock.png')}
         resizeMode='center'
-        width={300}
-        height={300}
+        width={onboarding ? 240 : 300}
+        height={onboarding ? 240 : 300}
       />
       <Animated.View style={[animationStyle]}>
         <Typography
-          variant='Body1/Normal'
+          variant={onboarding ? 'Label1/Reading' : 'Body1/Normal'}
           fontWeight='semiBold'
           color={color.Common['100']}>
           {review}
         </Typography>
         <Typography
-          variant='Caption2'
+          variant={onboarding ? 'Caption2' : 'Caption2'}
           color={color.Label.Assistive}>
           #{projectName}
         </Typography>

@@ -68,7 +68,7 @@ const S = {
   `,
   Layout: styled.View`
     flex: 1;
-    width: ${SCREEN_SIZE.Web + 'px'};
+    width: ${SCREEN_SIZE.WEB_WIDTH + 'px'};
     height: 100dvh;
   `,
 };

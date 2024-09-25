@@ -23,7 +23,10 @@ function SkeletonItem() {
 function QuestionnaireCheckListSkeleton() {
   return (
     <QuestionnaireCheckList
-      title='프로님은 회의 중 의견을 나눌때 어땠나요?'
+      initialCheckValue={3}
+      onboarding
+      title={`프로님은 회의 중 의견을 나눌때
+어땠나요?`}
       category='기술'>
       <QuestionnaireCheckList.Item value={0}>
         <SkeletonItem />

@@ -1,9 +1,10 @@
 import styled from '@emotion/native';
-import Constants from 'expo-constants/src/Constants';
 
-import { flexDirectionColumn, flexItemCenter } from '@/styles/common';
-
-const statusBarHeight = Constants.statusBarHeight || 0;
+import {
+  flexDirectionColumn,
+  flexDirectionColumnItemsCenter,
+  flexItemCenter,
+} from '@/styles/common';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -14,19 +15,14 @@ export const Container = styled.SafeAreaView`
 
 export const OnBoardingWrapper = styled.View`
   ${flexDirectionColumn};
+  flex-grow: 1;
   gap: 32px;
-  padding-horizontal: 32px;
+  padding: 0 20px;
 `;
 
-export const ContentBox = styled.View`
-  justify-content: space-between;
-  ${`padding-top: ${statusBarHeight + 135}px`};
-`;
-
-export const TextWrapper = styled.View`
-  gap: 12px;
-  width: 100%;
-  ${flexDirectionColumn};
+export const ContentWrapperBox = styled.View`
+  flex-grow: 1;
+  ${flexDirectionColumnItemsCenter};
 `;
 
 export const ButtonBox = styled.View`

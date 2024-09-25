@@ -1,8 +1,8 @@
 import styled from '@emotion/native';
 
-export const Container = styled.View`
+export const Container = styled.View<{ $isOnboarding: boolean }>`
   position: relative;
-  width: 300px;
+  width: ${({ $isOnboarding }) => ($isOnboarding ? '240px' : '300px')};
   padding: 74px 0;
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 17px;
