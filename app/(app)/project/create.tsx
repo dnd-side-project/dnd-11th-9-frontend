@@ -1,4 +1,4 @@
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
@@ -40,8 +40,6 @@ function Create() {
   }, []);
 
   const sheetHeight = useMemo(() => getSize.screenHeight * 0.75, []);
-
-  const snapPoints = useMemo(() => [sheetHeight], []);
 
   const openUserListSheet = useCallback(() => {
     setUserListSheetOpen(true);
@@ -182,8 +180,8 @@ function Create() {
               <S.UserListSheetOpenButtonContainer>
                 <InputField
                   icon={
-                    <SimpleLineIcons
-                      name='magnifier'
+                    <AntDesign
+                      name='search1'
                       style={{ flexShrink: 1, width: 20, height: 20 }}
                       size={20}
                     />
@@ -249,7 +247,7 @@ function Create() {
         ref={userListBottomSheetRef}
         index={-1}
         enablePanDownToClose
-        snapPoints={snapPoints}>
+        snapPoints={[sheetHeight]}>
         <BottomSheetView style={{ flex: 1 }}>
           {userListSheetOpen && (
             <SearchUserList

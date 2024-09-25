@@ -10,3 +10,7 @@ export const Container = styled.Pressable`
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 8px;
 `;
+
+export const IconBox = styled.View`
+  ${flexDirectionRowItemsCenter};
+`;

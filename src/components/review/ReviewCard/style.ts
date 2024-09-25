@@ -10,6 +10,13 @@ export const Container = styled.View`
   border-radius: 4px;
 `;
 
+export const ProjectChip = styled.View`
+  width: fit-content;
+  padding: 6px 12px;
+  background: ${({ theme }) => theme.color.CoolNeutral['98']};
+  border-radius: 4px;
+`;
+
 export const ContentsBox = styled.View`
   ${flexDirectionColumn};
   gap: 8px;
