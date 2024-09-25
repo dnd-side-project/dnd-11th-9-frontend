@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Category from '@/components/common/category/index';
 import Storybook from '@/components/common/storybook';
+import Category from '@/components/questionnaire/category/index';
 
 const CategoryMeta: Meta<typeof Category> = {
-  title: 'category/Category',
+  title: 'questionnaire/Category',
   component: Category,
   argTypes: {
     category: {

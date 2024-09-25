@@ -22,6 +22,7 @@ export const Container = styled.View<{
 `;
 
 export const IconWrapper = styled.View`
+  ${flexDirectionRowItemsCenter};
   width: 24px;
   height: 24px;
 `;
