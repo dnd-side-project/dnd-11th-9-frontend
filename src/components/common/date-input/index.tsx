@@ -16,11 +16,13 @@ function DateInput({ onPress, date }: Props) {
     <S.Container
       style={shadow[2]}
       onPress={onPress}>
-      <AntDesign
-        name='calendar'
-        size={24}
-        color='#979797'
-      />
+      <S.IconBox>
+        <AntDesign
+          name='calendar'
+          size={20}
+          color='#979797'
+        />
+      </S.IconBox>
       <Typography>{dayjs(date).format('YYYY-MM-DD')}</Typography>
     </S.Container>
   );

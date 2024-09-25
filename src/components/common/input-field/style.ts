@@ -1,7 +1,7 @@
 import styled, { css } from '@emotion/native';
 import type { Theme } from '@emotion/react';
 
-import { flexDirectionRow } from '@/styles/common';
+import { flexDirectionRow, flexDirectionRowItemsCenter } from '@/styles/common';
 
 const errorStyle = (theme: Theme) => css`
   border-color: ${theme.color.Status.Error};
@@ -24,7 +24,7 @@ export const Container = styled.View<{
 }>`
   ${({ $isError, theme }) => $isError && errorStyle(theme)};
   ${({ $disabled, theme }) => $disabled && disabledStyle(theme)};
-  ${flexDirectionRow};
+  ${flexDirectionRowItemsCenter};
   gap: 8px;
   padding: 18px 16px;
   background-color: ${({ theme }) => theme.color.Background.Normal};

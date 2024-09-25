@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from 'react';
 
 import Typography from '@/components/common/typography';
-import ProjectChip from '@/components/review/ProjectChip';
 
 import * as S from './style';
 
@@ -29,7 +28,14 @@ type Props = {
 function Card({ projectName, children }: PropsWithChildren<Props>) {
   return (
     <S.Container>
-      <ProjectChip>{projectName}</ProjectChip>
+      <S.ProjectChip>
+        <Typography
+          variant='Caption1'
+          fontWeight='medium'
+          color='#1D212C'>
+          {projectName}
+        </Typography>
+      </S.ProjectChip>
       <S.ContentsBox>{children}</S.ContentsBox>
     </S.Container>
   );
