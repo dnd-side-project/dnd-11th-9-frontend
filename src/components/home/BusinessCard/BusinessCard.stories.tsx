@@ -33,6 +33,12 @@ const SkeletonMeta: Meta<typeof BusinessCard> = {
       },
       description: '스크린에 보이는지 여부를 입력해주세요',
     },
+    onboarding: {
+      control: {
+        type: 'boolean',
+      },
+      description: '온보딩 화면인지 여부를 입력해주세요',
+    },
   },
   parameters: {
     layout: 'centered',

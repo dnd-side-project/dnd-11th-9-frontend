@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import Provider from '../src/components/common/provider';
+import { useAppOpen } from '../src/hooks';
 
 const preview: Preview = {
   parameters: {
@@ -13,6 +14,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => {
+      useAppOpen();
       return (
         <Provider>
           <Story />

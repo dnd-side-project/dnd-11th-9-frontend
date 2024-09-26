@@ -49,7 +49,7 @@ export const Primary: StoryObj<typeof ReviewSkeletonCard> = {
         }}>
         <View
           style={{
-            width: SCREEN_SIZE.Web,
+            width: SCREEN_SIZE.WEB_WIDTH,
             marginHorizontal: 'auto',
           }}>
           <ReviewSkeletonCard {...args} />
