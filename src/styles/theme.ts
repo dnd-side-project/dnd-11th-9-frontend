@@ -198,9 +198,9 @@ const semantic = {
     Disable: '#F7F7F8',
   },
   Line: {
-    Normal: 'rgba(112, 115, 124, 0.22)',
-    Neutral: 'rgba(112, 115, 124, 0.16)',
-    Alternative: 'rgba(112, 115, 124, 0.08)',
+    Normal: '#E0E0E2',
+    Neutral: '#E8E8EA',
+    Alternative: '#F4F4F5',
   },
   Status: {
     Success: '#00BF40',
@@ -216,9 +216,9 @@ const semantic = {
     Pink: '#F553DA',
   },
   Component: {
-    Fill: 'rgba(112, 115, 124, 0.08)',
-    Strong: 'rgba(112, 115, 124, 0.16)',
-    Alternative: 'rgba(112, 115, 124, 0.05)',
+    Fill: '#F4F4F5',
+    Strong: '#E8E8EA',
+    Alternative: '#F8F8F8',
   },
   Material: {
     Dimmer: '#0c0c0d',
