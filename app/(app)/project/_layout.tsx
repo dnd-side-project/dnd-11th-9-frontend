@@ -5,7 +5,7 @@ import { Platform, Pressable } from 'react-native';
 import { PROJECT_NAVIGATIONS } from '@/constants';
 import { color } from '@/styles/theme';
 
-import * as S from './layout.style';
+import * as S from './style';
 
 function Layout() {
   const router = useRouter();
@@ -24,7 +24,6 @@ function Layout() {
         name={PROJECT_NAVIGATIONS.HOME}
         options={{
           title: '프로젝트',
-          headerLeft: () => null,
           headerRight: () => (
             <S.ButtonGroup>
               <Pressable>
@@ -51,14 +50,12 @@ function Layout() {
           animation: 'flip',
           title: '프로젝트 등록',
           headerLeft: ({ canGoBack }) => (
-            <S.ButtonGroup>
-              <Pressable onPress={() => (canGoBack ? router.back() : router.push('/project'))}>
-                <Feather
-                  name='chevron-left'
-                  size={24}
-                />
-              </Pressable>
-            </S.ButtonGroup>
+            <Pressable onPress={() => (canGoBack ? router.back() : router.push('/project'))}>
+              <Feather
+                name='chevron-left'
+                size={24}
+              />
+            </Pressable>
           ),
         }}
       />

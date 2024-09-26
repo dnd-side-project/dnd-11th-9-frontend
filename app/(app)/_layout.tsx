@@ -13,6 +13,7 @@ import { SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
 import { useOnboarding } from '@/store/useOnboarding';
 import useTabBar from '@/store/useTabBar';
+import { color } from '@/styles/theme';
 
 const tabBarOptions = {
   [MAIN_NAVIGATIONS.HOME]: {
@@ -135,7 +136,11 @@ export default function Layout() {
   return (
     <Tabs
       screenOptions={{
+        headerShadowVisible: false,
         headerShown: false,
+        headerStyle: {
+          backgroundColor: color.Background.Alternative,
+        },
       }}
       tabBar={(tabBar) => <TabBar {...tabBar} />}>
       <Tabs.Screen name={MAIN_NAVIGATIONS.PROJECT} />

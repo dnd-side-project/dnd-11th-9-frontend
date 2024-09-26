@@ -29,6 +29,8 @@ function Create() {
   const [image, setImage] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date>(() => new Date());
   const [endDate, setEndDate] = useState<Date>(() => new Date());
+  const [startDateTouched, setStartDateTouched] = useState(false);
+  const [endDateTouched, setEndDateTouched] = useState(false);
   const [selectUserList, setSelectUserList] = useState<User[]>([]);
 
   const [selectDate, setSelectDate] = useState<'start' | 'end'>('start');
@@ -160,21 +162,33 @@ function Create() {
               </S.ImageBox>
             </S.InputContainer>
             <S.InputContainer>
-              <Typography
-                variant='Body1/Normal'
-                fontWeight='semiBold'
-                color={color.Label.Normal}>
-                기간
-              </Typography>
+              <S.RequiredTitleBox>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Label.Normal}>
+                  기간
+                </Typography>
+                <Typography
+                  variant='Body1/Normal'
+                  fontWeight='semiBold'
+                  color={color.Status.Error}>
+                  *
+                </Typography>
+              </S.RequiredTitleBox>
               <S.DatePickerBox>
                 <DateInput
                   date={startDate}
+                  touched={startDateTouched}
                   onPress={() => startDateOpen('start')}
+                  onTouchEnd={() => setStartDateTouched(true)}
                 />
                 <S.DateSplitText>-</S.DateSplitText>
                 <DateInput
                   date={endDate}
+                  touched={endDateTouched}
                   onPress={() => startDateOpen('end')}
+                  onTouchEnd={() => setEndDateTouched(true)}
                 />
               </S.DatePickerBox>
             </S.InputContainer>

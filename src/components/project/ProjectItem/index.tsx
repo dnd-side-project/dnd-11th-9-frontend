@@ -1,3 +1,5 @@
+import { useRouter } from 'expo-router';
+
 import SlideBar from '@/components/common/slide-bar';
 import Typography from '@/components/common/typography';
 import ProjectImage from '@/components/project/ProjectImage';
@@ -6,9 +8,12 @@ import { color } from '@/styles/theme';
 
 import * as S from './style';
 
-function ProjectItem({ name, member_num, profile, review_count }: ProjectItemType) {
+function ProjectItem({ name, member_num, profile, review_count, id }: ProjectItemType) {
+  const router = useRouter();
+
   return (
-    <S.Container>
+    <S.Container
+      onLongPress={() => router.push({ pathname: '/project/detail/[id]', params: { id } })}>
       <ProjectImage uri={profile} />
       <S.ProjectStatusBox>
         <Typography

@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 
 import { flexDirectionColumn, flexDirectionRowItemsCenter } from '@/styles/common';
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
   ${flexDirectionRowItemsCenter};
   gap: 10px;
   padding: 16px;
