@@ -1,5 +1,6 @@
 export const SCREEN_SIZE = {
-  Web: 375,
+  WEB_WIDTH: 375,
+  WEB_HEIGHT: 812,
 } as const;
 
 export const COMPONENT_SIZE = {

@@ -43,6 +43,7 @@ function Item({ children, value }: PropsWithChildren<ItemProps>) {
 type QuestionnaireCheckListProps = {
   title: string;
   category: CategoryType;
+  onboarding?: boolean;
   initialCheckValue?: string | number;
 };
 
@@ -50,6 +51,7 @@ function CheckList({
   title,
   category,
   initialCheckValue,
+  onboarding,
   children,
 }: PropsWithChildren<QuestionnaireCheckListProps>) {
   const [checkValue, setCheckValue] = useState<null | string | number>(() =>
@@ -64,7 +66,7 @@ function CheckList({
       <S.Container>
         <CategoryChip category={category} />
         <Typography
-          variant='Heading1'
+          variant={onboarding ? 'Body1/Normal' : 'Heading1'}
           fontWeight='semiBold'
           color={color.Label.Normal}>
           {title}

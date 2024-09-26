@@ -7,7 +7,7 @@ import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 const WebContainerStyle = css`
-  max-width: ${SCREEN_SIZE.Web + 'px'};
+  max-width: ${SCREEN_SIZE.WEB_WIDTH + 'px'};
   padding: 20px;
   margin: 0 auto;
 `;
