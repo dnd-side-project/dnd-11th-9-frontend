@@ -4,12 +4,14 @@ import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
 import { SCREEN_SIZE } from '@/constants';
+import { useAppOpen } from '@/hooks';
 import { SessionProvider } from '@/store';
 import { OnboardingProvider } from '@/store/useOnboarding';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function Root() {
+  useAppOpen();
   if (Platform.OS === 'web') {
     return (
       <Provider>
