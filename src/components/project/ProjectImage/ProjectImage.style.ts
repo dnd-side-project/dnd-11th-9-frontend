@@ -7,6 +7,7 @@ export const ProjectImageBox = styled.View`
   position: relative;
   width: 48px;
   height: 48px;
+  overflow: hidden;
   border-radius: 8px;
 `;
 
@@ -14,7 +15,7 @@ export const ProjectImageOutline = styled.View`
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 1px solid rgb(115 112 114);
+  border: 1px solid ${({ theme }) => theme.color.Line.Normal};
   border-radius: 8px;
 `;
 
