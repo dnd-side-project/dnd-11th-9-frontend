@@ -1,12 +1,11 @@
-import styled from '@emotion/native';
-import { Platform } from 'react-native';
+import styled, { css } from '@emotion/native';
 
 import {
   flexDirectionColumn,
   flexDirectionRow,
   flexDirectionRowItemsCenter,
 } from '@/styles/common';
-import { getSize } from '@/utils';
+import { getSize, isMobile } from '@/utils';
 
 export const Container = styled.SafeAreaView`
   ${flexDirectionColumn};
@@ -65,15 +64,27 @@ export const SlideValueText = styled.View`
   ${flexDirectionRow};
 `;
 
-export const ProjectUserList = styled.View`
+const ProjectUserListMobileStyle = css`
   ${flexDirectionRow};
   flex-wrap: wrap;
+`;
+
+const ProjectUserListWebStyle = css`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+`;
+
+export const ProjectUserList = styled.View`
+  ${isMobile ? ProjectUserListMobileStyle : ProjectUserListWebStyle}
   gap: 8px;
 `;
 
+const ProjectUserItemMobileStyle = css`
+  flex-basis: ${(getSize.screenWidth - 48) / 2 + 'px'};
+`;
+
 export const ProjectUser = styled.View`
-  flex-basis: ${(Platform.OS === 'web' ? getSize.screenWidth - 66 : getSize.screenWidth - 48) / 2 +
-  'px'};
+  ${isMobile ? ProjectUserItemMobileStyle : flexDirectionColumn};
   padding: 18px 16px;
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 8px;
