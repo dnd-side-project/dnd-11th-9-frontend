@@ -1,10 +1,6 @@
 import styled from '@emotion/native';
 
-import {
-  flexDirectionColumn,
-  flexDirectionRow,
-  flexDirectionRowItemsCenter,
-} from '@/styles/common';
+import { flexDirectionColumn, flexDirectionRowItemsCenter } from '@/styles/common';
 
 export const Container = styled.View`
   ${flexDirectionRowItemsCenter};
@@ -25,6 +21,6 @@ export const ProgressBox = styled.View`
 `;
 
 export const ProgressInfo = styled.View`
-  ${flexDirectionRow};
+  ${flexDirectionRowItemsCenter};
   justify-content: space-between;
 `;
