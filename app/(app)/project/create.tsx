@@ -4,8 +4,9 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Alert, Platform, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import SolidButton from '@/components/common/button/SolidButton';
@@ -23,6 +24,7 @@ import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 function Create() {
+  const router = useRouter();
   useTabBarEffect();
   const [image, setImage] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date>(() => new Date());
@@ -82,6 +84,12 @@ function Create() {
     setDataSheetOpen(true);
     setSelectDate(select);
   }, []);
+
+  useLayoutEffect(() => {
+    if (Platform.OS === 'web') {
+      return router.replace('/project');
+    }
+  }, [router]);
 
   useEffect(() => {
     return () => dataSheetClose();

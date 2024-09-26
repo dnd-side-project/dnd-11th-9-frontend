@@ -1,6 +1,6 @@
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Platform, Pressable } from 'react-native';
 
 import { PROJECT_NAVIGATIONS } from '@/constants';
 import { color } from '@/styles/theme';
@@ -33,12 +33,14 @@ function Layout() {
                   size={24}
                 />
               </Pressable>
-              <Pressable onPress={() => router.push('/project/create')}>
-                <AntDesign
-                  name='plus'
-                  size={24}
-                />
-              </Pressable>
+              {Platform.OS !== 'web' && (
+                <Pressable onPress={() => router.push('/project/create')}>
+                  <AntDesign
+                    name='plus'
+                    size={24}
+                  />
+                </Pressable>
+              )}
             </S.ButtonGroup>
           ),
         }}
