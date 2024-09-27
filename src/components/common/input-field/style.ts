@@ -1,7 +1,11 @@
 import styled, { css } from '@emotion/native';
 import type { Theme } from '@emotion/react';
 
-import { flexDirectionRow, flexDirectionRowItemsCenter } from '@/styles/common';
+import {
+  flexDirectionColumn,
+  flexDirectionRow,
+  flexDirectionRowItemsCenter,
+} from '@/styles/common';
 
 const errorStyle = (theme: Theme) => css`
   border-color: ${theme.color.Status.Error};
@@ -18,7 +22,12 @@ const hasIconStyle = css`
   gap: 5px;
 `;
 
+export const WrapperBox = styled.Pressable`
+  ${flexDirectionColumn};
+`;
+
 export const Container = styled.View<{
+  $backgroundColor: string;
   $isError: boolean;
   $disabled: boolean;
 }>`
@@ -27,7 +36,8 @@ export const Container = styled.View<{
   ${flexDirectionRowItemsCenter};
   gap: 8px;
   padding: 18px 16px;
-  background-color: ${({ theme }) => theme.color.Background.Normal};
+  background-color: ${({ theme, $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : theme.color.Background.Normal};
   border-radius: 8px;
 `;
 
@@ -40,8 +50,8 @@ export const TextInput = styled.TextInput<{ $isIcon: boolean }>`
   color: ${(props) => props.theme.color.Label.Normal};
 `;
 
-export const ErrorText = styled.Text`
+export const ErrorBox = styled.View`
+  ${flexDirectionRowItemsCenter};
+  gap: 4px;
   padding-top: 5px;
-  font-size: 12px;
-  color: ${(props) => props.theme.color.Status.Error};
 `;
