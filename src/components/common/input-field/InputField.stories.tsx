@@ -55,7 +55,7 @@ export const Primary: StoryObj<typeof InputField> = {
     const [error, setError] = useState('');
 
     const onChangeText = useCallback((text: string) => {
-      if (text.length > 10) {
+      if (text.length > 8) {
         setError('올바르지 않은 형식입니다');
       } else {
         setError('');
