@@ -10,6 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import DateInput from '@/components/common/date-input';
+import ErrorText from '@/components/common/error-text';
 import ImageInput from '@/components/common/image-input';
 import InputField from '@/components/common/input-field';
 import PreviewImage from '@/components/common/preview-image';
@@ -74,7 +75,7 @@ function Create() {
     [router]
   );
 
-  const { image, pickImage } = useSingleImage();
+  const pickImage = useSingleImage();
 
   const [userListSheetOpen, userListBottomSheetRef, openUserListSheet, closeUserListSheet] =
     useBottomSheet();
@@ -95,8 +96,10 @@ function Create() {
     [getValues, selectDate, setValue]
   );
 
-  const onSubmit = useCallback((data: CreateFormType) => {
-    console.log(data);
+  const onSubmit = useCallback(() => {
+    // console.log(data, 'data');
+    // {"description": "ddddd", "endDate": 2024-09-28T02:55:15.891Z, "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fdnd-119-frontend-3618ca0f-2ced-48cb-a763-65daee5044bd/ImagePicker/ae56ced8-30eb-4133-8435-
+    // ffa4ccd04335.jpeg", "link": "dasdad", "name": "wepro", "startDate": 2024-09-28T02:55:15.891Z, "userList": [{"id": 1, "name": "양의진", "profileImage": "https://avatars.githubusercontent.com/u/77464040?v=4", "userId": "dml1335"}, {"id": 2, "name": "양의진", "profileImage": "https://avatars.githubusercontent.com/u/77464040?v=4", "userId": "asdf091"}]}
   }, []);
 
   const startDateOpen = useCallback((select: 'start' | 'end') => {
@@ -118,9 +121,11 @@ function Create() {
               <Controller
                 control={control}
                 rules={{ required: '프로젝트 이름을 입력해주세요' }}
-                render={(register) => (
+                render={({ field: { value, ref, onChange } }) => (
                   <InputField
-                    {...register}
+                    ref={ref}
+                    value={value}
+                    onChangeText={onChange}
                     error={errors.name?.message}
                     placeholder='어떤 프로젝트인가요?'
                   />
@@ -132,9 +137,11 @@ function Create() {
               <Controller
                 control={control}
                 rules={{ required: '프로젝트의 설명을 입력해주세요' }}
-                render={(register) => (
+                render={({ field: { value, ref, onChange } }) => (
                   <InputField
-                    {...register}
+                    ref={ref}
+                    value={value}
+                    onChangeText={onChange}
                     error={errors.description?.message}
                     placeholder='어떤 프로젝트인가요?'
                   />
@@ -143,10 +150,18 @@ function Create() {
               />
             </ProjectInputField>
             <ProjectInputField name='프로젝트 이미지'>
-              <S.ImageBox>
-                <ImageInput onChange={pickImage} />
-                <PreviewImage images={image ? [image] : []} />
-              </S.ImageBox>
+              <Controller
+                control={control}
+                rules={{ required: '프로젝트의 이미지를 추가해주세요.' }}
+                render={({ field: { value, onChange } }) => (
+                  <S.ImageBox>
+                    <ImageInput onPress={() => pickImage(onChange)} />
+                    <PreviewImage images={value ? [value] : []} />
+                  </S.ImageBox>
+                )}
+                name='image'
+              />
+              {errors.image?.message && <ErrorText error_message={errors.image?.message} />}
             </ProjectInputField>
             <ProjectInputField
               required={false}
@@ -164,7 +179,11 @@ function Create() {
                   )}
                   name='startDate'
                 />
-                <S.DateSplitText>-</S.DateSplitText>
+                <Typography
+                  variant='Title3'
+                  color={color.Label.Normal}>
+                  -
+                </Typography>
                 <Controller
                   control={control}
                   render={({ field: { value } }) => (
@@ -179,7 +198,9 @@ function Create() {
                 />
               </S.DatePickerBox>
             </ProjectInputField>
-            <ProjectInputField name='팀원'>
+            <ProjectInputField
+              required={false}
+              name='팀원'>
               <S.UserListSheetOpenButtonContainer>
                 <InputField
                   icon={
@@ -216,7 +237,7 @@ function Create() {
                 rules={{ required: '프로젝트의 설명을 입력해주세요' }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <InputField
-                    onChange={onChange}
+                    onChangeText={onChange}
                     value={value}
                     onBlur={onBlur}
                     placeholder='링크를 입력해주세요'

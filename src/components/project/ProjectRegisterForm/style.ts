@@ -1,4 +1,4 @@
-import styled, { css } from '@emotion/native';
+import styled from '@emotion/native';
 
 import {
   flexDirectionColumn,
@@ -35,18 +35,6 @@ export const ImageBox = styled.View`
 export const DatePickerBox = styled.View`
   ${flexDirectionRowItemsCenter};
   gap: 8px;
-`;
-
-const fontFamlily = css({
-  fontFamily: 'Pretendard',
-  fontWeight: 400,
-});
-
-export const DateSplitText = styled.Text`
-  ${fontFamlily};
-  font-size: 24px;
-  line-height: 29px;
-  color: ${({ theme }) => theme.color.Label.Normal};
 `;
 
 export const SubmitButtonBox = styled.View`
