@@ -17,12 +17,6 @@ const InputFieldMeta: Meta<typeof InputField> = {
       },
       description: '여러 줄 입력 여부를 설정합니다.',
     },
-    touched: {
-      control: {
-        type: 'boolean',
-      },
-      description: '터치 여부를 설정합니다.',
-    },
     disabled: {
       control: {
         type: 'boolean',
@@ -51,7 +45,6 @@ export const Primary: StoryObj<typeof InputField> = {
     placeholder: '프로젝트의 이름을 적어주세요',
   },
   render: (args) => {
-    const [touched, setTouched] = useState(false);
     const [error, setError] = useState('');
 
     const onChangeText = useCallback((text: string) => {
@@ -62,17 +55,11 @@ export const Primary: StoryObj<typeof InputField> = {
       }
     }, []);
 
-    const onFocus = useCallback(() => {
-      setTouched(true);
-    }, []);
-
     return (
       <View style={{ flex: 1, backgroundColor: color.Background.Alternative, padding: 20 }}>
         <InputField
           error={error}
-          touched={touched}
           onChangeText={onChangeText}
-          onFocus={onFocus}
           {...args}
         />
       </View>
