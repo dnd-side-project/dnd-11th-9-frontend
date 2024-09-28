@@ -7,6 +7,7 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Alert, Platform, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { z } from 'zod';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import DateInput from '@/components/common/date-input';
@@ -234,7 +235,13 @@ function Create() {
               name='프로젝트 링크'>
               <Controller
                 control={control}
-                rules={{ required: '프로젝트의 설명을 입력해주세요' }}
+                rules={{
+                  validate: (value) => {
+                    if (!value) return true;
+                    const result = z.string().url().safeParse(value);
+                    return result.success || '올바른 링크를 입력해주세요';
+                  },
+                }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <InputField
                     onChangeText={onChange}
@@ -245,6 +252,7 @@ function Create() {
                 )}
                 name='link'
               />
+              {errors.link?.message && <ErrorText error_message={errors.link?.message} />}
             </ProjectInputField>
           </S.Form>
           <S.SubmitButtonBox>
