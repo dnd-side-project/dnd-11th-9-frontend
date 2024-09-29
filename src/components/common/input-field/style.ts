@@ -49,9 +49,3 @@ export const TextInput = styled.TextInput<{ $isIcon: boolean }>`
   font-size: 15px;
   color: ${(props) => props.theme.color.Label.Normal};
 `;
-
-export const ErrorBox = styled.View`
-  ${flexDirectionRowItemsCenter};
-  gap: 4px;
-  padding-top: 5px;
-`;

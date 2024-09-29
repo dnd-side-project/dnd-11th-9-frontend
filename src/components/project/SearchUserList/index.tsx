@@ -1,6 +1,5 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Checkbox } from 'expo-checkbox';
-import type { Dispatch, SetStateAction } from 'react';
 import { useCallback, useMemo } from 'react';
 import { useState } from 'react';
 import { Pressable } from 'react-native';
@@ -20,7 +19,7 @@ export type User = {
 
 type Props = {
   selectUserList: User[];
-  setSelectUserList: Dispatch<SetStateAction<User[]>>;
+  setSelectUserList: (newUser: User[]) => void;
   closeBottomSheet: () => void;
 };
 

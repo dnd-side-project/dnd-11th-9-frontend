@@ -1,10 +1,9 @@
-import { AntDesign } from '@expo/vector-icons';
 import type { ForwardedRef, ReactNode } from 'react';
 import React, { forwardRef, useRef } from 'react';
 import type { TextInput } from 'react-native';
 import { type TextInputProps } from 'react-native';
 
-import Typography from '@/components/common/typography';
+import ErrorText from '@/components/common/error-text';
 import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 import { mergeRefs } from '@/utils';
@@ -13,7 +12,6 @@ import * as S from './style';
 
 interface InputFieldProps extends TextInputProps {
   isShadow?: boolean;
-  touched?: boolean;
   disabled?: boolean;
   backgroundColor?: string;
   error?: string;
@@ -24,7 +22,6 @@ const InputField = forwardRef(
   (
     {
       backgroundColor = color.Background.Normal,
-      touched,
       isShadow = true,
       disabled = false,
       error,
@@ -46,7 +43,7 @@ const InputField = forwardRef(
           style={isShadow && shadow[2]}
           $backgroundColor={backgroundColor}
           $disabled={disabled}
-          $isError={Boolean(touched) && Boolean(error)}>
+          $isError={Boolean(error)}>
           {icon}
           <S.TextInput
             $isIcon={!!icon}
@@ -63,20 +60,7 @@ const InputField = forwardRef(
             {...props}
           />
         </S.Container>
-        {touched && Boolean(error) && (
-          <S.ErrorBox>
-            <AntDesign
-              name='exclamationcircleo'
-              size={14}
-              color={color.Status.Error}
-            />
-            <Typography
-              color={color.Status.Error}
-              variant='Label1/Normal'>
-              {error}
-            </Typography>
-          </S.ErrorBox>
-        )}
+        {!!error && <ErrorText error_message={error} />}
       </S.WrapperBox>
     );
   }
