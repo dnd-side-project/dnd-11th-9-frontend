@@ -13,7 +13,7 @@ export const CategoryStyle: Record<CategoryType, ReactNativeStyle> = {
     background: ${color.Pink['95']};
     border: 1px solid ${color.Pink['90']};
   `,
-  협업: css`
+  아이데이션: css`
     background: ${color.Orange['95']};
     border: 1px solid ${color.Orange['90']};
   `,
@@ -25,12 +25,20 @@ export const CategoryStyle: Record<CategoryType, ReactNativeStyle> = {
     background: ${color.LightBlue['95']};
     border: 1px solid ${color.LightBlue['90']};
   `,
-  시간관리: css`
+  문제해결: css`
     background: ${color.Violet['95']};
     border: 1px solid ${color.Violet['90']};
   `,
   리더십: css`
     background: #e6fad9;
     border: 1px solid #c3f0a3;
+  `,
+  배려심: css`
+    background: ${color.Purple['95']};
+    border: 1px solid ${color.Purple['90']};
+  `,
+  팔로워십: css`
+    background: #d9fade;
+    border: 1px solid #a3f0b8;
   `,
 } as const;

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Storybook from '@/components/common/storybook';
-import Category from '@/components/questionnaire/category/index';
+
+import Category from './';
 
 const CategoryMeta: Meta<typeof Category> = {
   title: 'questionnaire/Category',
@@ -10,7 +11,7 @@ const CategoryMeta: Meta<typeof Category> = {
     category: {
       control: {
         type: 'select',
-        options: ['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십'],
+        options: ['기술', '커뮤니케이션', '성실성', '문제해결', '문서화', '문제해결', '리더십'],
       },
       description: '카테고리명을 입력합니다.',
     },
@@ -53,7 +54,17 @@ export const Preview: StoryObj<typeof Category> = {
         <Storybook.Row>
           <Storybook.Description
             title='icon'
-            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+            variant={[
+              '기술',
+              '커뮤니케이션',
+              '성실성',
+              '문서화',
+              '문제해결',
+              '리더십',
+              '팔로워십',
+              '아이데이션',
+              '배려심',
+            ]}
           />
           <Storybook.Item>
             <Category
@@ -74,29 +85,49 @@ export const Preview: StoryObj<typeof Category> = {
             <Category
               hasIcon={false}
               isActive={false}
-              category='협업'
-            />
-            <Category
-              hasIcon={false}
-              isActive={false}
               category='문서화'
             />
             <Category
               hasIcon={false}
               isActive={false}
-              category='시간관리'
+              category='문제해결'
             />
             <Category
               hasIcon={false}
               isActive={false}
               category='리더십'
+            />
+            <Category
+              hasIcon={false}
+              isActive={false}
+              category='팔로워십'
+            />
+            <Category
+              hasIcon={false}
+              isActive={false}
+              category='아이데이션'
+            />
+            <Category
+              hasIcon={false}
+              isActive={false}
+              category='배려심'
             />
           </Storybook.Item>
         </Storybook.Row>
         <Storybook.Row>
           <Storybook.Description
             title='icon'
-            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+            variant={[
+              '기술',
+              '커뮤니케이션',
+              '성실성',
+              '문서화',
+              '문제해결',
+              '리더십',
+              '팔로워십',
+              '아이데이션',
+              '배려심',
+            ]}
           />
           <Storybook.Item>
             <Category
@@ -117,29 +148,49 @@ export const Preview: StoryObj<typeof Category> = {
             <Category
               hasIcon={false}
               isActive
-              category='협업'
-            />
-            <Category
-              hasIcon={false}
-              isActive
               category='문서화'
             />
             <Category
               hasIcon={false}
               isActive
-              category='시간관리'
+              category='문제해결'
             />
             <Category
               hasIcon={false}
               isActive
               category='리더십'
+            />
+            <Category
+              hasIcon={false}
+              isActive
+              category='팔로워십'
+            />
+            <Category
+              hasIcon={false}
+              isActive
+              category='아이데이션'
+            />
+            <Category
+              hasIcon={false}
+              isActive
+              category='배려심'
             />
           </Storybook.Item>
         </Storybook.Row>
         <Storybook.Row>
           <Storybook.Description
             title='icon'
-            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+            variant={[
+              '기술',
+              '커뮤니케이션',
+              '성실성',
+              '문서화',
+              '문제해결',
+              '리더십',
+              '팔로워십',
+              '아이데이션',
+              '배려심',
+            ]}
           />
           <Storybook.Item>
             <Category
@@ -160,29 +211,49 @@ export const Preview: StoryObj<typeof Category> = {
             <Category
               hasIcon={true}
               isActive={false}
-              category='협업'
-            />
-            <Category
-              hasIcon={true}
-              isActive={false}
               category='문서화'
             />
             <Category
               hasIcon={true}
               isActive={false}
-              category='시간관리'
+              category='문제해결'
             />
             <Category
               hasIcon={true}
               isActive={false}
               category='리더십'
+            />
+            <Category
+              hasIcon={true}
+              isActive={false}
+              category='팔로워십'
+            />
+            <Category
+              hasIcon={true}
+              isActive={false}
+              category='아이데이션'
+            />
+            <Category
+              hasIcon={true}
+              isActive={false}
+              category='배려심'
             />
           </Storybook.Item>
         </Storybook.Row>
         <Storybook.Row>
           <Storybook.Description
             title='icon'
-            variant={['기술', '커뮤니케이션', '성실성', '협업', '문서화', '시간관리', '리더십']}
+            variant={[
+              '기술',
+              '커뮤니케이션',
+              '성실성',
+              '문서화',
+              '문제해결',
+              '리더십',
+              '팔로워십',
+              '아이데이션',
+              '배려심',
+            ]}
           />
           <Storybook.Item>
             <Category
@@ -203,22 +274,32 @@ export const Preview: StoryObj<typeof Category> = {
             <Category
               hasIcon={true}
               isActive
-              category='협업'
-            />
-            <Category
-              hasIcon={true}
-              isActive
               category='문서화'
             />
             <Category
               hasIcon={true}
               isActive
-              category='시간관리'
+              category='문제해결'
             />
             <Category
               hasIcon={true}
               isActive
               category='리더십'
+            />
+            <Category
+              hasIcon={true}
+              isActive
+              category='팔로워십'
+            />
+            <Category
+              hasIcon={true}
+              isActive
+              category='아이데이션'
+            />
+            <Category
+              hasIcon={true}
+              isActive
+              category='배려심'
             />
           </Storybook.Item>
         </Storybook.Row>
