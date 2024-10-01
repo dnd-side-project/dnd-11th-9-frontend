@@ -46,8 +46,8 @@ function JOB() {
           ) : (
             <S.JobSelectButton
               key={job}
-              selected={isSelected(job)}
               onPress={() => setSelectedJob(job)}
+              $selected={isSelected(job)}
               style={[
                 Platform.OS === 'ios' && {
                   shadowColor: isSelected(job) ? 'rgba(26, 117, 255, 0.20)' : 'rgba(0, 0, 0, 0.05)',
@@ -95,14 +95,14 @@ const S = {
     gap: 12px;
     margin-top: 34px;
   `,
-  JobSelectButton: styled.Pressable<{ selected: boolean }>`
+  JobSelectButton: styled.Pressable<{ $selected: boolean }>`
     justify-content: center;
     height: 64px;
     padding: 20px 16px;
-    background-color: ${({ theme, selected }) =>
-      selected ? theme.color.Blue[95] : theme.color.Common[100]};
-    border-color: ${({ theme, selected }) =>
-      selected ? theme.color.Primary.Normal : theme.color.Line.Neutral};
+    background-color: ${({ theme, $selected }) =>
+      $selected ? theme.color.Blue[95] : theme.color.Common[100]};
+    border-color: ${({ theme, $selected }) =>
+      $selected ? theme.color.Primary.Normal : theme.color.Line.Neutral};
     border-width: 1px;
     border-radius: 8px;
   `,

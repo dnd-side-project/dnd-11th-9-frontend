@@ -31,7 +31,7 @@ function Toggle({ onToggle, isOn = true, disabled = false }: ToggleProps) {
       style={{ backgroundColor, opacity: disabled ? 0.5 : 1 }}>
       <S.Circle
         style={{ transform: [{ translateX }] }}
-        isOn={isOn}
+        $isOn={isOn}
       />
     </S.Container>
   );
@@ -49,12 +49,12 @@ const S = {
     padding: 2px;
     border-radius: 20px;
   `,
-  Circle: styled(Animated.View)<{ isOn: boolean }>`
+  Circle: styled(Animated.View)<{ $isOn: boolean }>`
     width: 20px;
     height: 20px;
     background-color: ${({ theme }) => theme.color.Common[100]};
-    ${({ isOn }) =>
-      isOn &&
+    ${({ $isOn }) =>
+      $isOn &&
       css`
         filter: drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));
       `}
