@@ -11,27 +11,24 @@ interface ToggleProps {
 }
 
 function Toggle({ onToggle, isOn = true, disabled = false }: ToggleProps) {
-  const translateX = useRef(new Animated.Value(isOn || disabled ? 20 : 0)).current;
+  const translateX = useRef(new Animated.Value(isOn && !disabled ? 20 : 0)).current;
 
   useEffect(() => {
     Animated.timing(translateX, {
-      toValue: isOn || disabled ? 20 : 0,
+      toValue: isOn && !disabled ? 20 : 0,
       duration: 200,
       useNativeDriver: true,
     }).start();
   }, [isOn, translateX, disabled]);
 
-  const backgroundColor = disabled
-    ? theme.color.Label.Disable
-    : isOn
-      ? theme.color.Primary.Normal
-      : theme.color.Neutral[99];
+  const backgroundColor =
+    disabled || !isOn ? theme.color.Label.Disable : theme.color.Primary.Normal;
 
   return (
     <S.Container
       disabled={disabled}
       onPress={onToggle}
-      bgColor={backgroundColor}>
+      style={{ backgroundColor, opacity: disabled ? 0.5 : 1 }}>
       <S.Circle
         style={{ transform: [{ translateX }] }}
         isOn={isOn}
@@ -43,14 +40,13 @@ function Toggle({ onToggle, isOn = true, disabled = false }: ToggleProps) {
 export default Toggle;
 
 const S = {
-  Container: styled.Pressable<{ bgColor: string }>`
+  Container: styled.Pressable`
     display: flex;
     flex-shrink: 0;
     gap: 10px;
     width: 44px;
     height: 24px;
     padding: 2px;
-    background-color: ${({ bgColor }) => bgColor};
     border-radius: 20px;
   `,
   Circle: styled(Animated.View)<{ isOn: boolean }>`
