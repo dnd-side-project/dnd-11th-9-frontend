@@ -22,12 +22,12 @@ function BusinessCard({ name, review, projectName, onboarding = false, isActive 
       display: 'flex',
       flexDirection: 'column',
       position: 'absolute',
-      bottom: -36,
-      left: -16,
+      bottom: onboarding ? -14 : -45,
+      left: onboarding ? -22 : -17,
       gap: 6,
       width: 210,
-      paddingHorizontal: 24,
-      paddingVertical: 16,
+      paddingHorizontal: onboarding ? 19 : 24,
+      paddingVertical: onboarding ? 13 : 16,
       borderRadius: 16,
       backgroundColor: color.Label.Strong,
       opacity: withTiming(isActive ? 1 : 0),
@@ -48,24 +48,36 @@ function BusinessCard({ name, review, projectName, onboarding = false, isActive 
       </S.NameBox>
       <Image
         style={{
-          width: '100%',
-          aspectRatio: 1,
+          width: 240,
+          height: 240,
           borderWidth: 0,
         }}
         source={require('../../../../assets/images/main-mock.png')}
-        resizeMode='center'
-        width={onboarding ? 240 : 300}
-        height={onboarding ? 240 : 300}
+        resizeMode='contain'
+        width={onboarding ? 300 : 300}
+        height={onboarding ? 300 : 300}
       />
       <Animated.View style={[animationStyle]}>
         <Typography
-          variant={onboarding ? 'Label1/Reading' : 'Body1/Normal'}
+          style={
+            onboarding && {
+              lineHeight: 19,
+              fontSize: 13,
+            }
+          }
+          variant='Body1/Normal'
           fontWeight='semiBold'
           color={color.Common['100']}>
           {review}
         </Typography>
         <Typography
-          variant={onboarding ? 'Caption2' : 'Caption2'}
+          style={
+            onboarding && {
+              fontSize: 9,
+              lineHeight: 11,
+            }
+          }
+          variant='Caption2'
           color={color.Label.Assistive}>
           #{projectName}
         </Typography>

@@ -1,15 +1,21 @@
 import styled, { css } from '@emotion/native';
 import type { Theme } from '@emotion/react';
 
-import { flexDirectionColumn, flexDirectionRowItemsCenter } from '@/styles/common';
+import { flexDirectionColumn } from '@/styles/common';
 
-export const Container = styled.View`
+export const Container = styled.View<{ $onboarding: boolean }>`
   ${flexDirectionColumn};
-  gap: 20px;
+  gap: ${({ $onboarding }) => ($onboarding ? 16 : 24) + 'px'};
   width: 272px;
+  height: ${({ $onboarding }) => ($onboarding ? '420px' : 'auto')};
   padding: 28px 16px;
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 13px;
+`;
+
+export const ListContainer = styled.View`
+  ${flexDirectionColumn};
+  gap: 8px;
 `;
 
 const inActiveStyle = (theme: Theme) => css`
@@ -23,27 +29,21 @@ const activeStyle = (theme: Theme) => css`
 `;
 
 export const ItemContainer = styled.View<{ $isChecked: boolean }>`
-  ${flexDirectionRowItemsCenter};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   ${({ theme, $isChecked }) => ($isChecked ? activeStyle(theme) : inActiveStyle(theme))};
-  justify-content: space-between;
-  padding: 13px 28px 13px 13px;
+  padding: 13px;
   border-radius: 7px;
-`;
-
-export const ListContainer = styled.View`
-  ${flexDirectionColumn};
-  gap: 8px;
 `;
 
 export const ItemValue = styled.View`
   ${flexDirectionColumn};
+  flex-grow: 1;
 `;
 
 export const RadioButton = styled.Pressable`
-  ${flexDirectionRowItemsCenter};
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  padding: 13px;
+  flex-shrink: 1;
+  width: 16px;
+  height: 16px;
 `;
