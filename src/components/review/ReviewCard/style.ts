@@ -12,7 +12,7 @@ export const Container = styled.View`
 `;
 
 export const ProjectChip = styled.View`
-  width: fit-content;
+  align-self: flex-start;
   padding: 6px 12px;
   background: ${({ theme }) => theme.color.CoolNeutral['98']};
   border-radius: 4px;

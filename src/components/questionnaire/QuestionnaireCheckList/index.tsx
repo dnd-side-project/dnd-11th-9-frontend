@@ -51,7 +51,7 @@ function CheckList({
   title,
   category,
   initialCheckValue,
-  onboarding,
+  onboarding = false,
   children,
 }: PropsWithChildren<QuestionnaireCheckListProps>) {
   const [checkValue, setCheckValue] = useState<null | string | number>(() =>
@@ -63,7 +63,7 @@ function CheckList({
         checkValue,
         setCheckValue,
       }}>
-      <S.Container>
+      <S.Container $onboarding={onboarding}>
         <CategoryChip category={category} />
         <Typography
           variant={onboarding ? 'Body1/Normal' : 'Heading1'}

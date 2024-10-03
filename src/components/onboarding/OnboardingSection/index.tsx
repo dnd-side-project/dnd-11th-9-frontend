@@ -20,15 +20,7 @@ function OnboardingSection({ step }: Props) {
           />
           <Category
             onboarding
-            category='커뮤니케이션'
-          />
-          <Category
-            onboarding
             category='성실성'
-          />
-          <Category
-            onboarding
-            category='협업'
           />
           <Category
             onboarding
@@ -36,11 +28,27 @@ function OnboardingSection({ step }: Props) {
           />
           <Category
             onboarding
-            category='시간관리'
+            category='문제해결'
           />
           <Category
             onboarding
             category='리더십'
+          />
+          <Category
+            onboarding
+            category='팔로워십'
+          />
+          <Category
+            onboarding
+            category='커뮤니케이션'
+          />
+          <Category
+            onboarding
+            category='배려심'
+          />
+          <Category
+            onboarding
+            category='아이데이션'
           />
         </S.ChipContainer>
       );
