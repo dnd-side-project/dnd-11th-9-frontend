@@ -19,7 +19,7 @@ function Layout() {
         headerShadowVisible: false,
       })}>
       <Stack.Screen
-        name={REVIEW_NAVIGATIONS.HOME}
+        name={REVIEW_NAVIGATIONS.CREATE}
         options={{
           title: '나의 설문지',
           headerLeft: ({ canGoBack }) => (
@@ -33,7 +33,6 @@ function Layout() {
           ),
         }}
       />
-      <Stack.Screen name={REVIEW_NAVIGATIONS.CREATE} />
     </Stack>
   );
 }

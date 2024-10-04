@@ -147,7 +147,9 @@ function ProjectDetail({ id, data }: Props) {
         </S.ProjectItem>
 
         <SolidButton
-          onPress={() => router.push({ pathname: PROJECT_URLS.PROJECT_REVIEW, params: { id } })}
+          onPress={() =>
+            router.push({ pathname: PROJECT_URLS.PROJECT_REVIEW_CREATE, params: { id } })
+          }
           full>
           설문지 만들기
         </SolidButton>
