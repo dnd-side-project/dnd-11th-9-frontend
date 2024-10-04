@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import type { PressableProps } from 'react-native';
 
 import CategoryIcon from '@/components/common/icon/category-icon';
 import Typography from '@/components/common/typography';
@@ -15,20 +16,20 @@ type Props = {
   hasIcon?: boolean;
   hasShadow?: boolean;
   category: CategoryType;
-};
+} & PressableProps;
 
 function Category({
   category,
-  onboarding = false,
   hasIcon = true,
   isActive = false,
   hasShadow = false,
+  ...rest
 }: Props) {
   return (
     <S.Container
-      $onboarding={onboarding}
       $isActive={isActive && CategoryStyle[category]}
-      style={hasShadow && shadow[2]}>
+      style={hasShadow && shadow[2]}
+      {...rest}>
       {hasIcon && (
         <S.IconWrapper>
           <CategoryIcon category={category} />

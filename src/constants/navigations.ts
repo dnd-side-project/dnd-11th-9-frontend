@@ -16,6 +16,7 @@ export const PROJECT_NAVIGATIONS = {
   HOME: 'index',
   CREATE: 'create',
   DELETE: 'delete',
+  REVIEW: '[id]/review',
 };
 
 export const REVIEW_NAVIGATIONS = {

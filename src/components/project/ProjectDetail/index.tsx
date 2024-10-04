@@ -1,10 +1,11 @@
 import { AntDesign } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { ScrollView } from 'react-native';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import SlideBar from '@/components/common/slide-bar';
 import Typography from '@/components/common/typography';
-import { COMPONENT_SIZE } from '@/constants';
+import { COMPONENT_SIZE, PROJECT_URLS } from '@/constants';
 import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
@@ -18,6 +19,7 @@ export type ProjectDetailType = {
   profile: string;
   startDate: string;
   endDate: string;
+  hasReviewCard: boolean;
   review_count: number;
   userList: UserType[];
   link: string;
@@ -29,10 +31,11 @@ type UserType = {
 };
 
 type Props = {
+  id: string;
   data: ProjectDetailType;
 };
 
-function ProjectDetail({ data }: Props) {
+function ProjectDetail({ id, data }: Props) {
   return (
     <ScrollView
       style={{
@@ -143,7 +146,11 @@ function ProjectDetail({ data }: Props) {
           </S.LinkBox>
         </S.ProjectItem>
 
-        <SolidButton full>설문지 만들기</SolidButton>
+        <SolidButton
+          onPress={() => router.push({ pathname: PROJECT_URLS.PROJECT_REVIEW, params: { id } })}
+          full>
+          설문지 만들기
+        </SolidButton>
       </S.Container>
     </ScrollView>
   );
