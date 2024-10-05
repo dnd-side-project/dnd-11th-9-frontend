@@ -1,7 +1,6 @@
 export const MAIN_NAVIGATIONS = {
   HOME: 'index',
   PROJECT: 'project',
-  REVIEW: 'review',
   MY: 'my',
 } as const;
 
@@ -17,6 +16,7 @@ export const PROJECT_NAVIGATIONS = {
   HOME: 'index',
   CREATE: 'create',
   DELETE: 'delete',
+  REVIEW: '[id]/review',
 };
 
 export const REVIEW_NAVIGATIONS = {

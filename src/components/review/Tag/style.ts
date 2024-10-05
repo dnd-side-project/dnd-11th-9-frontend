@@ -10,6 +10,7 @@ export const Container = styled.View<{
   ${({ $isActive }) => $isActive && $isActive}
   ${flexDirectionRowItemsCenter};
   gap: 6px;
+  align-items: flex-start;
   width: fit-content;
   height: 48px;
   padding: 12px 16px;

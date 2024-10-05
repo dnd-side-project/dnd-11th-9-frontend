@@ -28,7 +28,7 @@ const activeStyle = (theme: Theme) => css`
   border: 1px solid ${theme.color.Primary.Normal};
 `;
 
-export const ItemContainer = styled.View<{ $isChecked: boolean }>`
+export const ItemContainer = styled.Pressable<{ $isChecked: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -2,12 +2,12 @@ import { View } from 'react-native';
 
 import Typography from '@/components/common/typography';
 
-function Delete() {
+function Page() {
   return (
     <View>
-      <Typography>Delete</Typography>
+      <Typography variant='Body1/Normal'>Page</Typography>
     </View>
   );
 }
 
-export default Delete;
+export default Page;

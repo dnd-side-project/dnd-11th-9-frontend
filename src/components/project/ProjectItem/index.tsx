@@ -4,6 +4,7 @@ import SlideBar from '@/components/common/slide-bar';
 import Typography from '@/components/common/typography';
 import ProjectImage from '@/components/project/ProjectImage';
 import type { ProjectItemType } from '@/components/project/ProjectList';
+import { PROJECT_URLS } from '@/constants';
 import { color } from '@/styles/theme';
 
 import * as S from './style';
@@ -13,7 +14,7 @@ function ProjectItem({ name, member_num, profile, review_count, id }: ProjectIte
 
   return (
     <S.Container
-      onLongPress={() => router.push({ pathname: '/project/detail/[id]', params: { id } })}>
+      onPress={() => router.push({ pathname: PROJECT_URLS.PROJECT_DETAIL, params: { id } })}>
       <ProjectImage uri={profile} />
       <S.ProjectStatusBox>
         <Typography

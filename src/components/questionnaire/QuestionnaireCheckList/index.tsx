@@ -27,9 +27,11 @@ function Item({ children, value }: PropsWithChildren<ItemProps>) {
   const { checkValue, setCheckValue } = useContext(ListContext);
   const isChecked = checkValue === value;
   return (
-    <S.ItemContainer $isChecked={isChecked}>
+    <S.ItemContainer
+      onPress={() => setCheckValue(value)}
+      $isChecked={isChecked}>
       <S.ItemValue>{children}</S.ItemValue>
-      <S.RadioButton onPress={() => setCheckValue(value)}>
+      <S.RadioButton>
         <RadioIcon
           activeColor={color.Primary.Normal}
           inActiveColor={color.Line.Normal}

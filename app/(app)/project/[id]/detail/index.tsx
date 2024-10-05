@@ -1,16 +1,17 @@
 import { Feather } from '@expo/vector-icons';
-import { useNavigation, useRouter } from 'expo-router';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useLayoutEffect } from 'react';
 import { Platform, Pressable } from 'react-native';
 
 import { MOCK_PROJECT_DETAIL } from '@/__mock__/project';
 import Typography from '@/components/common/typography';
 import ProjectDetail from '@/components/project/ProjectDetail';
+import { PROJECT_URLS } from '@/constants';
 import { color } from '@/styles/theme';
 
 function Page() {
   const router = useRouter();
-  // const { id } = useLocalSearchParams(); 실제 데이터로 올 경우 해당 id를 이용하여 조회
+  const { id } = useLocalSearchParams<{ id: string }>();
   const navigation = useNavigation();
   const data = MOCK_PROJECT_DETAIL;
 
@@ -37,7 +38,7 @@ function Page() {
       ),
       headerRight: () =>
         Platform.OS !== 'web' ? (
-          <Pressable onPress={() => router.push('/project/create')}>
+          <Pressable onPress={() => router.push(PROJECT_URLS.PROJECT_CREATE)}>
             <Typography
               variant='Body1/Normal'
               fontWeight='medium'
@@ -47,9 +48,18 @@ function Page() {
           </Pressable>
         ) : null,
     });
-  }, [navigation]);
+  }, [data.name, navigation, router]);
 
-  return <ProjectDetail data={data} />;
+  if (!id) {
+    return null;
+  }
+
+  return (
+    <ProjectDetail
+      id={id}
+      data={data}
+    />
+  );
 }
 
 export default Page;

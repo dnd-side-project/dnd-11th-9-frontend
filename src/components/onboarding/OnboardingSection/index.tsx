@@ -14,42 +14,15 @@ function OnboardingSection({ step }: Props) {
     case 0:
       return (
         <S.ChipContainer>
-          <Category
-            onboarding
-            category='기술'
-          />
-          <Category
-            onboarding
-            category='성실성'
-          />
-          <Category
-            onboarding
-            category='문서화'
-          />
-          <Category
-            onboarding
-            category='문제해결'
-          />
-          <Category
-            onboarding
-            category='리더십'
-          />
-          <Category
-            onboarding
-            category='팔로워십'
-          />
-          <Category
-            onboarding
-            category='커뮤니케이션'
-          />
-          <Category
-            onboarding
-            category='배려심'
-          />
-          <Category
-            onboarding
-            category='아이데이션'
-          />
+          <Category category='기술' />
+          <Category category='성실성' />
+          <Category category='문서화' />
+          <Category category='문제해결' />
+          <Category category='리더십' />
+          <Category category='팔로워십' />
+          <Category category='커뮤니케이션' />
+          <Category category='배려심' />
+          <Category category='아이데이션' />
         </S.ChipContainer>
       );
     case 1:
