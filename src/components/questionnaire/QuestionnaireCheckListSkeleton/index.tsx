@@ -37,9 +37,6 @@ function QuestionnaireCheckListSkeleton() {
       <QuestionnaireCheckList.Item value={2}>
         <SkeletonItem />
       </QuestionnaireCheckList.Item>
-      <QuestionnaireCheckList.Item value={3}>
-        <SkeletonItem />
-      </QuestionnaireCheckList.Item>
     </QuestionnaireCheckList>
   );
 }

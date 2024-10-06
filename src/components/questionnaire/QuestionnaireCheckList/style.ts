@@ -6,9 +6,8 @@ import { flexDirectionColumn } from '@/styles/common';
 export const Container = styled.View<{ $onboarding: boolean }>`
   ${flexDirectionColumn};
   gap: ${({ $onboarding }) => ($onboarding ? 16 : 24) + 'px'};
-  width: 272px;
-  height: ${({ $onboarding }) => ($onboarding ? '420px' : 'auto')};
-  padding: 28px 16px;
+  padding-vertical: 28px;
+  padding-horizontal: 16px;
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 13px;
 `;
@@ -33,7 +32,8 @@ export const ItemContainer = styled.Pressable<{ $isChecked: boolean }>`
   flex-direction: row;
   align-items: center;
   ${({ theme, $isChecked }) => ($isChecked ? activeStyle(theme) : inActiveStyle(theme))};
-  padding: 13px;
+  padding-vertical: 13px;
+  padding-horizontal: 13px;
   border-radius: 7px;
 `;
 

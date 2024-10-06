@@ -26,7 +26,11 @@ function OnboardingSection({ step }: Props) {
         </S.ChipContainer>
       );
     case 1:
-      return <QuestionnaireCheckListSkeleton />;
+      return (
+        <S.CheckListContainer>
+          <QuestionnaireCheckListSkeleton />
+        </S.CheckListContainer>
+      );
     case 2:
       return (
         <BusinessCard
