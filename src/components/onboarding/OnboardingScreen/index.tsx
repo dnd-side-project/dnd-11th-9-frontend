@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
+import { Image } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import SolidButton from '@/components/common/button/SolidButton';
 import ProgressBar from '@/components/common/progress-bar';
 import Typography from '@/components/common/typography';
-import OnboardingSection from '@/components/onboarding/OnboardingSection';
 import OnboardingTitle, { ON_BOARDING } from '@/components/onboarding/OnboardingTitle';
 import { getSize } from '@/utils';
 
@@ -12,6 +12,11 @@ import * as S from './style';
 
 type Props = {
   handleLastStep: () => void;
+};
+
+const onboardingStyle = {
+  width: 375,
+  height: 380,
 };
 
 function OnboardingScreen({ handleLastStep }: Props) {
@@ -22,7 +27,7 @@ function OnboardingScreen({ handleLastStep }: Props) {
       return handleLastStep();
     }
     setStep((prevStep) => prevStep + 1);
-  }, [step]);
+  }, [handleLastStep, step]);
 
   const backgroundStyle = useAnimatedStyle(() => ({
     position: 'absolute',
@@ -41,7 +46,30 @@ function OnboardingScreen({ handleLastStep }: Props) {
       <S.OnBoardingWrapper>
         <OnboardingTitle step={step} />
         <S.ContentWrapperBox>
-          <OnboardingSection step={step} />
+          {step === 0 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/0.png')}
+            />
+          )}
+          {step === 1 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/1.png')}
+            />
+          )}
+          {step === 2 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/2.png')}
+            />
+          )}
+          {step === 3 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/3.png')}
+            />
+          )}
         </S.ContentWrapperBox>
       </S.OnBoardingWrapper>
       <S.ButtonBox>

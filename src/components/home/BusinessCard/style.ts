@@ -1,12 +1,12 @@
 import styled from '@emotion/native';
 
-export const Container = styled.View<{ $isOnboarding: boolean }>`
+export const Container = styled.View`
   position: relative;
-  width: ${({ $isOnboarding }) => ($isOnboarding ? '240px' : '300px')};
-  height: ${({ $isOnboarding }) => ($isOnboarding ? '370px' : 'auto')};
+  width: 300px;
+  height: auto;
   padding: 74px 0;
-  margin-bottom: ${({ $isOnboarding }) => $isOnboarding && '14px'};
-  margin-left: ${({ $isOnboarding }) => $isOnboarding && '22px'};
+  margin-bottom: 14px;
+  margin-left: 22px;
   background: ${({ theme }) => theme.color.Background.Normal};
   border-radius: 17px;
 `;

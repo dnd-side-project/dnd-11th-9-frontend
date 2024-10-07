@@ -5,7 +5,7 @@ import { SCREEN_SIZE } from '@/constants';
 
 import OnboardingScreen from './';
 
-const ProjectInviteModalMeta: Meta<typeof OnboardingScreen> = {
+const OnboardingScreenMeta: Meta<typeof OnboardingScreen> = {
   title: 'screens/Onboarding',
   component: OnboardingScreen,
   argTypes: {
@@ -19,12 +19,12 @@ const ProjectInviteModalMeta: Meta<typeof OnboardingScreen> = {
   },
 };
 
-export default ProjectInviteModalMeta;
+export default OnboardingScreenMeta;
 
 export const Preview: StoryObj<typeof OnboardingScreen> = {
   args: {
     handleLastStep: () => {
-      console.log('마지막 페이지로 이동합니다.');
+      console.log('마지막 페이지로 이동합니다');
     },
   },
   render: (args) => {

@@ -1,7 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { useContext, useState } from 'react';
-import { createContext } from 'react';
-import { memo } from 'react';
+import { createContext, memo, useContext, useState } from 'react';
 
 import RadioIcon from '@/components/common/icon/radio-icon';
 import Typography from '@/components/common/typography';
@@ -45,7 +43,6 @@ function Item({ children, value }: PropsWithChildren<ItemProps>) {
 type QuestionnaireCheckListProps = {
   title: string;
   category: CategoryType;
-  onboarding?: boolean;
   initialCheckValue?: string | number;
 };
 
@@ -53,7 +50,6 @@ function CheckList({
   title,
   category,
   initialCheckValue,
-  onboarding = false,
   children,
 }: PropsWithChildren<QuestionnaireCheckListProps>) {
   const [checkValue, setCheckValue] = useState<null | string | number>(() =>
@@ -65,10 +61,10 @@ function CheckList({
         checkValue,
         setCheckValue,
       }}>
-      <S.Container $onboarding={onboarding}>
+      <S.Container>
         <CategoryChip category={category} />
         <Typography
-          variant={onboarding ? 'Body1/Normal' : 'Heading1'}
+          variant='Heading1'
           fontWeight='semiBold'
           color={color.Label.Normal}>
           {title}

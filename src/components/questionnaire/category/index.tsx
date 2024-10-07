@@ -11,7 +11,6 @@ import type { CategoryType } from '@/types/category';
 import * as S from './style';
 
 type Props = {
-  onboarding?: boolean;
   isActive?: boolean;
   hasIcon?: boolean;
   hasShadow?: boolean;
