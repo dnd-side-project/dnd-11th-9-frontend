@@ -14,6 +14,11 @@ type Props = {
   handleLastStep: () => void;
 };
 
+const onboardingStyle = {
+  width: 375,
+  height: 380,
+};
+
 function OnboardingScreen({ handleLastStep }: Props) {
   const [step, setStep] = useState(0);
 
@@ -41,10 +46,30 @@ function OnboardingScreen({ handleLastStep }: Props) {
       <S.OnBoardingWrapper>
         <OnboardingTitle step={step} />
         <S.ContentWrapperBox>
-          {step === 0 && <Image source={require('../../../../assets/images/onboarding/0.png')} />}
-          {step === 1 && <Image source={require('../../../../assets/images/onboarding/1.png')} />}
-          {step === 2 && <Image source={require('../../../../assets/images/onboarding/2.png')} />}
-          {step === 3 && <Image source={require('../../../../assets/images/onboarding/3.png')} />}
+          {step === 0 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/0.png')}
+            />
+          )}
+          {step === 1 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/1.png')}
+            />
+          )}
+          {step === 2 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/2.png')}
+            />
+          )}
+          {step === 3 && (
+            <Image
+              style={onboardingStyle}
+              source={require('../../../../assets/images/onboarding/3.png')}
+            />
+          )}
         </S.ContentWrapperBox>
       </S.OnBoardingWrapper>
       <S.ButtonBox>
