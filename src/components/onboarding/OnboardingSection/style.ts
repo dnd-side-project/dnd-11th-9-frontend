@@ -9,6 +9,10 @@ export const ChipContainer = styled.View`
   justify-content: center;
 `;
 
+export const CheckListContainer = styled.View`
+  width: 272px;
+`;
+
 export const ReviewCardContainer = styled.View`
   ${flexDirectionColumnItemsCenter};
   gap: 11px;

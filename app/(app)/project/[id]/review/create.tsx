@@ -57,11 +57,13 @@ function Review() {
         />
       </S.WrapperBox>
 
-      <SolidButton
-        onPress={selectCategory}
-        full>
-        다음
-      </SolidButton>
+      <S.ButtonBox>
+        <SolidButton
+          onPress={selectCategory}
+          full>
+          다음
+        </SolidButton>
+      </S.ButtonBox>
     </S.Container>
   );
 }
@@ -71,16 +73,21 @@ const S = {
     flex: 1;
     gap: 32px;
     justify-content: space-between;
-    padding: 33px 20px 52px;
     background: ${({ theme }) => theme.color.Background.Normal};
   `,
   WrapperBox: styled.View`
     ${flexDirectionColumn};
     gap: 32px;
+    padding-top: 33px;
+    padding-horizontal: 20px;
   `,
   ReviewTitle: styled.View`
     ${flexDirectionColumn};
     gap: 8px;
+  `,
+  ButtonBox: styled.View`
+    padding-horizontal: 20px;
+    padding-bottom: 52px;
   `,
   TitleText: styled(Typography)`
     color: ${({ theme }) => theme.color.Label.Normal};

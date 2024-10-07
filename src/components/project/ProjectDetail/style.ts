@@ -7,10 +7,12 @@ import {
 } from '@/styles/common';
 import { getSize, isMobile } from '@/utils';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   ${flexDirectionColumn};
   gap: 24px;
-  padding: 32px 20px 52px;
+  padding-vertical: 32px;
+  padding-horizontal: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ProjectCard = styled.View`

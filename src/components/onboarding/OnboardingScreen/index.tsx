@@ -28,7 +28,7 @@ function OnboardingScreen({ handleLastStep }: Props) {
     position: 'absolute',
     flex: 1,
     width: getSize.deviceWidth * ON_BOARDING.length,
-    height: '100%',
+    height: getSize.deviceHeight,
     left: withTiming(step * -getSize.deviceWidth),
   }));
 

@@ -1,11 +1,10 @@
+import styled from '@emotion/native';
 import { useRoute } from '@react-navigation/core';
 import React, { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { useSession } from '@/store';
 import { setHeader } from '@/utils';
-
-import * as S from './style';
 
 function Login() {
   const route = useRoute();
@@ -30,5 +29,11 @@ function Login() {
     </S.Container>
   );
 }
+
+const S = {
+  Container: styled.SafeAreaView`
+    flex: 1;
+  `,
+};
 
 export default Login;
