@@ -33,7 +33,6 @@ export const Default: StoryObj<typeof Toggle> = {
     disabled: false,
     onToggle: () => {},
   },
-  render: (args) => <Toggle {...args} />,
 };
 
 export const Off: StoryObj<typeof Toggle> = {
@@ -42,7 +41,6 @@ export const Off: StoryObj<typeof Toggle> = {
     disabled: false,
     onToggle: () => {},
   },
-  render: (args) => <Toggle {...args} />,
 };
 
 export const Disabled: StoryObj<typeof Toggle> = {
@@ -50,5 +48,4 @@ export const Disabled: StoryObj<typeof Toggle> = {
     disabled: true,
     onToggle: () => {},
   },
-  render: (args) => <Toggle {...args} />,
 };
