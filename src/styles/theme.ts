@@ -221,7 +221,7 @@ const semantic = {
     Alternative: '#F8F8F8',
   },
   Material: {
-    Dimmer: 'rgba(23, 23, 25, 0.52)',
+    Dimmer: '#0c0c0d',
   },
 };
 

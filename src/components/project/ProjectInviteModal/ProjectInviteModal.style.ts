@@ -1,11 +1,20 @@
-import styled from '@emotion/native';
+import styled, { css } from '@emotion/native';
+import { Platform } from 'react-native';
 
+import { SCREEN_SIZE } from '@/constants';
 import { flexDirectionColumn, flexDirectionColumnItemsCenter } from '@/styles/common';
 import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
+const WebContainerStyle = css`
+  max-width: ${SCREEN_SIZE.WEB_WIDTH + 'px'};
+  padding: 20px;
+  margin: 0 auto;
+`;
+
 export const Container = styled.View`
   ${flexDirectionColumnItemsCenter};
+  ${Platform.OS === 'web' && WebContainerStyle}
   flex: 1;
   background: ${color.Background.Alternative};
 `;

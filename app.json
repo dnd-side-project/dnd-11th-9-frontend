@@ -39,6 +39,12 @@
             "assets/fonts/Pretendard-Reqular.otf"
           ]
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "$(PRODUCT_NAME) 에서 사진 접근 권한을 승인합니다."
+        }
       ]
     ],
     "experiments": {

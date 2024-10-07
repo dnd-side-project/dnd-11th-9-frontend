@@ -5,7 +5,6 @@ import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
-import FireSvg from '@/components/common/icon/fire-svg';
 import Typography from '@/components/common/typography';
 import type { MainNavigations } from '@/constants';
 import { MAIN_NAVIGATIONS } from '@/constants';
@@ -13,6 +12,8 @@ import { SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
 import { useOnboarding } from '@/store/useOnboarding';
 import useTabBar from '@/store/useTabBar';
+import { flexDirectionRow, flexItemCenter } from '@/styles/common';
+import { color } from '@/styles/theme';
 
 const tabBarOptions = {
   [MAIN_NAVIGATIONS.HOME]: {
@@ -31,15 +32,6 @@ const tabBarOptions = {
       <Octicons
         size={28}
         name='project'
-        color={color}
-      />
-    ),
-  },
-  [MAIN_NAVIGATIONS.REVIEW]: {
-    label: '리뷰',
-    icon: (color: string) => (
-      <FireSvg
-        size={28}
         color={color}
       />
     ),
@@ -71,7 +63,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
         const isFocused = state.index === index;
 
-        if (route.name === 'alarm' || typeof label === 'function') {
+        if (route.name === 'alarm' || typeof label === 'function' || !tabBarOptions[label]) {
           return null;
         }
 
@@ -102,14 +94,13 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
-            onLongPress={onLongPress}
-            style={{ flex: 1 }}>
-            {tabBarOptions[label].icon(isFocused ? '#000000' : '#cccccc')}
-            <Typography
-              variant='Caption2'
-              style={{ color: isFocused ? '#000000' : '#cccccc' }}>
+            onLongPress={onLongPress}>
+            {tabBarOptions[label].icon(isFocused ? color.Common['0'] : '#cccccc')}
+            <S.TabBarText
+              $isFocused={isFocused}
+              variant='Caption2'>
               {tabBarOptions[label].label}
-            </Typography>
+            </S.TabBarText>
           </S.TabBarItem>
         );
       })}
@@ -135,12 +126,15 @@ export default function Layout() {
   return (
     <Tabs
       screenOptions={{
+        headerShadowVisible: false,
         headerShown: false,
+        headerStyle: {
+          backgroundColor: color.Background.Alternative,
+        },
       }}
       tabBar={(tabBar) => <TabBar {...tabBar} />}>
       <Tabs.Screen name={MAIN_NAVIGATIONS.PROJECT} />
       <Tabs.Screen name={MAIN_NAVIGATIONS.HOME} />
-      <Tabs.Screen name={MAIN_NAVIGATIONS.REVIEW} />
       <Tabs.Screen name={MAIN_NAVIGATIONS.MY} />
     </Tabs>
   );
@@ -148,9 +142,9 @@ export default function Layout() {
 
 const S = {
   TabBar: styled.View`
+    ${flexDirectionRow};
     position: absolute;
     bottom: 0;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -158,8 +152,11 @@ const S = {
     background-color: white;
   `,
   TabBarItem: styled.TouchableOpacity`
+    ${flexItemCenter};
+    flex: 1;
     gap: 4px;
-    align-items: center;
-    justify-content: center;
+  `,
+  TabBarText: styled(Typography)<{ $isFocused: boolean }>`
+    color: ${({ $isFocused }) => ($isFocused ? '#000000' : '#cccccc')};
   `,
 };
