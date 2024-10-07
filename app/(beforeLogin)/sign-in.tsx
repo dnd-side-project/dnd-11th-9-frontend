@@ -16,11 +16,14 @@ import { getSize } from '@/utils';
 function SignIn() {
   const { signIn, refreshToken } = useSession();
 
-  useEffect(() => {
-    if (refreshToken) {
-      signIn();
-    }
-  }, [refreshToken, signIn]);
+  useEffect(
+    function ifHasRefreshTokenGoToMain() {
+      if (refreshToken) {
+        signIn(refreshToken);
+      }
+    },
+    [refreshToken, signIn]
+  );
 
   return (
     <S.LoginWrapper>
