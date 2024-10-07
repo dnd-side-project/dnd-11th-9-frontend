@@ -3,9 +3,9 @@ import type { Theme } from '@emotion/react';
 
 import { flexDirectionColumn } from '@/styles/common';
 
-export const Container = styled.View<{ $onboarding: boolean }>`
+export const Container = styled.View`
   ${flexDirectionColumn};
-  gap: ${({ $onboarding }) => ($onboarding ? 16 : 24) + 'px'};
+  gap: 24px;
   padding-vertical: 28px;
   padding-horizontal: 16px;
   background: ${({ theme }) => theme.color.Background.Normal};
