@@ -85,8 +85,8 @@ const S = {
 
   BackgroundImage: styled.Image`
     position: absolute;
-    height: 100%;
     flex: 1;
+    height: 100%;
   `,
 
   LogoSection: styled.View`
