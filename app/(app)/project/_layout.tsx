@@ -15,7 +15,6 @@ function Layout() {
       screenOptions={() => ({
         headerStyle: { height: 40, backgroundColor: color.Background.Alternative },
         headerTitleStyle: {
-          paddingTop: 12,
           fontFamily: 'Pretendard-Bold',
         },
         headerTitleAlign: 'center',

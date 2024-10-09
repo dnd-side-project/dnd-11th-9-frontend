@@ -5,7 +5,8 @@ export type PositionType = 'DEVELOPER' | 'DESIGNER' | 'PM';
 
 export interface MemberDTO {
   id: bigint;
-  profile: string;
+  profileUrl: string;
+  name: string;
   provider: SocialType;
   status: StatusType;
   role: RoleType;
@@ -15,4 +16,14 @@ export interface MemberDTO {
   update_at: string | Date;
   tag: string;
   receive_alarm: boolean;
+}
+
+export interface GetAccessTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface GetProfileResponse {
+  profileUrl: string;
+  name: string;
 }

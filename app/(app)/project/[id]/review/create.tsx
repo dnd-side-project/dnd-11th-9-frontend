@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import SolidButton from '@/components/common/button/SolidButton';
 import Typography from '@/components/common/typography';
 import SelectCategoryChipList from '@/components/questionnaire/SelectCategoryChipList';
+import type { EngCategoryType } from '@/enums/categoryEnum';
 import { useTabBarEffect } from '@/hooks';
 import { flexDirectionColumn } from '@/styles/common';
 
@@ -14,15 +15,16 @@ function Review() {
   // const { id } = useLocalSearchParams<{ id: string }>();
 
   const [error, setError] = useState<string | null>(null);
-  const [selectedCategoryList, setSelectedCategoryList] = useState<string[]>([]);
+  const [selectedCategoryList, setSelectedCategoryList] = useState<EngCategoryType[]>([]);
 
-  const addCategory = (category: string) => {
+  const addCategory = (category: EngCategoryType) => {
     if (error) {
       setError(null);
     }
     setSelectedCategoryList([...selectedCategoryList, category]);
   };
-  const removeCategory = (category: string) =>
+
+  const removeCategory = (category: EngCategoryType) =>
     setSelectedCategoryList(selectedCategoryList.filter((item) => item !== category));
 
   const selectCategory = useCallback(() => {
@@ -30,7 +32,7 @@ function Review() {
       setError('5개를 선택해주세요');
       return;
     }
-    setError(null);
+    console.log(selectedCategoryList);
   }, [selectedCategoryList]);
 
   return (

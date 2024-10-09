@@ -3,10 +3,10 @@ import type { PressableProps } from 'react-native';
 
 import CategoryIcon from '@/components/common/icon/category-icon';
 import Typography from '@/components/common/typography';
+import type { KorCategoryType } from '@/enums/categoryEnum';
 import { CategoryStyle } from '@/styles/category';
 import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
-import type { CategoryType } from '@/types/category';
 
 import * as S from './style';
 
@@ -14,7 +14,7 @@ type Props = {
   isActive?: boolean;
   hasIcon?: boolean;
   hasShadow?: boolean;
-  category: CategoryType;
+  category: KorCategoryType;
 } & PressableProps;
 
 function Category({

@@ -2,7 +2,7 @@ import type { ReactNativeStyle } from '@emotion/native';
 import { useMemo } from 'react';
 import type { PressableProps } from 'react-native';
 
-import type { SocialType } from '@/apis/member/member.type';
+import type { SocialType } from '@/apis/member/type';
 import AppleLogoSvg from '@/components/common/icon/apple-logo-svg';
 import KakaoLogoSvg from '@/components/common/icon/kakao-logo-svg';
 import Typography from '@/components/common/typography';
