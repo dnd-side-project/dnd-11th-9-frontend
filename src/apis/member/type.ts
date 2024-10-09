@@ -17,3 +17,13 @@ export interface MemberDTO {
   tag: string;
   receive_alarm: boolean;
 }
+
+export interface GetAccessTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface GetProfileResponse {
+  profileUrl: string;
+  name: string;
+}

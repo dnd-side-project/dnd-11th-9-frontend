@@ -1,14 +1,8 @@
 import type { MemberDTO } from '@/apis/member/type';
-import type { CategoryEnum } from '@/enums/categoryEnum';
-
-export type CategoryType = keyof typeof CategoryEnum;
-
-export interface GetCategoryListRequest {
-  categories: CategoryType[];
-}
+import type { EngCategoryType } from '@/enums/categoryEnum';
 
 type QuestionType = {
-  categoryType: CategoryType;
+  categoryType: EngCategoryType;
   questions: QuestionnaireType[];
 };
 
