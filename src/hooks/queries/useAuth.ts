@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-import { getProfile } from '@/apis/auth';
-import { getAccessToken } from '@/apis/auth';
+import { getAccessToken, getProfile } from '@/apis/member/api';
 import { STORAGE_KEYS } from '@/constants';
 import { NUMBERS } from '@/constants/numbers';
 import { QUERY_KEYS } from '@/constants/queryKeys';
