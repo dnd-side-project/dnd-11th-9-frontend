@@ -5,7 +5,8 @@ export type PositionType = 'DEVELOPER' | 'DESIGNER' | 'PM';
 
 export interface MemberDTO {
   id: bigint;
-  profile: string;
+  profileUrl: string;
+  name: string;
   provider: SocialType;
   status: StatusType;
   role: RoleType;
