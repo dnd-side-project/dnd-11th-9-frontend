@@ -27,10 +27,7 @@ function SignIn() {
 
   return (
     <S.LoginWrapper>
-      <S.BackgroundImage
-        resizeMode='cover'
-        source={require('../../assets/images/onboarding-bg.png')}
-      />
+      <S.BackgroundImage source={require('../../assets/images/onboarding-bg.png')} />
       <S.Container>
         <S.LogoSection>
           <Typography
@@ -79,14 +76,13 @@ const S = {
     flex: 1;
     ${flexItemCenter};
     justify-content: space-between;
-    width: 100%;
     margin-top: ${statusBarHeight + 135 + 'px'};
   `,
 
   BackgroundImage: styled.Image`
     position: absolute;
     flex: 1;
-    height: 100%;
+    height: ${getSize.deviceHeight + 'px'};
   `,
 
   LogoSection: styled.View`
