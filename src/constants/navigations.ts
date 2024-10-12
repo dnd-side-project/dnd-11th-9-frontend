@@ -17,11 +17,11 @@ export const PROJECT_NAVIGATIONS = {
   HOME: 'index',
   CREATE: 'create',
   DELETE: 'delete',
-  REVIEW: '[id]/review',
+  DETAIL: 'detail',
+  REVIEW: 'review',
 };
 
 export const REVIEW_NAVIGATIONS = {
-  HOME: 'index',
+  SELECT: 'select',
   CREATE: 'create',
-  DELETE: 'delete',
 };

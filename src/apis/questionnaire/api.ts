@@ -4,7 +4,7 @@ import type { EngCategoryType } from '@/enums/categoryEnum';
 
 export const getCategoryListRequest = async (categories: EngCategoryType[]) => {
   const { data } = await axiosInstance.get<GetCategoryListResponse>(
-    `/questions/categories?categories=${categories.join(',')}`
+    `/questions/categories?categoryTypes=${categories.join(',')}`
   );
   return data;
 };

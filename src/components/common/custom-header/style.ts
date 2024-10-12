@@ -2,10 +2,10 @@ import styled from '@emotion/native';
 
 import { flexDirectionColumnItemsCenter, flexDirectionRowItemsCenter } from '@/styles/common';
 
-export const Layout = styled.View<{ $backgroundColor: string }>`
+export const Layout = styled.View<{ $backgroundColor: string; $top: number; $margin: boolean }>`
   position: relative;
   width: 100%;
-  height: 40px;
+  margin-top: ${({ $margin }) => ($margin ? '12px' : '')};
   background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
@@ -18,7 +18,6 @@ export const ButtonGroupLayout = styled.View`
 
 export const ButtonItem = styled.Pressable`
   ${flexDirectionColumnItemsCenter};
-  height: 24px;
   cursor: pointer;
 `;
 

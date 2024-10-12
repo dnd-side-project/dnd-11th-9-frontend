@@ -1,14 +1,17 @@
+import { Feather } from '@expo/vector-icons';
 import type { ComponentPropsWithoutRef, PropsWithChildren, ReactElement } from 'react';
 import type { PressableProps, ViewProps } from 'react-native';
 import { StatusBar } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Typography from '@/components/common/typography';
-import { color } from '@/styles/theme';
 import { isMobile } from '@/utils';
 
 import * as S from './style';
 
 type Props = {
+  // mt props는 statusbar와 거리를 벌려주기 위해서 사용하는 속성입니다.
+  mt?: boolean;
   title?: string;
   titleProps?: ComponentPropsWithoutRef<typeof Typography>;
   left?: ReactElement;
@@ -17,15 +20,19 @@ type Props = {
 } & ViewProps;
 
 function Layout({
-  backgroundColor = color.Background.Normal,
+  backgroundColor = 'transparent',
   title,
   titleProps,
   left,
   right,
+  mt = false,
   ...rest
 }: PropsWithChildren<Props>) {
+  const { top = 0 } = useSafeAreaInsets();
   return (
     <S.Layout
+      $top={top}
+      $margin={mt}
       $backgroundColor={backgroundColor}
       {...rest}>
       {isMobile && <StatusBar backgroundColor={backgroundColor} />}
@@ -45,6 +52,15 @@ function Layout({
   );
 }
 
+function BackButton() {
+  return (
+    <Feather
+      name='chevron-left'
+      size={24}
+    />
+  );
+}
+
 function ButtonGroup({ children, ...rest }: PropsWithChildren<ViewProps>) {
   return <S.ButtonGroupLayout {...rest}>{children}</S.ButtonGroupLayout>;
 }
@@ -61,6 +77,7 @@ const CustomHeader = Object.assign(Layout, {
   ButtonGroup,
   ButtonGroupItem,
   Button,
+  BackButton,
 });
 
 export default CustomHeader;

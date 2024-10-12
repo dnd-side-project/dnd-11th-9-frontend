@@ -7,8 +7,7 @@ import { Text } from 'react-native';
 
 import Typography from '@/components/common/typography';
 import type { MainNavigations } from '@/constants';
-import { MAIN_NAVIGATIONS } from '@/constants';
-import { SITE_URLS } from '@/constants';
+import { MAIN_NAVIGATIONS, SITE_URLS } from '@/constants';
 import { useSession } from '@/store';
 import { useOnboarding } from '@/store/useOnboarding';
 import useTabBar from '@/store/useTabBar';
@@ -75,7 +74,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
+            navigation.navigate(route.name, { replace: true, ...route.params });
           }
         };
 

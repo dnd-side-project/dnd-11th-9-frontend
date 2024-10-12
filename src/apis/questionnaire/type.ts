@@ -1,7 +1,7 @@
 import type { MemberDTO } from '@/apis/member/type';
 import type { EngCategoryType } from '@/enums/categoryEnum';
 
-type QuestionType = {
+export type QuestionType = {
   categoryType: EngCategoryType;
   questions: QuestionnaireType[];
 };
