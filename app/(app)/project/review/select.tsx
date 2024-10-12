@@ -52,7 +52,9 @@ function Select() {
         left={
           <CustomHeader.Button
             onPress={() =>
-              router.canGoBack() ? router.back() : router.replace(PROJECT_URLS.DETAIL)
+              router.canGoBack()
+                ? router.back()
+                : router.replace({ pathname: PROJECT_URLS.DETAIL, params: { id } })
             }>
             <CustomHeader.BackButton />
           </CustomHeader.Button>

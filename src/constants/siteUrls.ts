@@ -13,4 +13,5 @@ export const PROJECT_URLS = {
 export const REVIEW_URLS = {
   SELECT: '/project/review/select',
   CREATE: '/project/review/create',
+  COMPLETE: '/project/review/complete',
 } as const;

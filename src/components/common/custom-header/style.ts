@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 
 import { flexDirectionColumnItemsCenter, flexDirectionRowItemsCenter } from '@/styles/common';
 
-export const Layout = styled.View<{ $backgroundColor: string; $top: number; $margin: boolean }>`
+export const Layout = styled.View<{ $backgroundColor: string; $margin: boolean }>`
   position: relative;
   width: 100%;
   margin-top: ${({ $margin }) => ($margin ? '12px' : '')};

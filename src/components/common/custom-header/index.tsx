@@ -2,7 +2,6 @@ import { Feather } from '@expo/vector-icons';
 import type { ComponentPropsWithoutRef, PropsWithChildren, ReactElement } from 'react';
 import type { PressableProps, ViewProps } from 'react-native';
 import { StatusBar } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Typography from '@/components/common/typography';
 import { isMobile } from '@/utils';
@@ -28,10 +27,8 @@ function Layout({
   mt = false,
   ...rest
 }: PropsWithChildren<Props>) {
-  const { top = 0 } = useSafeAreaInsets();
   return (
     <S.Layout
-      $top={top}
       $margin={mt}
       $backgroundColor={backgroundColor}
       {...rest}>

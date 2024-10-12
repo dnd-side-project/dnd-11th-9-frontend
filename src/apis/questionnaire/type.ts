@@ -6,10 +6,10 @@ export type QuestionType = {
   questions: QuestionnaireType[];
 };
 
-type QuestionnaireType = {
+export type QuestionnaireType = {
   questionId: number;
   question: string;
-  options: [string, string, string, string];
+  options: { content: string }[];
 };
 
 export interface GetCategoryListResponse {

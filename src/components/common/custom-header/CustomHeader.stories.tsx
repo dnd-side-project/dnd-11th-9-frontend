@@ -1,5 +1,6 @@
 import { AntDesign, Feather } from '@expo/vector-icons';
 import type { Meta, StoryObj } from '@storybook/react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import CustomHeader from '@/components/common/custom-header/index';
 import Typography from '@/components/common/typography';
@@ -32,28 +33,30 @@ export const Preview1: StoryObj<typeof CustomHeader> = {
   },
   render: (args) => {
     return (
-      <CustomHeader
-        title='프로젝트'
-        left={
-          <CustomHeader.Button onPress={() => console.log('뒤로가기 클릭')}>
-            <Feather
-              name='chevron-left'
-              size={24}
-            />
-          </CustomHeader.Button>
-        }
-        right={
-          <CustomHeader.Button>
-            <Typography
-              variant='Body1/Normal'
-              fontWeight='medium'
-              color={color.Label.Alternative}>
-              편집
-            </Typography>
-          </CustomHeader.Button>
-        }
-        {...args}
-      />
+      <SafeAreaProvider>
+        <CustomHeader
+          title='프로젝트'
+          left={
+            <CustomHeader.Button onPress={() => console.log('뒤로가기 클릭')}>
+              <Feather
+                name='chevron-left'
+                size={24}
+              />
+            </CustomHeader.Button>
+          }
+          right={
+            <CustomHeader.Button>
+              <Typography
+                variant='Body1/Normal'
+                fontWeight='medium'
+                color={color.Label.Alternative}>
+                편집
+              </Typography>
+            </CustomHeader.Button>
+          }
+          {...args}
+        />
+      </SafeAreaProvider>
     );
   },
 };
@@ -65,33 +68,35 @@ export const Preview2: StoryObj<typeof CustomHeader> = {
   },
   render: (args) => {
     return (
-      <CustomHeader
-        left={
-          <CustomHeader.Button onPress={() => console.log('뒤로가기 클릭')}>
-            <Feather
-              name='chevron-left'
-              size={24}
-            />
-          </CustomHeader.Button>
-        }
-        right={
-          <CustomHeader.ButtonGroup>
-            <CustomHeader.ButtonGroupItem>
-              <AntDesign
-                name='search1'
+      <SafeAreaProvider>
+        <CustomHeader
+          left={
+            <CustomHeader.Button onPress={() => console.log('뒤로가기 클릭')}>
+              <Feather
+                name='chevron-left'
                 size={24}
               />
-            </CustomHeader.ButtonGroupItem>
-            <CustomHeader.ButtonGroupItem>
-              <AntDesign
-                name='plus'
-                size={24}
-              />
-            </CustomHeader.ButtonGroupItem>
-          </CustomHeader.ButtonGroup>
-        }
-        {...args}
-      />
+            </CustomHeader.Button>
+          }
+          right={
+            <CustomHeader.ButtonGroup>
+              <CustomHeader.ButtonGroupItem>
+                <AntDesign
+                  name='search1'
+                  size={24}
+                />
+              </CustomHeader.ButtonGroupItem>
+              <CustomHeader.ButtonGroupItem>
+                <AntDesign
+                  name='plus'
+                  size={24}
+                />
+              </CustomHeader.ButtonGroupItem>
+            </CustomHeader.ButtonGroup>
+          }
+          {...args}
+        />
+      </SafeAreaProvider>
     );
   },
 };

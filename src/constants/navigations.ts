@@ -24,4 +24,5 @@ export const PROJECT_NAVIGATIONS = {
 export const REVIEW_NAVIGATIONS = {
   SELECT: 'select',
   CREATE: 'create',
+  COMPLETE: 'complete',
 };

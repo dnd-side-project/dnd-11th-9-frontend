@@ -48,6 +48,7 @@ export const MOCK_PROJECT_LIST: ProjectItemType[] = [
 ] as const;
 
 export const MOCK_PROJECT_DETAIL: ProjectDetailType = {
+  hasReviewCard: true,
   id: 1,
   name: '위프로',
   description: '팀원이 만들어주는 명함 서비스',

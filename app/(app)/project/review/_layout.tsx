@@ -8,6 +8,7 @@ function Layout() {
     <Stack screenOptions={stackConfig}>
       <Stack.Screen name={REVIEW_NAVIGATIONS.CREATE} />
       <Stack.Screen name={REVIEW_NAVIGATIONS.SELECT} />
+      <Stack.Screen name={REVIEW_NAVIGATIONS.COMPLETE} />
     </Stack>
   );
 }
