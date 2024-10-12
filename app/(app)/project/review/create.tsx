@@ -132,10 +132,6 @@ function Wrapper({ id, categories }: WrapperProps) {
 
   const router = useRouter();
 
-  const onConfirm = useCallback(() => {
-    router.navigate({ pathname: REVIEW_NAVIGATIONS.SELECT, params: { id } });
-  }, []);
-
   return (
     <CustomLayout backgroundColor={color.Background.Normal}>
       <CustomHeader
@@ -154,7 +150,7 @@ function Wrapper({ id, categories }: WrapperProps) {
         }
       />
       <ConfirmModal
-        onConfirm={onConfirm}
+        onConfirm={() => router.navigate({ pathname: REVIEW_NAVIGATIONS.COMPLETE, params: { id } })}
         onCancel={() => setConfirmModalVisible(false)}
         visible={confirmModalVisible}
         title='이대로 설문지를 만들까요?'
