@@ -50,12 +50,13 @@ function Complete() {
           </Typography>
         </S.TextContainer>
       </S.Container>
-      <S.ButtonWrapper>
+      <CustomLayout.ButtonBox />
+      <CustomLayout.BottomButton>
         <SolidButton
           onPress={() => router.replace({ pathname: PROJECT_URLS.DETAIL, params: { id } })}>
           요청하기
         </SolidButton>
-      </S.ButtonWrapper>
+      </CustomLayout.BottomButton>
     </CustomLayout>
   );
 }

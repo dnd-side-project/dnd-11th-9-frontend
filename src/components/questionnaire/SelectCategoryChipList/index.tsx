@@ -1,3 +1,4 @@
+import CustomLayout from '@/components/common/custom-layout';
 import ErrorText from '@/components/common/error-text';
 import Category from '@/components/questionnaire/category';
 import type { EngCategoryType } from '@/enums/categoryEnum';
@@ -76,6 +77,7 @@ function SelectCategoryChipList({ item, addItem, removeItem, error }: Props) {
         />
       </S.Wrapper>
       {error && <ErrorText error_message={error} />}
+      <CustomLayout.ButtonBox />
     </S.Container>
   );
 }
