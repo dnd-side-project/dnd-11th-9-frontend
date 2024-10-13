@@ -51,11 +51,7 @@ function Select() {
         title='나의 설문지'
         left={
           <CustomHeader.Button
-            onPress={() =>
-              router.canGoBack()
-                ? router.back()
-                : router.replace({ pathname: PROJECT_URLS.DETAIL, params: { id } })
-            }>
+            onPress={() => router.replace({ pathname: PROJECT_URLS.DETAIL, params: { id } })}>
             <CustomHeader.BackButton />
           </CustomHeader.Button>
         }
