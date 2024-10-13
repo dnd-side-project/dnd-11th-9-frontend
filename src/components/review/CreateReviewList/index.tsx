@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
-import { ScrollView } from 'react-native';
+import type { ScrollHandlerProcessed } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import type { QuestionnaireType, QuestionType } from '@/apis/questionnaire/type';
 import ResetIcon from '@/components/common/icon/reset-icon';
@@ -16,6 +17,7 @@ import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 type Props = {
+  scrollHandler: ScrollHandlerProcessed<Record<string, unknown>>;
   selectedQuestions: QuestionType[];
   getRandomNewQuestion: (categoryType: EngCategoryType, questionId: number) => void;
 };
@@ -70,7 +72,7 @@ function ReviewItem({ onResetClick, question, categoryType, listLength, index }:
   );
 }
 
-function CreateReviewList({ selectedQuestions, getRandomNewQuestion }: Props) {
+function CreateReviewList({ scrollHandler, selectedQuestions, getRandomNewQuestion }: Props) {
   const list = selectedQuestions.flatMap((category) =>
     category.questions.map((question) => ({
       categoryType: category.categoryType,
@@ -80,12 +82,18 @@ function CreateReviewList({ selectedQuestions, getRandomNewQuestion }: Props) {
 
   return (
     <S.Layout>
-      <ScrollView
+      <Animated.ScrollView
         indicatorStyle='black'
         contentContainerStyle={{
           gap: 20,
           marginBottom: 20,
         }}
+        onScroll={scrollHandler}
+        snapToOffsets={Array.from(
+          { length: list.length },
+          (_, i) => i * (getSize.screenWidth - 20)
+        )}
+        scrollEventThrottle={16}
         horizontal>
         {list.map(({ categoryType, question }, index) => (
           <ReviewItem
@@ -97,7 +105,7 @@ function CreateReviewList({ selectedQuestions, getRandomNewQuestion }: Props) {
             index={index + 1}
           />
         ))}
-      </ScrollView>
+      </Animated.ScrollView>
     </S.Layout>
   );
 }

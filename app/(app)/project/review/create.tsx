@@ -1,8 +1,14 @@
 import styled from '@emotion/native';
 import dayjs from 'dayjs';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Suspense, useCallback, useState } from 'react';
 import { View } from 'react-native';
+import Animated, {
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 import type { QuestionType } from '@/apis/questionnaire/type';
 import SolidButton from '@/components/common/button/SolidButton';
@@ -11,17 +17,18 @@ import CustomLayout from '@/components/common/custom-layout';
 import ConfirmModal from '@/components/common/modal/ConfirmModal';
 import Typography from '@/components/common/typography';
 import CreateReviewList from '@/components/review/CreateReviewList';
-import { REVIEW_NAVIGATIONS, REVIEW_URLS } from '@/constants';
+import { COMPONENT_SIZE, REVIEW_NAVIGATIONS, REVIEW_URLS } from '@/constants';
 import type { EngCategoryType } from '@/enums/categoryEnum';
 import useGetCategory from '@/hooks/queries/useGetCategory';
 import { color } from '@/styles/theme';
-import { distributeItems } from '@/utils';
+import { distributeItems, getSize } from '@/utils';
 
 type WrapperProps = {
   id: string;
   categories: EngCategoryType[];
 };
 
+const GRADIENT_COLRORS = ['#FFE58E', '#AAC5FF'];
 const CREATE_REVIEW_LENGTH = 20;
 
 function assignQuestionsToCategories(categoriesData: QuestionType[]): QuestionType[] {
@@ -59,6 +66,7 @@ function Create() {
 }
 
 function Wrapper({ id, categories }: WrapperProps) {
+  const router = useRouter();
   const {
     data: { allQuestions },
   } = useGetCategory(categories);
@@ -112,8 +120,25 @@ function Wrapper({ id, categories }: WrapperProps) {
     },
     [selectedQuestions, allQuestions]
   );
+  const scrollX = useSharedValue(0);
 
-  const router = useRouter();
+  // 스크롤 이벤트 핸들러로 scrollX 값을 업데이트
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.value = event.contentOffset.x;
+    },
+  });
+
+  // 그라데이션 배경을 스크롤에 따라 움직이도록 스타일 정의
+  const animatedGradientStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: scrollX.value * -0.2, // 배경 이동을 더 부드럽게 조정
+        },
+      ],
+    };
+  });
 
   return (
     <CustomLayout backgroundColor={color.Background.Normal}>
@@ -153,7 +178,24 @@ function Wrapper({ id, categories }: WrapperProps) {
       </S.GuideTextWrapper>
 
       <S.ListWrapper>
+        <S.GradientBackground
+          style={[
+            {
+              height: getSize.screenHeight,
+              width: getSize.screenWidth * 4 + getSize.screenWidth - 100,
+            },
+            animatedGradientStyle,
+          ]}>
+          <LinearGradient
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            colors={GRADIENT_COLRORS}
+            style={{ flex: 1 }}
+          />
+        </S.GradientBackground>
+
         <CreateReviewList
+          scrollHandler={scrollHandler}
           selectedQuestions={selectedQuestions}
           getRandomNewQuestion={getRandomNewQuestion}
         />
@@ -174,15 +216,19 @@ const S = {
   ListWrapper: styled.View`
     flex-grow: 1;
     justify-content: center;
-    background-color: ${({ theme }) => theme.color.Background.Alternative};
   `,
   ButtonWrapper: styled.View`
     padding: 12px 20px 52px;
-    background-color: ${({ theme }) => theme.color.Background.Alternative};
   `,
   GuideTextWrapper: styled.View`
     padding: 20px;
-    background-color: ${({ theme }) => theme.color.Background.Normal};
+  `,
+  GradientBackground: styled(Animated.View)`
+    top: 1px;
+    position: absolute;
+    width: ${getSize.deviceWidth * 2}px;
+    height: ${getSize.deviceHeight - 55 - COMPONENT_SIZE.STATUSBAR}px;
+    z-index: -1;
   `,
 };
 
