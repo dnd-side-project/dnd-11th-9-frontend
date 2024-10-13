@@ -224,11 +224,11 @@ const S = {
     padding: 20px;
   `,
   GradientBackground: styled(Animated.View)`
-    top: 1px;
     position: absolute;
+    top: 1px;
+    z-index: -1;
     width: ${getSize.deviceWidth * 2}px;
     height: ${getSize.deviceHeight - 55 - COMPONENT_SIZE.STATUSBAR}px;
-    z-index: -1;
   `,
 };
 

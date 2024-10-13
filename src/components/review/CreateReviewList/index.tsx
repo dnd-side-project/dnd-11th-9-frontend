@@ -84,6 +84,7 @@ function CreateReviewList({ scrollHandler, selectedQuestions, getRandomNewQuesti
     <S.Layout>
       <Animated.ScrollView
         indicatorStyle='black'
+        bounces={false}
         contentContainerStyle={{
           gap: 20,
           marginBottom: 20,
