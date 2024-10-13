@@ -56,46 +56,40 @@ function Select() {
           </CustomHeader.Button>
         }
       />
-      <S.Container>
-        <S.TitleContainer>
-          <S.ReviewTitle>
-            <S.TitleText
-              variant='Title3'
-              fontWeight='bold'>
-              받고 싶은 리뷰의{`\n`}카테고리 5개를 골라주세요
-            </S.TitleText>
-            <S.SubTitleText
-              variant='Label1/Normal'
-              fontWeight='medium'>
-              카테고리 별로 설문이 구성돼요
-            </S.SubTitleText>
-          </S.ReviewTitle>
+      <S.TitleContainer>
+        <S.ReviewTitle>
+          <S.TitleText
+            variant='Title3'
+            fontWeight='bold'>
+            받고 싶은 리뷰의{`\n`}카테고리 5개를 골라주세요
+          </S.TitleText>
+          <S.SubTitleText
+            variant='Label1/Normal'
+            fontWeight='medium'>
+            카테고리 별로 설문이 구성돼요
+          </S.SubTitleText>
+        </S.ReviewTitle>
 
-          <SelectCategoryChipList
-            item={selectedCategoryList}
-            addItem={addCategory}
-            removeItem={removeCategory}
-            error={error}
-          />
-        </S.TitleContainer>
+        <SelectCategoryChipList
+          item={selectedCategoryList}
+          addItem={addCategory}
+          removeItem={removeCategory}
+          error={error}
+        />
+      </S.TitleContainer>
 
-        <S.ButtonBox>
-          <SolidButton
-            onPress={selectCategory}
-            full>
-            다음
-          </SolidButton>
-        </S.ButtonBox>
-      </S.Container>
+      <CustomLayout.BottomButton>
+        <SolidButton
+          onPress={selectCategory}
+          full>
+          다음
+        </SolidButton>
+      </CustomLayout.BottomButton>
     </CustomLayout>
   );
 }
 
 const S = {
-  Container: styled.View`
-    flex: 1;
-    justify-content: space-between;
-  `,
   TitleContainer: styled.View`
     ${flexDirectionColumn};
     gap: 32px;
@@ -105,10 +99,6 @@ const S = {
   ReviewTitle: styled.View`
     ${flexDirectionColumn};
     gap: 8px;
-  `,
-  ButtonBox: styled.View`
-    padding-horizontal: 20px;
-    padding-bottom: 52px;
   `,
   TitleText: styled(Typography)`
     color: ${({ theme }) => theme.color.Label.Normal};

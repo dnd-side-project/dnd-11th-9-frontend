@@ -199,15 +199,16 @@ function Wrapper({ id, categories }: WrapperProps) {
           selectedQuestions={selectedQuestions}
           getRandomNewQuestion={getRandomNewQuestion}
         />
+        <CustomLayout.ButtonBox />
       </S.ListWrapper>
 
-      <S.ButtonWrapper>
+      <CustomLayout.BottomButton>
         <SolidButton
           onPress={() => router.navigate({ pathname: REVIEW_URLS.COMPLETE, params: { id } })}
           full>
           다음
         </SolidButton>
-      </S.ButtonWrapper>
+      </CustomLayout.BottomButton>
     </CustomLayout>
   );
 }
@@ -216,9 +217,6 @@ const S = {
   ListWrapper: styled.View`
     flex-grow: 1;
     justify-content: center;
-  `,
-  ButtonWrapper: styled.View`
-    padding: 12px 20px 52px;
   `,
   GuideTextWrapper: styled.View`
     padding: 20px;
