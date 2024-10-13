@@ -69,23 +69,6 @@ function Wrapper({ id, categories }: WrapperProps) {
     assignQuestionsToCategories(allQuestions)
   );
 
-  const removeQuestion = useCallback(
-    (categoryType: EngCategoryType, questionId: number) => {
-      const updatedQuestions = selectedQuestions.map((category) => {
-        if (category.categoryType === categoryType) {
-          return {
-            ...category,
-            questions: category.questions.filter((question) => question.questionId !== questionId),
-          };
-        }
-        return category;
-      });
-
-      setSelectedQuestions(updatedQuestions);
-    },
-    [selectedQuestions]
-  );
-
   const getRandomNewQuestion = useCallback(
     (categoryType: EngCategoryType, questionId: number) => {
       const selectedCategory = selectedQuestions.find(
@@ -173,7 +156,6 @@ function Wrapper({ id, categories }: WrapperProps) {
         <CreateReviewList
           selectedQuestions={selectedQuestions}
           getRandomNewQuestion={getRandomNewQuestion}
-          removeQuestion={removeQuestion}
         />
       </S.ListWrapper>
 
