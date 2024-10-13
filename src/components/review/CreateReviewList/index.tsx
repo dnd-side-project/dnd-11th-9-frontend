@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
-import { Ionicons } from '@expo/vector-icons';
-import { ScrollView } from 'react-native';
+import type { ScrollHandlerProcessed } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import type { QuestionnaireType, QuestionType } from '@/apis/questionnaire/type';
 import ResetIcon from '@/components/common/icon/reset-icon';
@@ -17,28 +17,20 @@ import { color } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 type Props = {
+  scrollHandler: ScrollHandlerProcessed<Record<string, unknown>>;
   selectedQuestions: QuestionType[];
-  removeQuestion: (categoryType: EngCategoryType, id: number) => void;
   getRandomNewQuestion: (categoryType: EngCategoryType, questionId: number) => void;
 };
 
 type ReviewItemProps = {
   onResetClick: () => void;
-  onDeleteClick: () => void;
   listLength: number;
   categoryType: EngCategoryType;
   question: QuestionnaireType;
   index: number;
 };
 
-function ReviewItem({
-  onResetClick,
-  onDeleteClick,
-  question,
-  categoryType,
-  listLength,
-  index,
-}: ReviewItemProps) {
+function ReviewItem({ onResetClick, question, categoryType, listLength, index }: ReviewItemProps) {
   return (
     <S.ItemLayout>
       <S.ItemBox>
@@ -58,13 +50,6 @@ function ReviewItem({
             <ResetIcon
               size={24}
               fill={color.Label.Alternative}
-            />
-          </S.ActionButton>
-          <S.ActionButton onPress={onDeleteClick}>
-            <Ionicons
-              name='close'
-              size={24}
-              color={color.Label.Alternative}
             />
           </S.ActionButton>
         </S.ActionButtonContainer>
@@ -87,7 +72,7 @@ function ReviewItem({
   );
 }
 
-function CreateReviewList({ selectedQuestions, removeQuestion, getRandomNewQuestion }: Props) {
+function CreateReviewList({ scrollHandler, selectedQuestions, getRandomNewQuestion }: Props) {
   const list = selectedQuestions.flatMap((category) =>
     category.questions.map((question) => ({
       categoryType: category.categoryType,
@@ -97,17 +82,23 @@ function CreateReviewList({ selectedQuestions, removeQuestion, getRandomNewQuest
 
   return (
     <S.Layout>
-      <ScrollView
+      <Animated.ScrollView
         indicatorStyle='black'
+        bounces={false}
         contentContainerStyle={{
           gap: 20,
           marginBottom: 20,
         }}
+        onScroll={scrollHandler}
+        snapToOffsets={Array.from(
+          { length: list.length },
+          (_, i) => i * (getSize.screenWidth - 20)
+        )}
+        scrollEventThrottle={16}
         horizontal>
         {list.map(({ categoryType, question }, index) => (
           <ReviewItem
             onResetClick={() => getRandomNewQuestion(categoryType, question.questionId)}
-            onDeleteClick={() => removeQuestion(categoryType, question.questionId)}
             key={question.questionId}
             listLength={list.length}
             categoryType={categoryType}
@@ -115,7 +106,7 @@ function CreateReviewList({ selectedQuestions, removeQuestion, getRandomNewQuest
             index={index + 1}
           />
         ))}
-      </ScrollView>
+      </Animated.ScrollView>
     </S.Layout>
   );
 }

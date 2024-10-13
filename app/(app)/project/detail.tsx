@@ -1,4 +1,4 @@
-import { Link, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Suspense } from 'react';
 
 import { MOCK_PROJECT_DETAIL } from '@/__mock__/project';
@@ -16,6 +16,7 @@ type InnerProps = {
 
 function Inner({ id }: InnerProps) {
   const data = MOCK_PROJECT_DETAIL;
+  const router = useRouter();
 
   return (
     <CustomLayout backgroundColor={color.Background.Alternative}>
@@ -24,13 +25,9 @@ function Inner({ id }: InnerProps) {
         backgroundColor={color.Background.Alternative}
         title={data.name}
         left={
-          <Link
-            asChild
-            href={{ pathname: PROJECT_URLS.MAIN }}>
-            <CustomHeader.Button>
-              <CustomHeader.BackButton />
-            </CustomHeader.Button>
-          </Link>
+          <CustomHeader.Button onPress={() => router.replace({ pathname: PROJECT_URLS.MAIN })}>
+            <CustomHeader.BackButton />
+          </CustomHeader.Button>
         }
         right={
           <CustomHeader.Button>

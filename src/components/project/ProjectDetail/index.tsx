@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { ScrollView } from 'react-native';
 
 import SolidButton from '@/components/common/button/SolidButton';
@@ -35,6 +35,7 @@ type Props = {
 };
 
 function ProjectDetail({ id, data }: Props) {
+  const router = useRouter();
   return (
     <ScrollView
       style={{
@@ -142,11 +143,11 @@ function ProjectDetail({ id, data }: Props) {
           </S.LinkBox>
         </S.ProjectItem>
 
-        <Link
-          asChild={true}
-          href={{ pathname: REVIEW_URLS.SELECT, params: { id } }}>
-          <SolidButton full>설문지 만들기</SolidButton>
-        </Link>
+        <SolidButton
+          onPress={() => router.navigate({ pathname: REVIEW_URLS.SELECT, params: { id } })}
+          full>
+          설문지 만들기
+        </SolidButton>
       </S.Container>
     </ScrollView>
   );
