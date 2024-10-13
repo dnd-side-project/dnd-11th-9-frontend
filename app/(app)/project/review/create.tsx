@@ -182,7 +182,7 @@ function Wrapper({ id, categories }: WrapperProps) {
           style={[
             {
               height: getSize.screenHeight,
-              width: getSize.screenWidth * 4 + getSize.screenWidth - 100,
+              width: getSize.screenWidth * 4 + getSize.screenWidth - 150,
             },
             animatedGradientStyle,
           ]}>
