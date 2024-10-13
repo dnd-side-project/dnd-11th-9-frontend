@@ -5,9 +5,13 @@ export const SITE_URLS = {
 } as const;
 
 export const PROJECT_URLS = {
-  PROJECT_HOME: '/project',
-  PROJECT_CREATE: '/project/create',
-  PROJECT_DETAIL: '/project/[id]/detail',
-  PROJECT_REVIEW: '/project/[id]/review',
-  PROJECT_REVIEW_CREATE: '/project/[id]/review/create',
+  MAIN: '/project',
+  CREATE: '/project/create',
+  DETAIL: '/project/detail',
+} as const;
+
+export const REVIEW_URLS = {
+  SELECT: '/project/review/select',
+  CREATE: '/project/review/create',
+  COMPLETE: '/project/review/complete',
 } as const;

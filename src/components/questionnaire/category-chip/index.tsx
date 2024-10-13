@@ -1,13 +1,13 @@
 import { memo } from 'react';
 
 import Typography from '@/components/common/typography';
+import type { KorCategoryType } from '@/enums/categoryEnum';
 import { CategoryStyle } from '@/styles/category';
-import type { CategoryType } from '@/types/category';
 
 import * as S from './style';
 
 type Props = {
-  category: CategoryType;
+  category: KorCategoryType;
 };
 
 function CategoryChip({ category }: Props) {

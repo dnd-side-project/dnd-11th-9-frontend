@@ -10,6 +10,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { z } from 'zod';
 
 import SolidButton from '@/components/common/button/SolidButton';
+import CustomHeader from '@/components/common/custom-header';
+import CustomLayout from '@/components/common/custom-layout';
 import DateInput from '@/components/common/date-input';
 import ErrorText from '@/components/common/error-text';
 import ImageInput from '@/components/common/image-input';
@@ -20,6 +22,7 @@ import ProjectInputField from '@/components/project/ProjectRegisterForm/ProjectI
 import * as S from '@/components/project/ProjectRegisterForm/style';
 import type { User } from '@/components/project/SearchUserList';
 import SearchUserList from '@/components/project/SearchUserList';
+import { PROJECT_URLS } from '@/constants';
 import { useBottomSheet, useTabBarEffect } from '@/hooks';
 import { useSingleImage } from '@/hooks/useSingleImage';
 import { shadow } from '@/styles/shadow';
@@ -42,6 +45,7 @@ const TODAY = new Date();
 function Create() {
   const router = useRouter();
   useTabBarEffect();
+
   const {
     control,
     getValues,
@@ -110,161 +114,170 @@ function Create() {
 
   return (
     <GestureHandlerRootView>
-      <ScrollView
-        style={{
-          flex: 1,
-          backgroundColor: color.Background.Alternative,
-          height: getSize.screenHeight,
-        }}>
-        <S.Container>
-          <S.Form>
-            <ProjectInputField name='프로젝트 이름'>
-              <Controller
-                control={control}
-                rules={{ required: '프로젝트 이름을 입력해주세요' }}
-                render={({ field: { value, ref, onChange } }) => (
-                  <InputField
-                    ref={ref}
-                    value={value}
-                    onChangeText={onChange}
-                    error={errors.name?.message}
-                    placeholder='어떤 프로젝트인가요?'
-                  />
-                )}
-                name='name'
-              />
-            </ProjectInputField>
-            <ProjectInputField name='프로젝트 설명'>
-              <Controller
-                control={control}
-                rules={{ required: '프로젝트의 설명을 입력해주세요' }}
-                render={({ field: { value, ref, onChange } }) => (
-                  <InputField
-                    ref={ref}
-                    value={value}
-                    onChangeText={onChange}
-                    error={errors.description?.message}
-                    placeholder='어떤 프로젝트인가요?'
-                  />
-                )}
-                name='description'
-              />
-            </ProjectInputField>
-            <ProjectInputField name='프로젝트 이미지'>
-              <Controller
-                control={control}
-                rules={{ required: '프로젝트의 이미지를 추가해주세요.' }}
-                render={({ field: { value, onChange } }) => (
-                  <S.ImageBox>
-                    <ImageInput onPress={() => pickImage(onChange)} />
-                    <PreviewImage images={value ? [value] : []} />
-                  </S.ImageBox>
-                )}
-                name='image'
-              />
-              {errors.image?.message && <ErrorText error_message={errors.image?.message} />}
-            </ProjectInputField>
-            <ProjectInputField
-              required={false}
-              name='기간'>
-              <S.DatePickerBox>
+      <CustomLayout backgroundColor={color.Background.Alternative}>
+        <CustomHeader
+          mt
+          title='프로젝트 등록'
+          left={
+            <CustomHeader.Button onPress={() => router.navigate({ pathname: PROJECT_URLS.MAIN })}>
+              <CustomHeader.BackButton />
+            </CustomHeader.Button>
+          }
+        />
+        <ScrollView
+          style={{
+            height: getSize.screenHeight,
+          }}>
+          <S.Container>
+            <S.Form>
+              <ProjectInputField name='프로젝트 이름'>
                 <Controller
                   control={control}
-                  render={({ field: { value } }) => (
-                    <DateInput
-                      date={value}
-                      touched={startDateTouched}
-                      onPress={() => startDateOpen('start')}
-                      onTouchEnd={() => setStartDateTouched(true)}
+                  rules={{ required: '프로젝트 이름을 입력해주세요' }}
+                  render={({ field: { value, ref, onChange } }) => (
+                    <InputField
+                      ref={ref}
+                      value={value}
+                      onChangeText={onChange}
+                      error={errors.name?.message}
+                      placeholder='어떤 프로젝트인가요?'
                     />
                   )}
-                  name='startDate'
+                  name='name'
                 />
-                <Typography
-                  variant='Title3'
-                  color={color.Label.Normal}>
-                  -
-                </Typography>
+              </ProjectInputField>
+              <ProjectInputField name='프로젝트 설명'>
                 <Controller
                   control={control}
-                  render={({ field: { value } }) => (
-                    <DateInput
-                      date={value}
-                      touched={endDateTouched}
-                      onPress={() => startDateOpen('end')}
-                      onTouchEnd={() => setEndDateTouched(true)}
+                  rules={{ required: '프로젝트의 설명을 입력해주세요' }}
+                  render={({ field: { value, ref, onChange } }) => (
+                    <InputField
+                      ref={ref}
+                      value={value}
+                      onChangeText={onChange}
+                      error={errors.description?.message}
+                      placeholder='어떤 프로젝트인가요?'
                     />
                   )}
-                  name='endDate'
+                  name='description'
                 />
-              </S.DatePickerBox>
-            </ProjectInputField>
-            <ProjectInputField
-              required={false}
-              name='팀원'>
-              <S.UserListSheetOpenButtonContainer>
-                <InputField
-                  icon={
-                    <AntDesign
-                      name='search1'
-                      style={{ flexShrink: 1, width: 20, height: 20 }}
-                      size={20}
-                    />
-                  }
-                  disabled
-                  placeholder='팀원의 이름을 검색해주세요.'
+              </ProjectInputField>
+              <ProjectInputField name='프로젝트 이미지'>
+                <Controller
+                  control={control}
+                  rules={{ required: '프로젝트의 이미지를 추가해주세요.' }}
+                  render={({ field: { value, onChange } }) => (
+                    <S.ImageBox>
+                      <ImageInput onPress={() => pickImage(onChange)} />
+                      <PreviewImage images={value ? [value] : []} />
+                    </S.ImageBox>
+                  )}
+                  name='image'
                 />
-                <S.UserListSheetOpenButton onPress={() => openUserListSheet(0)} />
-              </S.UserListSheetOpenButtonContainer>
-              <S.SelectUserList>
-                {getValues('userList').map((user) => (
-                  <S.SelectUserItem
-                    style={shadow[1]}
-                    key={user.userId}>
-                    <Typography
-                      variant='Body1/Reading'
-                      fontWeight='medium'>
-                      {user.name}
-                    </Typography>
-                  </S.SelectUserItem>
-                ))}
-              </S.SelectUserList>
-            </ProjectInputField>
-            <ProjectInputField
-              required={false}
-              name='프로젝트 링크'>
-              <Controller
-                control={control}
-                rules={{
-                  validate: (value) => {
-                    if (!value) return true;
-                    const result = z.string().url().safeParse(value);
-                    return result.success || '올바른 링크를 입력해주세요';
-                  },
-                }}
-                render={({ field: { onChange, value, onBlur } }) => (
-                  <InputField
-                    onChangeText={onChange}
-                    value={value}
-                    onBlur={onBlur}
-                    placeholder='링크를 입력해주세요'
+                {errors.image?.message && <ErrorText error_message={errors.image?.message} />}
+              </ProjectInputField>
+              <ProjectInputField
+                required={false}
+                name='기간'>
+                <S.DatePickerBox>
+                  <Controller
+                    control={control}
+                    render={({ field: { value } }) => (
+                      <DateInput
+                        date={value}
+                        touched={startDateTouched}
+                        onPress={() => startDateOpen('start')}
+                        onTouchEnd={() => setStartDateTouched(true)}
+                      />
+                    )}
+                    name='startDate'
                   />
-                )}
-                name='link'
-              />
-              {errors.link?.message && <ErrorText error_message={errors.link?.message} />}
-            </ProjectInputField>
-          </S.Form>
-          <S.SubmitButtonBox>
-            <SolidButton
-              onPress={handleSubmit(onSubmit)}
-              full
-              size='large'>
-              등록하기
-            </SolidButton>
-          </S.SubmitButtonBox>
-        </S.Container>
-      </ScrollView>
+                  <Typography
+                    variant='Title3'
+                    color={color.Label.Normal}>
+                    -
+                  </Typography>
+                  <Controller
+                    control={control}
+                    render={({ field: { value } }) => (
+                      <DateInput
+                        date={value}
+                        touched={endDateTouched}
+                        onPress={() => startDateOpen('end')}
+                        onTouchEnd={() => setEndDateTouched(true)}
+                      />
+                    )}
+                    name='endDate'
+                  />
+                </S.DatePickerBox>
+              </ProjectInputField>
+              <ProjectInputField
+                required={false}
+                name='팀원'>
+                <S.UserListSheetOpenButtonContainer>
+                  <InputField
+                    icon={
+                      <AntDesign
+                        name='search1'
+                        style={{ flexShrink: 1, width: 20, height: 20 }}
+                        size={20}
+                      />
+                    }
+                    disabled
+                    placeholder='팀원의 이름을 검색해주세요.'
+                  />
+                  <S.UserListSheetOpenButton onPress={() => openUserListSheet(0)} />
+                </S.UserListSheetOpenButtonContainer>
+                <S.SelectUserList>
+                  {getValues('userList').map((user) => (
+                    <S.SelectUserItem
+                      style={shadow[1]}
+                      key={user.userId}>
+                      <Typography
+                        variant='Body1/Reading'
+                        fontWeight='medium'>
+                        {user.name}
+                      </Typography>
+                    </S.SelectUserItem>
+                  ))}
+                </S.SelectUserList>
+              </ProjectInputField>
+              <ProjectInputField
+                required={false}
+                name='프로젝트 링크'>
+                <Controller
+                  control={control}
+                  rules={{
+                    validate: (value) => {
+                      if (!value) return true;
+                      const result = z.string().url().safeParse(value);
+                      return result.success || '올바른 링크를 입력해주세요';
+                    },
+                  }}
+                  render={({ field: { onChange, value, onBlur } }) => (
+                    <InputField
+                      onChangeText={onChange}
+                      value={value}
+                      onBlur={onBlur}
+                      placeholder='링크를 입력해주세요'
+                    />
+                  )}
+                  name='link'
+                />
+                {errors.link?.message && <ErrorText error_message={errors.link?.message} />}
+              </ProjectInputField>
+            </S.Form>
+            <S.SubmitButtonBox>
+              <SolidButton
+                onPress={handleSubmit(onSubmit)}
+                full
+                size='large'>
+                프로젝트 생성하기
+              </SolidButton>
+            </S.SubmitButtonBox>
+          </S.Container>
+        </ScrollView>
+      </CustomLayout>
       {dateTimeSheetOpen && (
         <DateTimePicker
           mode='date'

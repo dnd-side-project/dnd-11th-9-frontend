@@ -27,12 +27,6 @@ const CategoryMeta: Meta<typeof Category> = {
       },
       description: '칩의 활성화 여부를 결정합니다.',
     },
-    onboarding: {
-      control: {
-        type: 'boolean',
-      },
-      description: '온보딩 칩인지 결정합니다.',
-    },
   },
 };
 
@@ -43,7 +37,6 @@ export const Primary: StoryObj<typeof Category> = {
     hasIcon: false,
     isActive: false,
     category: '기술',
-    onboarding: false,
   },
 };
 

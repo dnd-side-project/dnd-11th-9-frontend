@@ -2,6 +2,7 @@ import axiosInstance from '@/apis/instance';
 
 function setHeader(key: string, value: string) {
   axiosInstance.defaults.headers.common[key] = value;
+  console.log(axiosInstance.defaults.headers.common);
 }
 
 function removeHeader(key: string) {

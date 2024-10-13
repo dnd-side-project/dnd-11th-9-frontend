@@ -3,8 +3,8 @@ import { createContext, memo, useContext, useState } from 'react';
 
 import RadioIcon from '@/components/common/icon/radio-icon';
 import Typography from '@/components/common/typography';
+import type { KorCategoryType } from '@/enums/categoryEnum';
 import { color } from '@/styles/theme';
-import type { CategoryType } from '@/types/category';
 
 import CategoryChip from '../category-chip';
 import * as S from './style';
@@ -42,7 +42,7 @@ function Item({ children, value }: PropsWithChildren<ItemProps>) {
 
 type QuestionnaireCheckListProps = {
   title: string;
-  category: CategoryType;
+  category: KorCategoryType;
   initialCheckValue?: string | number;
 };
 

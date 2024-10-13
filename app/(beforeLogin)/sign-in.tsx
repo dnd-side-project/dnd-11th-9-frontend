@@ -76,7 +76,6 @@ const S = {
     flex: 1;
     ${flexItemCenter};
     justify-content: space-between;
-    width: 100%;
     margin-top: ${statusBarHeight + 135 + 'px'};
   `,
 
