@@ -1,15 +1,12 @@
 import styled from '@emotion/native';
 import { AntDesign, Octicons, SimpleLineIcons } from '@expo/vector-icons';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Redirect, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import React from 'react';
-import { Text } from 'react-native';
 
 import Typography from '@/components/common/typography';
 import type { MainNavigations } from '@/constants';
-import { MAIN_NAVIGATIONS, SITE_URLS } from '@/constants';
-import { useSession } from '@/store';
-import { useOnboarding } from '@/store/useOnboarding';
+import { MAIN_NAVIGATIONS } from '@/constants';
 import useTabBar from '@/store/useTabBar';
 import { flexDirectionRow, flexItemCenter } from '@/styles/common';
 import { color } from '@/styles/theme';
@@ -108,20 +105,6 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 };
 
 export default function Layout() {
-  const { refreshToken, isLoading: sessionLoading } = useSession();
-  const { showOnBoarding, isLoading: onboardingLoading } = useOnboarding();
-
-  if (sessionLoading || onboardingLoading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (!refreshToken) {
-    if (!showOnBoarding) {
-      return <Redirect href={SITE_URLS.ON_BOARDING} />;
-    }
-    return <Redirect href={SITE_URLS.SIGN_IN} />;
-  }
-
   return (
     <Tabs
       screenOptions={{

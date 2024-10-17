@@ -2,29 +2,16 @@ import styled from '@emotion/native';
 import Constants from 'expo-constants/src/Constants';
 import { router } from 'expo-router';
 import { rgba } from 'polished';
-import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 import WeproLogoSvg from '@/components/common/icon/wepro-logo-svg';
 import Typography from '@/components/common/typography';
 import LoginButton from '@/components/sign-in/LoginButton';
-import { useSession } from '@/store';
 import { flexDirectionColumn, flexItemCenter } from '@/styles/common';
 import { theme } from '@/styles/theme';
 import { getSize } from '@/utils';
 
 function SignIn() {
-  const { signIn, refreshToken } = useSession();
-
-  useEffect(
-    function ifHasRefreshTokenGoToMain() {
-      if (refreshToken) {
-        signIn(refreshToken);
-      }
-    },
-    [refreshToken, signIn]
-  );
-
   return (
     <S.LoginWrapper>
       <S.BackgroundImage source={require('../../assets/images/onboarding-bg.png')} />

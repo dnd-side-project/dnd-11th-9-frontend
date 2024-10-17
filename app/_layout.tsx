@@ -1,17 +1,22 @@
 import styled from '@emotion/native';
 import { useFonts } from 'expo-font';
-import { Slot, SplashScreen } from 'expo-router';
+import { Slot, SplashScreen, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 import Provider from '@/components/common/provider';
-import { SCREEN_SIZE } from '@/constants';
+import { SCREEN_SIZE, SITE_URLS } from '@/constants';
+import useAuth from '@/hooks/queries/useAuth';
 import { SessionProvider } from '@/store';
-import { OnboardingProvider } from '@/store/useOnboarding';
+import { OnboardingProvider, useOnboarding } from '@/store/useOnboarding';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Root() {
+function RootInner() {
+  const { isLoginLoading, isLogin } = useAuth();
+  const { showOnBoarding } = useOnboarding();
+  const router = useRouter();
+
   const [loaded, error] = useFonts({
     Pretendard: require('../assets/fonts/Pretendard-Regular.otf'),
     'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.otf'),
@@ -23,14 +28,28 @@ export default function Root() {
     if (error) throw error;
   }, [error]);
 
-  if (loaded) {
-    SplashScreen.hideAsync();
-  }
+  useEffect(() => {
+    if (loaded && !isLoginLoading) {
+      setTimeout(() => {
+        SplashScreen.hideAsync();
+      }, 500);
+    }
+  }, [isLoginLoading]);
 
-  if (!loaded) {
-    return null;
-  }
+  useEffect(() => {
+    if (isLogin) {
+      router.replace(SITE_URLS.MAIN);
+    } else if (showOnBoarding) {
+      router.replace(SITE_URLS.ON_BOARDING);
+    } else {
+      router.replace(SITE_URLS.SIGN_IN);
+    }
+  }, [isLogin, router, showOnBoarding]);
 
+  return <Slot />;
+}
+
+export default function Root() {
   if (Platform.OS === 'web') {
     return (
       <Provider>
@@ -38,7 +57,7 @@ export default function Root() {
           <OnboardingProvider>
             <S.Container>
               <S.Layout>
-                <Slot />
+                <RootInner />
               </S.Layout>
             </S.Container>
           </OnboardingProvider>
@@ -51,7 +70,7 @@ export default function Root() {
     <Provider>
       <SessionProvider>
         <OnboardingProvider>
-          <Slot />
+          <RootInner />
         </OnboardingProvider>
       </SessionProvider>
     </Provider>
