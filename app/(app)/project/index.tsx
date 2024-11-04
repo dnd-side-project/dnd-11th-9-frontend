@@ -2,20 +2,21 @@ import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
-import { MOCK_PROJECT_ITEM, MOCK_PROJECT_LIST } from '@/__mock__/project';
+import { MOCK_PROJECT_ITEM } from '@/__mock__/project';
 import CustomHeader from '@/components/common/custom-header';
 import CustomLayout from '@/components/common/custom-layout';
 import ProjectInviteModal from '@/components/project/ProjectInviteModal';
 import ProjectList from '@/components/project/ProjectList';
 import { PROJECT_URLS } from '@/constants';
+import { useGetMyProject } from '@/hooks/queries/useGetMyProject';
 import { color } from '@/styles/theme';
 
 const inviteData = MOCK_PROJECT_ITEM;
-const data = MOCK_PROJECT_LIST;
 
 function Project() {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
+  const { data: projectList, isLoading } = useGetMyProject();
   const onRequestClose = () => {
     setVisible(false);
   };
@@ -51,7 +52,10 @@ function Project() {
         visible={visible}
         onRequestClose={onRequestClose}
       />
-      <ProjectList data={data} />
+      <ProjectList
+        data={projectList ?? []}
+        isLoading={isLoading}
+      />
     </CustomLayout>
   );
 }

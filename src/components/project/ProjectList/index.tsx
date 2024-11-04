@@ -1,6 +1,7 @@
 import { FlatList } from 'react-native';
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 
+import type { GetMyProjectResponse } from '@/apis/project/api';
 import Typography from '@/components/common/typography';
 import ProjectItem from '@/components/project/ProjectItem';
 import { COMPONENT_SIZE } from '@/constants';
@@ -28,10 +29,17 @@ export type ProjectItemType = {
 };
 
 type Props = {
-  data: ProjectItemType[];
+  data: GetMyProjectResponse[];
+  isLoading: boolean;
 };
 
-function ProjectList({ data }: Props) {
+function ProjectList({ data, isLoading }: Props) {
+  if (isLoading) {
+    return null;
+  }
+
+  console.log(data);
+
   return (
     <FlatList
       data={data}
@@ -45,7 +53,13 @@ function ProjectList({ data }: Props) {
       renderItem={(info) => (
         <GestureHandlerRootView>
           <Swipeable renderRightActions={() => <ProjectDeleteButton deleteId={info.item.id} />}>
-            <ProjectItem {...info.item} />
+            <ProjectItem
+              id={info.item.id}
+              name={info.item.name}
+              profile={info.item.imgUrl}
+              review_count={info.item.reviewCompleteCount}
+              member_num={info.item.memberNum}
+            />
           </Swipeable>
         </GestureHandlerRootView>
       )}

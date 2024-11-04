@@ -100,7 +100,7 @@ export const postNotUsedMember = async (id: number | string) => {
   return data;
 };
 
-interface GetMyProjectResponse {
+export interface GetMyProjectResponse {
   id: number | string;
   name: string;
   memberNum: number;
