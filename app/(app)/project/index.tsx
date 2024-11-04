@@ -9,7 +9,6 @@ import ProjectInviteModal from '@/components/project/ProjectInviteModal';
 import ProjectList from '@/components/project/ProjectList';
 import { PROJECT_URLS } from '@/constants';
 import { color } from '@/styles/theme';
-import { isMobile } from '@/utils';
 
 const inviteData = MOCK_PROJECT_ITEM;
 const data = MOCK_PROJECT_LIST;
@@ -35,15 +34,13 @@ function Project() {
                 size={24}
               />
             </CustomHeader.ButtonGroupItem>
-            {isMobile && (
-              <CustomHeader.ButtonGroupItem
-                onPress={() => router.navigate({ pathname: PROJECT_URLS.CREATE })}>
-                <AntDesign
-                  name='plus'
-                  size={24}
-                />
-              </CustomHeader.ButtonGroupItem>
-            )}
+            <CustomHeader.ButtonGroupItem
+              onPress={() => router.navigate({ pathname: PROJECT_URLS.CREATE })}>
+              <AntDesign
+                name='plus'
+                size={24}
+              />
+            </CustomHeader.ButtonGroupItem>
           </CustomHeader.ButtonGroup>
         }
       />

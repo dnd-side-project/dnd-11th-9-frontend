@@ -7,16 +7,19 @@ type Props = {
 };
 
 function PreviewImage({ images }: Props) {
+  console.log(images);
   return (
     <S.Container>
-      {images.map((image, index) => (
-        <S.Image
-          style={shadow[2]}
-          resizeMode='cover'
-          key={index}
-          source={{ uri: image }}
-        />
-      ))}
+      {images.map((image, index) =>
+        typeof image === 'string' ? (
+          <S.Image
+            style={shadow[2]}
+            resizeMode='cover'
+            key={index}
+            source={{ uri: image }}
+          />
+        ) : null
+      )}
     </S.Container>
   );
 }

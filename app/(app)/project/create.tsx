@@ -3,9 +3,9 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Alert, Platform, ScrollView } from 'react-native';
+import { Alert, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { z } from 'zod';
 
@@ -24,6 +24,7 @@ import type { User } from '@/components/project/SearchUserList';
 import SearchUserList from '@/components/project/SearchUserList';
 import { PROJECT_URLS } from '@/constants';
 import { useBottomSheet, useTabBarEffect } from '@/hooks';
+import { useCreateProject } from '@/hooks/queries/useCreateProject';
 import { useSingleImage } from '@/hooks/useSingleImage';
 import { shadow } from '@/styles/shadow';
 import { color } from '@/styles/theme';
@@ -71,19 +72,16 @@ function Create() {
 
   const [dateTimeSheetOpen, setDateTimeSheetOpen] = useState(false);
 
-  useLayoutEffect(
-    function handleWebAccessRestriction() {
-      if (Platform.OS === 'web') {
-        return router.replace('/project');
-      }
-    },
-    [router]
-  );
-
   const pickImage = useSingleImage();
 
   const [userListSheetOpen, userListBottomSheetRef, openUserListSheet, closeUserListSheet] =
     useBottomSheet();
+
+  const { mutate: createProject } = useCreateProject({
+    onSuccess: () => {
+      router.navigate({ pathname: PROJECT_URLS.MAIN });
+    },
+  });
 
   const selectDateHandler = useCallback(
     (_: DateTimePickerEvent, date = new Date()) => {
@@ -101,11 +99,20 @@ function Create() {
     [getValues, selectDate, setValue]
   );
 
-  const onSubmit = useCallback(() => {
-    // console.log(data, 'data');
-    // {"description": "ddddd", "endDate": 2024-09-28T02:55:15.891Z, "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fdnd-119-frontend-3618ca0f-2ced-48cb-a763-65daee5044bd/ImagePicker/ae56ced8-30eb-4133-8435-
-    // ffa4ccd04335.jpeg", "link": "dasdad", "name": "wepro", "startDate": 2024-09-28T02:55:15.891Z, "userList": [{"id": 1, "name": "양의진", "profileImage": "https://avatars.githubusercontent.com/u/77464040?v=4", "userId": "dml1335"}, {"id": 2, "name": "양의진", "profileImage": "https://avatars.githubusercontent.com/u/77464040?v=4", "userId": "asdf091"}]}
-  }, []);
+  const onSubmit = useCallback(
+    (data: CreateFormType) => {
+      createProject({
+        name: data.name,
+        desc: data.description,
+        imgUrls: [data.image],
+        startDate: data.startDate.toISOString(),
+        endDate: data.endDate.toISOString(),
+        memberList: data.userList.map((user) => Number(user.userId)),
+        link: data.link ?? '',
+      });
+    },
+    [createProject]
+  );
 
   const startDateOpen = useCallback((select: 'start' | 'end') => {
     setDateTimeSheetOpen(true);
