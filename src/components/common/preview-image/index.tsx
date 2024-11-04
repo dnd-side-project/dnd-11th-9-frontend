@@ -7,7 +7,6 @@ type Props = {
 };
 
 function PreviewImage({ images }: Props) {
-  console.log(images);
   return (
     <S.Container>
       {images.map((image, index) =>

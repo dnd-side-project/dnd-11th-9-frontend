@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
 import { useCallback } from 'react';
 
@@ -21,15 +22,25 @@ export function useSingleImage() {
 
     if (!result.canceled && result.assets[0]) {
       const fileUri = result.assets[0].uri;
+      const fileType = result.assets[0].mimeType;
+      const fileName = result.assets[0].fileName ?? 'image.' + fileType?.split('/')[1];
 
-      const file = new File([fileUri], 'image.jpg', { type: 'image/jpeg' });
       const formData = new FormData();
-      formData.append('images', file);
 
-      const { imageUrls } = await uploadImage(formData);
-      const imageUrl = imageUrls[0];
+      try {
+        const response = await fetch(fileUri);
+        const blob = await response.blob();
+        formData.append('images', blob, fileName);
 
-      setImage(imageUrl);
+        const { imageUrls } = await uploadImage(formData);
+        const imageUrl = imageUrls[0];
+
+        setImage(imageUrl);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          throw new Error(error.response?.data.message);
+        }
+      }
     }
   }, []);
 
