@@ -16,7 +16,7 @@ const inviteData = MOCK_PROJECT_ITEM;
 function Project() {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
-  const { data: projectList, isLoading } = useGetMyProject();
+  const { data, isLoading } = useGetMyProject();
   const onRequestClose = () => {
     setVisible(false);
   };
@@ -53,7 +53,7 @@ function Project() {
         onRequestClose={onRequestClose}
       />
       <ProjectList
-        data={projectList ?? []}
+        data={data ?? []}
         isLoading={isLoading}
       />
     </CustomLayout>

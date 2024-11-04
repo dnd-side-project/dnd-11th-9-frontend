@@ -109,8 +109,6 @@ export interface GetMyProjectResponse {
 }
 
 export const getMyProject = async () => {
-  const { data } = await axiosInstance.get<AxiosResponse<GetMyProjectResponse[]>>(
-    PROJECT_END_POINT.ME
-  );
+  const { data } = await axiosInstance.get<GetMyProjectResponse[]>(PROJECT_END_POINT.ME);
   return data;
 };
