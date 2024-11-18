@@ -1,6 +1,7 @@
-import { AxiosError } from 'axios';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
+import mime from 'mime';
 import { useCallback } from 'react';
+import { Platform } from 'react-native';
 
 import { uploadImage } from '@/apis/common';
 
@@ -21,26 +22,30 @@ export function useSingleImage() {
     });
 
     if (!result.canceled && result.assets[0]) {
-      const fileUri = result.assets[0].uri;
-      const fileType = result.assets[0].mimeType;
-      const fileName = result.assets[0].fileName ?? 'image.' + fileType?.split('/')[1];
-
       const formData = new FormData();
 
-      try {
+      if (Platform.OS === 'web') {
+        const fileUri = result.assets[0].uri;
+        const fileType = result.assets[0].mimeType;
+        const fileName = result.assets[0].fileName ?? 'image.' + fileType?.split('/')[1];
+
         const response = await fetch(fileUri);
         const blob = await response.blob();
         formData.append('images', blob, fileName);
-
-        const { imageUrls } = await uploadImage(formData);
-        const imageUrl = imageUrls[0];
-
-        setImage(imageUrl);
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          throw new Error(error.response?.data.message);
-        }
       }
+      if (Platform.OS === 'android') {
+        const newImageUri = 'file:///' + result.assets[0].uri.split('file:/').join('');
+        // @ts-expect-error : FormData에 append 메소드에 대한 타입 정의가 없어서 ignore 처리
+        formData.append('images', {
+          uri: newImageUri,
+          type: mime.getType(newImageUri) || 'application/octet-stream',
+          name: newImageUri.split('/').pop() || 'unknown',
+        });
+      }
+      const { imageUrls } = await uploadImage(formData);
+      const imageUrl = imageUrls[0];
+
+      setImage(imageUrl);
     }
   }, []);
 
